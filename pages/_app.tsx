@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 
-import theme from "@lib/mantine/theme";
+import theme from "lib/mantine/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
