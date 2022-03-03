@@ -1,15 +1,21 @@
-import { Title } from "@mantine/core";
+import { AppShell, Navbar, Title } from "@mantine/core";
 import type { GetServerSideProps, NextPage } from "next";
 
+import { Sidebar, Topbar } from "components/layout";
 import { NEXT_URL } from "config/url";
-import { HomeProps } from "../types/index";
+import { HomeProps } from "types";
 
 export default function Home({ provinces, update }: HomeProps): NextPage {
     console.log(provinces, update);
     return (
-        <div>
-            <Title>Setup is done</Title>
-        </div>
+        <AppShell
+            padding="sm"
+            navbar={<Sidebar />}
+            header={<Topbar />}
+            sx={{ height: "100vh", position: "absolute", maxWidth: "100%" }}
+        >
+            {/* Main component */}
+        </AppShell>
     );
 }
 
