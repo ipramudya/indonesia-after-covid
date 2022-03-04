@@ -6,7 +6,7 @@ import { NEXT_URL } from "config/url";
 import { HomeProps } from "types";
 import { CasesProvider } from "context/cases/cases.context";
 
-export default function Home({ provinces, update }: HomeProps) {
+const Home: NextPage<HomeProps> = ({ provinces, update }) => {
     return (
         <>
             <CasesProvider initialProps={{ provinces, update }}>
@@ -21,13 +21,15 @@ export default function Home({ provinces, update }: HomeProps) {
             </CasesProvider>
         </>
     );
-}
+};
+
+export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const provinceEndpoint: string = "https://data.covid19.go.id/public/api/prov.json";
-    const updateEndpoint: string = `${NEXT_URL}/api/cases/update`;
+    const provinceEndpoint = "https://data.covid19.go.id/public/api/prov.json";
+    const updateEndpoint = `${NEXT_URL}/api/cases/update`;
 
-    const results = await Promise.all<object>(
+    const results = await Promise.all(
         [
             fetch(provinceEndpoint).then((res) => res.json()),
             fetch(updateEndpoint).then((res) => res.json()),

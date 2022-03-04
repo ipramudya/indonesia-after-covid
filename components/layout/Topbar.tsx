@@ -1,10 +1,10 @@
-import { Divider, Group, Header, Space, Text, Title } from "@mantine/core";
+import { FunctionComponent } from "react";
 import Link from "next/link";
-import { NextPage } from "next";
+import { Divider, Group, Header, Text } from "@mantine/core";
 
 import useStyles from "lib/mantine/styles";
 
-export default function Topbar() {
+const Topbar: FunctionComponent = () => {
     const { classes } = useStyles();
 
     return (
@@ -31,4 +31,6 @@ export default function Topbar() {
             </Group>
         </Header>
     );
-}
+};
+
+export default Topbar;

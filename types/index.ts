@@ -1,17 +1,18 @@
 import { ReactNode } from "react";
 
+/* Page props */
 export declare interface HomeProps {
     provinces: object;
     update: {
-        data: object;
-        penambahan: object;
+        data: any;
+        penambahan: any;
         harian: object[];
-        total: object;
+        total: any;
     };
 }
 
 /* Context things */
-export type CasesState = { exploredProvince: { isEmpty: boolean }; cases: object };
+export type CasesState = { exploredProvince: { isEmpty: boolean }; cases: any };
 
 export type CasesDispatch = (action: CasesActionType) => void;
 

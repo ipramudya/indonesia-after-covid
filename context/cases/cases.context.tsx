@@ -18,8 +18,6 @@ function CasesProvider({ children, initialProps }: CasesProviderProps) {
     const [storageValue] = useLocalStorage("cases", initialState.exploredProvince);
     const { update, provinces } = initialProps;
 
-    console.log(initialProps);
-
     // Get data from local storage and serverside props, then store them inside context
     useEffect(() => {
         dispatch({ type: "setCases", payload: { update, provinces } });

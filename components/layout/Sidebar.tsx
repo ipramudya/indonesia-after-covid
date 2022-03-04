@@ -1,12 +1,16 @@
-import { NextPage } from "next";
 import { Navbar } from "@mantine/core";
+import { FunctionComponent } from "react";
 
-export default function Sidebar() {
+import Confirmed from "components/containers/cases/Confirmed";
+
+const Sidebar: FunctionComponent = () => {
     return (
-        <Navbar width={{ base: 400 }} height="100%" padding="xs">
-            <Navbar.Section>{/* Indonesia confirmed cases */}</Navbar.Section>
+        <Navbar width={{ base: 400 }} height="100%" padding="sm">
+            <Navbar.Section>{<Confirmed />}</Navbar.Section>
             <Navbar.Section>{/* Daily Spread */}</Navbar.Section>
             <Navbar.Section>{/* Explore Province */}</Navbar.Section>
         </Navbar>
     );
-}
+};
+
+export default Sidebar;
