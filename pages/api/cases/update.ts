@@ -1,13 +1,13 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse): NextApiHandler {
+const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "GET") {
         const covidUpdateEndpoint: string = "https://data.covid19.go.id/public/api/update.json";
         const CovidUpdateResponse = await fetch(covidUpdateEndpoint);
-        const covidUpdate: object = await CovidUpdateResponse.json();
+        const covidUpdate: any = await CovidUpdateResponse.json();
 
         /* simplify object by removing "value" key */
-        const simplifiedUpdate: object = covidUpdate.update.harian.map((covidCase) => {
+        const simplifiedUpdate: object = covidUpdate.update.harian.map((covidCase: any) => {
             const keys = Object.keys(covidCase);
 
             const newField = keys.reduce((accumulator, current) => {
@@ -28,4 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             total: covidUpdate.update.total,
         });
     }
-}
+};
+
+export default handler;

@@ -2,9 +2,9 @@ import { Divider, Group, Header, Space, Text, Title } from "@mantine/core";
 import Link from "next/link";
 import { NextPage } from "next";
 
-import useStyles, { linkStyles } from "lib/mantine/styles";
+import useStyles from "lib/mantine/styles";
 
-export default function Topbar(): NextPage {
+export default function Topbar() {
     const { classes } = useStyles();
 
     return (
