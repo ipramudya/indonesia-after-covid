@@ -1,6 +1,6 @@
 import { CSSObject } from "@mantine/core";
 
-const badge = (): Partial<
+export default function badge(): Partial<
     Record<
         | "gradient"
         | "outline"
@@ -13,15 +13,15 @@ const badge = (): Partial<
         | "leftSection",
         CSSObject
     >
-> => ({
-    leftSection: {
-        marginRight: "5px",
-        display: "flex",
-    },
-    root: {
-        padding: "8px",
-        fontWeight: 400,
-    },
-});
-
-export default badge;
+> {
+    return {
+        leftSection: {
+            marginRight: "5px",
+            display: "flex",
+        },
+        root: {
+            padding: "8px",
+            fontWeight: 400,
+        },
+    };
+}

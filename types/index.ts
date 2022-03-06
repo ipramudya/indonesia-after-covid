@@ -2,13 +2,20 @@ import { ReactNode } from "react";
 
 /* Page props */
 export declare interface HomeProps {
-    provinces: object;
+    provinces: any;
     update: {
         data: any;
         penambahan: any;
-        harian: object[];
+        harian: any[];
         total: any;
     };
+}
+
+/* Miscellaneous */
+export declare interface ISelectItemWithIcon {
+    icon: ReactNode;
+    label: string;
+    value: "tca" | "tcd" | "afba" | "afbd" | "";
 }
 
 /* Context things */

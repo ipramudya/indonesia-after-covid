@@ -1,8 +1,9 @@
-import { CSSObject } from "@mantine/core";
+import { CSSObject, MantineTheme } from "@mantine/core";
 
 interface ITypography {
     link: CSSObject;
     textMain: CSSObject;
+    textHead: (theme: MantineTheme) => CSSObject;
     number: CSSObject;
 }
 
@@ -18,6 +19,11 @@ const typography: ITypography = {
         fontSize: "16px",
         fontWeight: "bold",
     },
+    textHead: (theme) => ({
+        fontSize: "16px",
+        fontWeight: "bold",
+        color: theme.colors.dark[7],
+    }),
     textMain: {
         fontSize: "14px",
         fontWeight: 400,

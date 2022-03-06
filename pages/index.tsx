@@ -28,9 +28,7 @@ const Home: NextPage<HomeProps> = ({ provinces, update }) => {
     );
 };
 
-export default Home;
-
-export const getServerSideProps: GetServerSideProps = async () => {
+const getServerSideProps: GetServerSideProps = async () => {
     const provinceEndpoint = "https://data.covid19.go.id/public/api/prov.json";
     const updateEndpoint = `${NEXT_URL}/api/cases/update`;
 
@@ -48,3 +46,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
         },
     };
 };
+
+export { getServerSideProps };
+export default Home;

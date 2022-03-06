@@ -6,7 +6,7 @@ import moment from "moment";
 import { useCases } from "context";
 import formatNum from "lib/numeral/formatNum";
 import CovidCase from "components/common/Cases";
-import { badge } from "lib/mantine/styles";
+import { badge, typography } from "lib/mantine/styles";
 import tooltip from "lib/mantine/styles/tooltip";
 
 const Confirmed: FunctionComponent = () => {
@@ -18,7 +18,7 @@ const Confirmed: FunctionComponent = () => {
         <div>
             {cases ? (
                 <>
-                    <Text color="dark" component="span" weight="bold">
+                    <Text component="span" sx={typography.textHead}>
                         Indonesia total confirmed cases
                     </Text>
                     <Group align="center" noWrap={true} mb="md">
