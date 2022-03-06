@@ -1,31 +1,25 @@
-import { BsSortAlphaDown, BsSortAlphaDownAlt, BsSortDown, BsSortDownAlt } from "react-icons/bs";
+import { ISelectItem } from "types";
 
-type IDailySpreadMenu = {
-    label: string;
-    value: "tca" | "tcd" | "afba" | "afbd";
-    icon: JSX.Element;
-}[];
-
-const dailySpreadMenu: IDailySpreadMenu = [
+const dailySpreadMenu: ISelectItem[] = [
     {
-        label: "Total case",
-        value: "tca",
-        icon: <BsSortDown />,
+        label: "New cases",
+        value: "jumlah_positif",
+        color: "#EE5555",
     },
     {
-        label: "Total case",
-        value: "tcd",
-        icon: <BsSortDownAlt />,
+        label: "Healed",
+        value: "jumlah_sembuh",
+        color: "#40C057",
     },
     {
-        label: "Alphabetical",
-        value: "afba",
-        icon: <BsSortAlphaDown />,
+        label: "Hospitalized",
+        value: "jumlah_dirawat",
+        color: "#FBC239",
     },
     {
-        label: "Alphabetical",
-        value: "afbd",
-        icon: <BsSortAlphaDownAlt />,
+        label: "Fatal",
+        value: "jumlah_meninggal",
+        color: "#060C14",
     },
 ];
 

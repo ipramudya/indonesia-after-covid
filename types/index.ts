@@ -11,7 +11,14 @@ export declare interface HomeProps {
     };
 }
 
-/* Miscellaneous */
+/* Dropdown Select Menu */
+export declare interface ISelectItem {
+    label: string;
+    value: "jumlah_positif" | "jumlah_sembuh" | "jumlah_meninggal" | "jumlah_dirawat";
+    color: string;
+}
+[];
+
 export declare interface ISelectItemWithIcon {
     icon: ReactNode;
     label: string;
@@ -34,3 +41,5 @@ export type CasesProviderProps = {
 };
 
 export interface IVaccineState {}
+
+/* Miscellaneous */

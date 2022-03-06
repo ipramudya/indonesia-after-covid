@@ -5,6 +5,7 @@ interface ITypography {
     textMain: CSSObject;
     textHead: (theme: MantineTheme) => CSSObject;
     number: CSSObject;
+    tooltip: CSSObject;
 }
 
 const typography: ITypography = {
@@ -27,6 +28,9 @@ const typography: ITypography = {
     textMain: {
         fontSize: "14px",
         fontWeight: 400,
+    },
+    tooltip: {
+        fontSize: "12px",
     },
 };
 

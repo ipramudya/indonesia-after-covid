@@ -1,8 +1,9 @@
-import { CSSObject } from "@mantine/core";
+import { CSSObject, MantineTheme } from "@mantine/core";
 
 interface IBox {
     case: CSSObject;
-    titleAndMenu: CSSObject;
+    titleAndMenu: (theme: MantineTheme) => CSSObject;
+    tooltipWrapper: CSSObject;
 }
 
 const box: IBox = {
@@ -11,10 +12,15 @@ const box: IBox = {
         justifyContent: "space-between",
         marginBottom: "0.5rem",
     },
-    titleAndMenu: {
+    titleAndMenu: (theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        marginBottom: theme.spacing.md,
+    }),
+    tooltipWrapper: {
+        background: "rgba(255, 255, 255, 0.7)",
+        padding: "5px",
     },
 };
 

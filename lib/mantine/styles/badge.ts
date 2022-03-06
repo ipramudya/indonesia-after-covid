@@ -15,13 +15,14 @@ export default function badge(): Partial<
     >
 > {
     return {
+        root: {
+            padding: "10px 8px",
+            fontWeight: 400,
+        },
         leftSection: {
             marginRight: "5px",
             display: "flex",
-        },
-        root: {
-            padding: "8px",
-            fontWeight: 400,
+            fontSize: "14px",
         },
     };
 }

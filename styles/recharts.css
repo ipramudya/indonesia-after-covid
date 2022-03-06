@@ -1,0 +1,13 @@
+.recharts-cartesian-grid .recharts-cartesian-grid-horizontal line:last-child {
+    stroke-opacity: 0;
+}
+
+.recharts-cartesian-axis-tick {
+    font-family: "Libre Franklin", sans-serif;
+    font-size: 14px;
+}
+
+.recharts-legend-item-text {
+    font-family: "Libre Franklin", sans-serif;
+    font-size: 14px;
+}

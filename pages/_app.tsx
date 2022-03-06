@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 
 import theme from "lib/mantine/theme";
+import "styles/recharts.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (

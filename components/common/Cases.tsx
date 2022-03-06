@@ -1,5 +1,5 @@
 import { Box, Group, Text, Badge } from "@mantine/core";
-import { BiChevronsUp } from "react-icons/bi";
+import { BiChevronsUp, BiChevronsDown } from "react-icons/bi";
 
 import formatNum from "lib/numeral/formatNum";
 import { ListIcon } from "./Icons";
@@ -13,6 +13,8 @@ interface ICovidCaseProps {
 }
 
 const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({ color, increase, total, title }) => {
+    console.log(increase < 0);
+
     return (
         <Box sx={box.case}>
             <Group spacing="xs">
@@ -25,7 +27,12 @@ const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({ color, increase, 
                 <Text color={color} weight="bold" sx={typography.number}>
                     {formatNum(total)}
                 </Text>
-                <Badge radius="sm" color="gray" leftSection={<BiChevronsUp />} styles={badge}>
+                <Badge
+                    radius="sm"
+                    color="gray"
+                    leftSection={increase < 0 ? <BiChevronsDown /> : <BiChevronsUp />}
+                    styles={badge}
+                >
                     {formatNum(increase)}
                 </Badge>
             </Group>

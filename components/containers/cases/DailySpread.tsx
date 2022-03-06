@@ -1,26 +1,31 @@
 import { FunctionComponent, useState } from "react";
 import { Box, Select, Text } from "@mantine/core";
-import { SelectItemWithIcon } from "components/common/SelectItem";
-import { TiArrowSortedDown } from "react-icons/ti";
+import { IoIosArrowDown } from "react-icons/io";
 
 import dailySpreadMenu from "constant/dailySpreadMenu";
 import { box, typography } from "lib/mantine/styles";
 import select from "lib/mantine/styles/select";
-import { ISelectItemWithIcon } from "types";
+import { ISelectItem } from "types";
+import RechartsLine from "components/recharts/RechartsLine";
+import { useCases } from "context";
+import LineTooltip from "components/recharts/Tooltips";
 
 const DailySpread: FunctionComponent = () => {
-    const [selectedMenu, setSelectedMenu] = useState<ISelectItemWithIcon | undefined>({
-        icon: <TiArrowSortedDown />,
-        label: "",
-        value: "",
+    const [selectedMenu, setSelectedMenu] = useState<ISelectItem | undefined>({
+        label: "New cases",
+        value: "jumlah_positif",
+        color: "#EE5555",
     });
+    const {
+        state: { cases },
+    } = useCases();
 
     const handleSelectChange = (e: string | null) => {
-        const willBeSelected: ISelectItemWithIcon | undefined = dailySpreadMenu.find(
-            (menuItem) => menuItem.value === e
-        );
+        const willBeSelected = dailySpreadMenu.find((menuItem) => menuItem.value === e);
         setSelectedMenu(willBeSelected);
     };
+
+    console.log(cases?.update);
 
     return (
         <Box>
@@ -31,11 +36,19 @@ const DailySpread: FunctionComponent = () => {
                 <Select
                     data={dailySpreadMenu}
                     onChange={handleSelectChange}
-                    placeholder="Sort the case"
+                    placeholder="Filter cases"
                     value={selectedMenu?.value}
-                    itemComponent={SelectItemWithIcon}
-                    rightSection={selectedMenu?.icon}
+                    rightSection={<IoIosArrowDown />}
                     styles={select}
+                />
+            </Box>
+            <Box sx={{ height: "270px" }}>
+                <RechartsLine
+                    chartData={cases?.update?.harian}
+                    title={selectedMenu?.label}
+                    field={selectedMenu?.value}
+                    color={selectedMenu?.color}
+                    tooltip={LineTooltip}
                 />
             </Box>
         </Box>
