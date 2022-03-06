@@ -1,25 +1,24 @@
 import { FunctionComponent } from "react";
-import { Badge, Group, Skeleton, Text } from "@mantine/core";
-import { TiArrowSortedUp } from "react-icons/ti";
+import { Badge, Group, Skeleton, Text, Tooltip } from "@mantine/core";
+import { BiChevronsUp } from "react-icons/bi";
 import moment from "moment";
 
 import { useCases } from "context";
 import formatNum from "lib/numeral/formatNum";
-import useStyles from "lib/mantine/styles";
 import CovidCase from "components/common/Cases";
+import { badge } from "lib/mantine/styles";
+import tooltip from "lib/mantine/styles/tooltip";
 
 const Confirmed: FunctionComponent = () => {
     const {
         state: { cases },
     } = useCases();
 
-    const { classes } = useStyles();
-
     return (
         <div>
             {cases ? (
-                <div>
-                    <Text color="dark" component="span" weight="bold" mb="xs">
+                <>
+                    <Text color="dark" component="span" weight="bold">
                         Indonesia total confirmed cases
                     </Text>
                     <Group align="center" noWrap={true} mb="md">
@@ -29,8 +28,8 @@ const Confirmed: FunctionComponent = () => {
                         <Badge
                             radius="sm"
                             color="gray"
-                            leftSection={<TiArrowSortedUp />}
-                            className={classes.badge}
+                            leftSection={<BiChevronsUp />}
+                            styles={badge}
                         >
                             {formatNum(cases.update?.penambahan.jumlah_positif)}
                         </Badge>
@@ -53,17 +52,25 @@ const Confirmed: FunctionComponent = () => {
                         total={cases.update?.total.jumlah_meninggal}
                         title="Fatal"
                     />
-                    <Text component="span" weight={200} size="xs">
-                        *last updated{" "}
-                        {moment(cases.update?.penambahan.created).format("D MMM YYYY, LT")}
-                    </Text>
-                </div>
+                    <Tooltip
+                        label={moment(cases.update?.penambahan.created).format("D MMM YYYY, LT")}
+                        position="right"
+                        color="gray"
+                        radius="md"
+                        styles={tooltip}
+                    >
+                        <Text component="span" size="xs">
+                            *last updated {moment(cases.update?.penambahan.created).fromNow()}
+                        </Text>
+                    </Tooltip>
+                </>
             ) : (
                 <>
                     <Skeleton height="50px" radius="xs" mb="1rem" />
                     <Skeleton height="20px" radius="xs" />
                     <Skeleton height="20px" radius="xs" />
                     <Skeleton height="20px" radius="xs" />
+                    <Skeleton height="8px" radius="xs" />
                 </>
             )}
         </div>

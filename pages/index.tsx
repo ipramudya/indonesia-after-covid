@@ -14,7 +14,12 @@ const Home: NextPage<HomeProps> = ({ provinces, update }) => {
                     padding="sm"
                     navbar={<Sidebar />}
                     header={<Topbar />}
-                    sx={{ height: "100vh", position: "absolute", maxWidth: "100%" }}
+                    sx={{
+                        height: "100vh",
+                        position: "absolute",
+                        maxWidth: "100%",
+                        overflow: "hidden",
+                    }}
                 >
                     {/* Main component */}
                 </AppShell>

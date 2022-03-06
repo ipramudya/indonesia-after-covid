@@ -1,9 +1,9 @@
 import { Box, Group, Text, Badge } from "@mantine/core";
-import { TiArrowSortedUp } from "react-icons/ti";
+import { BiChevronsUp } from "react-icons/bi";
 
 import formatNum from "lib/numeral/formatNum";
 import { ListIcon } from "./Icons";
-import useStyles from "lib/mantine/styles";
+import { badge, box, typography } from "lib/mantine/styles";
 
 interface ICovidCaseProps {
     color: "green" | "dark" | "yellow";
@@ -13,26 +13,19 @@ interface ICovidCaseProps {
 }
 
 const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({ color, increase, total, title }) => {
-    const { classes } = useStyles();
-
     return (
-        <Box className={classes.caseBox}>
+        <Box sx={box.case}>
             <Group spacing="xs">
                 <ListIcon color={color} />
-                <Text component="span" className={classes.subHeading}>
+                <Text component="span" sx={typography.textMain}>
                     {title} cases
                 </Text>
             </Group>
-            <Group spacing="xs">
-                <Text color={color} weight="bold" className={classes.number}>
+            <Group spacing="sm">
+                <Text color={color} weight="bold" sx={typography.number}>
                     {formatNum(total)}
                 </Text>
-                <Badge
-                    radius="sm"
-                    color="gray"
-                    leftSection={<TiArrowSortedUp />}
-                    className={classes.badge}
-                >
+                <Badge radius="sm" color="gray" leftSection={<BiChevronsUp />} styles={badge}>
                     {formatNum(increase)}
                 </Badge>
             </Group>
