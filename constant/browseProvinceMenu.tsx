@@ -1,5 +1,13 @@
+import { ReactNode } from "react";
 import { BsSortAlphaDown, BsSortAlphaDownAlt, BsSortDown, BsSortDownAlt } from "react-icons/bs";
-import { ISelectItemWithIcon } from "types";
+
+interface ISelectItemWithIcon {
+    icon: ReactNode;
+    label: string;
+    value: "tca" | "tcd" | "afba" | "afbd";
+    sortedBy: "jumlah_kasus" | "key";
+    order: "asc" | "dsc";
+}
 
 const browseProvinceMenu: ISelectItemWithIcon[] = [
     {

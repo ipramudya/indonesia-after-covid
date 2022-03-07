@@ -9,6 +9,7 @@ interface IListIcon {
 }
 interface ISelectIcon {
     icon: ReactNode;
+    color?: string;
 }
 
 const ListIcon: FunctionComponent<IListIcon> = ({ size = "xs", color }) => (
@@ -17,11 +18,8 @@ const ListIcon: FunctionComponent<IListIcon> = ({ size = "xs", color }) => (
     </ThemeIcon>
 );
 
-const SelectIcon: FunctionComponent<ISelectIcon> = ({ icon }) => (
-    <ThemeIcon
-        radius="xs"
-        sx={(theme) => ({ background: "transparent", color: theme.colors.dark[7] })}
-    >
+const SelectIcon: FunctionComponent<ISelectIcon> = ({ icon, color }) => (
+    <ThemeIcon sx={(theme) => ({ background: "transparent", color: theme.colors.dark[7] })}>
         {icon}
     </ThemeIcon>
 );

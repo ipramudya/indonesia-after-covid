@@ -1,13 +1,31 @@
-import { forwardRef, RefObject, useRef } from "react";
-import { Box, Group, Text } from "@mantine/core";
+import { forwardRef, useRef } from "react";
+import { Box, Group, Text, ThemeIcon } from "@mantine/core";
 import { typography } from "lib/mantine/styles";
 import { FaStar, FaRegStar } from "react-icons/fa";
+import type { ReactNode, RefObject } from "react";
 
-import { ISelectItemWithIcon } from "types";
 import { SelectIcon } from "./Icons";
 import formatNum from "lib/numeral/formatNum";
 import formatTitle from "utils/formatTitle";
 import { useHoverDirty } from "react-use";
+
+interface ISelectItemWithIcon {
+    icon: ReactNode;
+    label: string;
+    value: "tca" | "tcd" | "afba" | "afbd";
+    sortedBy: "jumlah_kasus" | "key";
+    order: "asc" | "dsc";
+}
+
+type TButtonItem = ({
+    label,
+    quantity,
+    isSelected,
+}: {
+    label?: string;
+    quantity?: number;
+    isSelected?: boolean;
+}) => JSX.Element;
 
 const SelectItemWithIcon = forwardRef<HTMLDivElement | null, ISelectItemWithIcon>(
     ({ icon, label, value, ...others }, ref) => (
@@ -21,7 +39,7 @@ const SelectItemWithIcon = forwardRef<HTMLDivElement | null, ISelectItemWithIcon
 );
 SelectItemWithIcon.displayName = "SelectItemWithIcon";
 
-const ButtonItem = ({ label, quantity }: { label: string; quantity: number }) => {
+const ButtonItem: TButtonItem = ({ label, quantity, isSelected = false }) => {
     const btnref = useRef() as RefObject<HTMLDivElement>;
     const isHovering = useHoverDirty(btnref);
 
@@ -36,9 +54,21 @@ const ButtonItem = ({ label, quantity }: { label: string; quantity: number }) =>
             }}
         >
             <Group spacing={isHovering ? 3 : 0} sx={{ transition: "all 0.3s ease" }}>
-                <SelectIcon icon={isHovering ? <FaStar /> : <FaRegStar />} />
+                {isSelected ? (
+                    <ThemeIcon
+                        sx={(theme) => ({
+                            background: "transparent",
+                            transition: "all 0.3s ease",
+                            color: isHovering ? theme.colors.red[6] : theme.colors.dark[7],
+                        })}
+                    >
+                        <FaStar />
+                    </ThemeIcon>
+                ) : (
+                    <SelectIcon icon={isHovering ? <FaStar /> : <FaRegStar />} />
+                )}
                 <Text component="span" sx={typography.textMain}>
-                    {formatTitle(label)}
+                    {formatTitle(label as string)}
                 </Text>
             </Group>
             <Text component="span" sx={typography.textMain}>

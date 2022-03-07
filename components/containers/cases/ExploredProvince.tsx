@@ -6,11 +6,12 @@ import DividerLabel from "components/common/DividerLabel";
 import { ButtonItem, SelectItemWithIcon } from "components/common/Items";
 import browseProvinceMenu from "constant/browseProvinceMenu";
 import { box, typography } from "lib/mantine/styles";
-import button from "lib/mantine/styles/button";
+import { button, selectedButton } from "lib/mantine/styles/button";
 import select from "lib/mantine/styles/select";
-import { Provinces } from "types/provinces.types";
+import { ListDataEntity, Provinces } from "types/provinces.types";
 import formatTitle from "utils/formatTitle";
 import sort from "utils/sort";
+import { useCases } from "context";
 
 interface ExploredProvinceProps {
     provinces: Provinces;
@@ -33,18 +34,34 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
         label: "Total case",
         order: "asc",
     });
+    const {
+        dispatch,
+        state: { exploredProvince },
+    } = useCases();
 
     const handleSort = (willBeSelected: ISelectItemWithIcon) => {
         const willBeSorted = sort(sortedProvince, willBeSelected.sortedBy, willBeSelected.order);
         setSortedProvince(willBeSorted);
+        return;
     };
 
-    const handleSelectChange = (e: string | null) => {
+    const handleSelectChange = (target: string | null) => {
         const willBeSelected: ISelectItemWithIcon | any = browseProvinceMenu.find(
-            (menuItem) => menuItem.value === e
+            (menuItem) => menuItem.value === target
         );
         setSelectedMenu(willBeSelected);
         handleSort(willBeSelected);
+        return;
+    };
+
+    const handleProvinceChange = (target: string | null) => {
+        if (!target) {
+            return dispatch({ type: "clearExploredProvince" });
+        }
+
+        const province = provinces.list_data?.find((prov) => prov.key === target) as ListDataEntity;
+        dispatch({ type: "setExploredProvince", payload: province });
+        return;
     };
 
     const selectData = sortedProvince?.map((province) => ({
@@ -52,6 +69,8 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
         label: formatTitle(province.key),
         number: province.jumlah_kasus,
     }));
+
+    console.log(!exploredProvince.isEmpty);
 
     return (
         <Box sx={{ padding: "0 30px 0 20px" }}>
@@ -77,11 +96,43 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
                 placeholder="Find and select a specific province"
                 icon={<BsCursor />}
                 maxDropdownHeight={150}
+                onChange={handleProvinceChange}
+                mb="sm"
             />
-            <Divider variant="dashed" labelPosition="center" my="xs" label={<DividerLabel />} />
+            {!exploredProvince.isEmpty && (
+                <>
+                    <Button
+                        variant="outline"
+                        color="gray"
+                        fullWidth
+                        styles={selectedButton}
+                        onClick={() => handleProvinceChange(null)}
+                    >
+                        <ButtonItem
+                            label={exploredProvince.province?.key}
+                            quantity={exploredProvince.province?.jumlah_kasus}
+                            isSelected
+                        />
+                    </Button>
+                    <Divider
+                        variant="dashed"
+                        labelPosition="center"
+                        my="xs"
+                        label={<DividerLabel />}
+                    />
+                </>
+            )}
             <Group direction="column">
+                {/* //TODO: if selected province exist, selected province will be excluded */}
                 {provinces.list_data?.map((prov) => (
-                    <Button variant="outline" key={prov.key} color="gray" fullWidth styles={button}>
+                    <Button
+                        variant="outline"
+                        key={prov.key}
+                        color="gray"
+                        fullWidth
+                        styles={button}
+                        onClick={() => handleProvinceChange(prov.key)}
+                    >
                         <ButtonItem label={prov.key} quantity={prov.jumlah_kasus} />
                     </Button>
                 ))}

@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
-import { IoIosSearch } from "react-icons/io";
+import { GiSelect } from "react-icons/gi";
 import { SelectIcon } from "./Icons";
 
 const DividerLabel: FunctionComponent = () => {
     return (
         <>
-            <SelectIcon icon={<IoIosSearch />} />
-            <span>search result</span>
+            <SelectIcon icon={<GiSelect />} />
+            <span>selected province</span>
         </>
     );
 };
