@@ -1,13 +1,16 @@
 import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 
+import { CasesProvider } from "context/cases/cases.context";
 import theme from "lib/mantine/theme";
 import "styles/recharts.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <MantineProvider withNormalizeCSS withGlobalStyles theme={theme}>
-            <Component {...pageProps} />
+            <CasesProvider>
+                <Component {...pageProps} />
+            </CasesProvider>
         </MantineProvider>
     );
 }

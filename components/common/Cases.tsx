@@ -13,8 +13,6 @@ interface ICovidCaseProps {
 }
 
 const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({ color, increase, total, title }) => {
-    console.log(increase < 0);
-
     return (
         <Box sx={box.case}>
             <Group spacing="xs">

@@ -7,25 +7,24 @@ import { box, typography } from "lib/mantine/styles";
 import select from "lib/mantine/styles/select";
 import { ISelectItem } from "types";
 import RechartsLine from "components/recharts/RechartsLine";
-import { useCases } from "context";
 import LineTooltip from "components/recharts/Tooltips";
+import { Update } from "types/update.types";
 
-const DailySpread: FunctionComponent = () => {
+interface DailySpreadProps {
+    update: Update;
+}
+
+const DailySpread: FunctionComponent<DailySpreadProps> = ({ update }) => {
     const [selectedMenu, setSelectedMenu] = useState<ISelectItem | undefined>({
         label: "New cases",
         value: "jumlah_positif",
         color: "#EE5555",
     });
-    const {
-        state: { cases },
-    } = useCases();
 
     const handleSelectChange = (e: string | null) => {
         const willBeSelected = dailySpreadMenu.find((menuItem) => menuItem.value === e);
         setSelectedMenu(willBeSelected);
     };
-
-    console.log(cases?.update);
 
     return (
         <Box>
@@ -42,9 +41,9 @@ const DailySpread: FunctionComponent = () => {
                     styles={select}
                 />
             </Box>
-            <Box sx={{ height: "270px" }}>
+            <Box sx={{ height: "230px" }}>
                 <RechartsLine
-                    chartData={cases?.update?.harian}
+                    chartData={update.harian}
                     title={selectedMenu?.label}
                     field={selectedMenu?.value}
                     color={selectedMenu?.color}

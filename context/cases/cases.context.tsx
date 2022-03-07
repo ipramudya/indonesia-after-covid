@@ -1,7 +1,7 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, ReactChild, useEffect, useReducer } from "react";
 import { useLocalStorage } from "react-use";
 
-import { CasesDispatch, CasesProviderProps, CasesState } from "types";
+import { CasesDispatch, CasesState, CasesProviderProps } from "types";
 import casesReducer from "./cases.reducer";
 
 const initialState: CasesState = {
@@ -13,16 +13,14 @@ const CasesContext = createContext<{ state: CasesState; dispatch: CasesDispatch 
     undefined
 );
 
-function CasesProvider({ children, initialProps }: CasesProviderProps) {
+function CasesProvider({ children }: CasesProviderProps) {
     const [state, dispatch] = useReducer(casesReducer, initialState);
     const [storageValue] = useLocalStorage("cases", initialState.exploredProvince);
-    const { update, provinces } = initialProps;
 
     // Get data from local storage and serverside props, then store them inside context
     useEffect(() => {
-        dispatch({ type: "setCases", payload: { update, provinces } });
         dispatch({ type: "setProvinceFromStorage", payload: storageValue });
-    }, [update, provinces, storageValue]);
+    }, [storageValue]);
 
     const value = { state, dispatch };
     return <CasesContext.Provider value={value}>{children}</CasesContext.Provider>;

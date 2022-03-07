@@ -13,10 +13,11 @@ import {
     YAxis,
 } from "recharts";
 import { ValueType, NameType } from "recharts/types/component/DefaultTooltipContent";
+import { HarianEntity } from "types/update.types";
 
 interface RechartsLineProps {
     tooltip?: FunctionComponent<TooltipProps<ValueType, NameType>> | undefined;
-    readonly chartData: object[];
+    readonly chartData: HarianEntity[] | undefined;
     title: string | undefined;
     field: string | undefined;
     color: string | undefined;

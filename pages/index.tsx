@@ -4,26 +4,19 @@ import { AppShell } from "@mantine/core";
 import { Sidebar, Topbar } from "components/layout";
 import { NEXT_URL } from "config/url";
 import { HomeProps } from "types";
-import { CasesProvider } from "context/cases/cases.context";
+import appshell from "lib/mantine/styles/appshell";
 
 const Home: NextPage<HomeProps> = ({ provinces, update }) => {
     return (
         <>
-            <CasesProvider initialProps={{ provinces, update }}>
-                <AppShell
-                    padding="sm"
-                    navbar={<Sidebar />}
-                    header={<Topbar />}
-                    sx={{
-                        height: "100vh",
-                        position: "absolute",
-                        maxWidth: "100%",
-                        overflow: "hidden",
-                    }}
-                >
-                    {/* Main component */}
-                </AppShell>
-            </CasesProvider>
+            <AppShell
+                padding="sm"
+                navbar={<Sidebar update={update} provinces={provinces} />}
+                header={<Topbar />}
+                styles={appshell}
+            >
+                {/* Main component */}
+            </AppShell>
         </>
     );
 };
@@ -32,7 +25,7 @@ const getServerSideProps: GetServerSideProps = async () => {
     const provinceEndpoint = "https://data.covid19.go.id/public/api/prov.json";
     const updateEndpoint = `${NEXT_URL}/api/cases/update`;
 
-    const results = await Promise.all(
+    const [provinces, update] = await Promise.all(
         [
             fetch(provinceEndpoint).then((res) => res.json()),
             fetch(updateEndpoint).then((res) => res.json()),
@@ -41,8 +34,8 @@ const getServerSideProps: GetServerSideProps = async () => {
 
     return {
         props: {
-            provinces: results[0],
-            update: results[1],
+            provinces,
+            update,
         },
     };
 };

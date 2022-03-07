@@ -1,19 +1,6 @@
 import { CSSObject } from "@mantine/core";
 
-export default function badge(): Partial<
-    Record<
-        | "gradient"
-        | "outline"
-        | "light"
-        | "dot"
-        | "filled"
-        | "rightSection"
-        | "root"
-        | "inner"
-        | "leftSection",
-        CSSObject
-    >
-> {
+export default function badge(): Partial<Record<"root" | "leftSection", CSSObject>> {
     return {
         root: {
             padding: "10px 8px",
