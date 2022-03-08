@@ -10,15 +10,11 @@ export default function CasesReducer(state: CasesState, action: CasesActionType)
         }
         case "clearExploredProvince": {
             return {
-                cases: { ...state.cases },
                 exploredProvince: { isEmpty: true },
             };
         }
         case "setProvinceFromStorage": {
             return { ...state, exploredProvince: action.payload };
-        }
-        case "setCases": {
-            return { ...state, cases: { ...action.payload } };
         }
     }
 }

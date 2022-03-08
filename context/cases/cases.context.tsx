@@ -1,13 +1,11 @@
 import useStorage from "hooks/useStorage";
 import { createContext, useEffect, useReducer } from "react";
-// import { useLocalStorage } from "react-use";
 import { CasesState, CasesDispatch, CasesProviderProps } from "types/context.types";
 
 import casesReducer from "./cases.reducer";
 
 const initialState: CasesState = {
     exploredProvince: { isEmpty: true },
-    cases: {},
 };
 
 const CasesContext = createContext<{ state: CasesState; dispatch: CasesDispatch } | undefined>(
