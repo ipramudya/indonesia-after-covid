@@ -10,7 +10,7 @@ export interface CasesState {
         isEmpty: boolean;
         province?: ListDataEntity;
     };
-    cases: any;
+    cases?: any;
 }
 
 export type CasesDispatch = (action: CasesActionType) => void;
@@ -18,7 +18,13 @@ export type CasesDispatch = (action: CasesActionType) => void;
 export type CasesActionType =
     | { type: "setExploredProvince"; payload: ListDataEntity }
     | { type: "clearExploredProvince" }
-    | { type: "setProvinceFromStorage"; payload: any }
-    | { type: "setCases"; payload: { provinces: Provinces; update: Update } };
+    | { type: "setCases"; payload: { provinces: Provinces; update: Update } }
+    | {
+          type: "setProvinceFromStorage";
+          payload: {
+              isEmpty: boolean;
+              province?: ListDataEntity | undefined;
+          };
+      };
 
 export interface IVaccineState {}

@@ -21,7 +21,7 @@ const DailySpread: FunctionComponent<DailySpreadProps> = ({ update }) => {
         color: "#EE5555",
     });
 
-    const handleSelectChange = (e: string | null) => {
+    const onSelectChange = (e: string | null) => {
         const willBeSelected = dailySpreadMenu.find((menuItem) => menuItem.value === e);
         setSelectedMenu(willBeSelected);
     };
@@ -34,7 +34,7 @@ const DailySpread: FunctionComponent<DailySpreadProps> = ({ update }) => {
                 </Text>
                 <Select
                     data={dailySpreadMenu}
-                    onChange={handleSelectChange}
+                    onChange={onSelectChange}
                     placeholder="Filter cases"
                     value={selectedMenu?.value}
                     rightSection={<IoIosArrowDown />}

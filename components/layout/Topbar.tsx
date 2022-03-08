@@ -23,7 +23,7 @@ const Topbar: FunctionComponent = () => {
                         <Text sx={typography.link}>Vaccine</Text>
                     </Link>
                     <Link href="/news" passHref>
-                        <Text sx={typography.link}>Vaccine</Text>
+                        <Text sx={typography.link}>News</Text>
                     </Link>
                 </Group>
             </Group>

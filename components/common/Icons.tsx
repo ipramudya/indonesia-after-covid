@@ -1,6 +1,5 @@
 import { ThemeIcon } from "@mantine/core";
 import { FunctionComponent, ReactNode } from "react";
-import { IconType } from "react-icons";
 import { BsCircleFill } from "react-icons/bs";
 
 interface IListIcon {
@@ -18,7 +17,7 @@ const ListIcon: FunctionComponent<IListIcon> = ({ size = "xs", color }) => (
     </ThemeIcon>
 );
 
-const SelectIcon: FunctionComponent<ISelectIcon> = ({ icon, color }) => (
+const SelectIcon: FunctionComponent<ISelectIcon> = ({ icon }) => (
     <ThemeIcon sx={(theme) => ({ background: "transparent", color: theme.colors.dark[7] })}>
         {icon}
     </ThemeIcon>

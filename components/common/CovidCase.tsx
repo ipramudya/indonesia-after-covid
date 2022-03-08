@@ -18,7 +18,7 @@ const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({ color, increase, 
             <Group spacing="xs">
                 <ListIcon color={color} />
                 <Text component="span" sx={typography.textMain}>
-                    {title} cases
+                    {title}
                 </Text>
             </Group>
             <Group spacing="sm">

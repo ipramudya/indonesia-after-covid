@@ -1,4 +1,4 @@
-import { CasesState, CasesActionType } from "types/context.types";
+import { CasesActionType, CasesState } from "types/context.types";
 
 export default function CasesReducer(state: CasesState, action: CasesActionType): CasesState {
     switch (action.type) {
@@ -15,7 +15,7 @@ export default function CasesReducer(state: CasesState, action: CasesActionType)
             };
         }
         case "setProvinceFromStorage": {
-            return { ...state, exploredProvince: { ...action.payload } };
+            return { ...state, exploredProvince: action.payload };
         }
         case "setCases": {
             return { ...state, cases: { ...action.payload } };

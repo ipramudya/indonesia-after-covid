@@ -1,14 +1,12 @@
-import { FunctionComponent } from "react";
-import { Badge, Group, Skeleton, Text, Tooltip } from "@mantine/core";
-import { BiChevronsUp } from "react-icons/bi";
-import moment from "moment";
-
-import { Update } from "types/update.types";
-import { useCases } from "context";
-import formatNum from "lib/numeral/formatNum";
-import CovidCase from "components/common/Cases";
+import { Badge, Group, Text, Tooltip } from "@mantine/core";
+import CovidCase from "components/common/CovidCase";
 import { badge, typography } from "lib/mantine/styles";
 import tooltip from "lib/mantine/styles/tooltip";
+import formatNum from "lib/numeral/formatNum";
+import moment from "moment";
+import { FunctionComponent } from "react";
+import { BiChevronsUp } from "react-icons/bi";
+import { Update } from "types/update.types";
 
 interface ConfirmedProps {
     update: Update;
@@ -53,7 +51,7 @@ const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
                 radius="md"
                 styles={tooltip}
             >
-                <Text component="span" size="xs">
+                <Text component="span" size="xs" sx={(theme) => ({ color: theme.colors.dark[3] })}>
                     *last updated {moment(update?.penambahan.created).fromNow()}
                 </Text>
             </Tooltip>
@@ -62,17 +60,3 @@ const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
 };
 
 export default Confirmed;
-
-// {cases ? (
-//     <>
-
-//     </>
-// ) : (
-//     <>
-//         <Skeleton height="50px" radius="xs" mb="1rem" />
-//         <Skeleton height="20px" radius="xs" />
-//         <Skeleton height="20px" radius="xs" />
-//         <Skeleton height="20px" radius="xs" />
-//         <Skeleton height="8px" radius="xs" />
-//     </>
-// )}

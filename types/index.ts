@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import { Provinces } from "./provinces.types";
 import { Update } from "./update.types";
 
