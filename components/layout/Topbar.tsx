@@ -6,7 +6,7 @@ import { typography } from "lib/mantine/styles";
 
 const Topbar: FunctionComponent = () => {
     return (
-        <Header padding="sm" height={60}>
+        <Header sx={{ padding: "14px 25px" }} height={60}>
             <Group sx={{ height: "100%" }}>
                 <Text size="xl" component="h1" m={0} color="dark" sx={{ fontStyle: "italic" }}>
                     Indonesia

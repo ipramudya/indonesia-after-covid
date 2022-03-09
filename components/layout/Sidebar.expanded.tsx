@@ -17,21 +17,34 @@ const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, u
     const { exploredProvince } = state;
     return (
         <Navbar
-            width={{ base: exploredProvince.isEmpty ? 400 : 700 }}
+            width={{ base: exploredProvince.isEmpty ? 400 : 725 }}
             height="100%"
-            sx={{ padding: "14px 0", flexDirection: "row" }}
+            sx={{ padding: "18px 0 14px 0", flexDirection: "row" }}
         >
             <Navbar width={{ base: 400 }} height="100%" sx={{ padding: "0 25px" }}>
                 <Navbar.Section>{<Confirmed update={update} />}</Navbar.Section>
                 <Divider my="md" />
-                <Navbar.Section grow component={ScrollArea} ml={-20} mr={-20} type="always">
+                <Navbar.Section
+                    grow
+                    component={ScrollArea}
+                    ml={-20}
+                    mr={-20}
+                    type="always"
+                    scrollbarSize={6}
+                >
                     {<ExploredProvince provinces={provinces} />}
                 </Navbar.Section>
             </Navbar>
 
             {!exploredProvince.isEmpty && (
-                <Navbar width={{ base: 300 }} height="100%" sx={{ borderRight: "unset" }}>
-                    <Navbar.Section component={ScrollArea} grow>
+                <Navbar width={{ base: 325 }} height="100%" sx={{ borderRight: "unset" }}>
+                    <Navbar.Section
+                        component={ScrollArea}
+                        grow
+                        mr={5}
+                        scrollbarSize={6}
+                        type="always"
+                    >
                         {<Overview />}
                     </Navbar.Section>
                 </Navbar>

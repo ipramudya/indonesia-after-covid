@@ -81,7 +81,7 @@ const CustomTooltip = (props: TooltipProps<string, string>) => {
                     }: ${formatNum(Number(payload[0].value))}`}</Text>
                     <Text component="span" sx={typography.tooltip}>
                         {`Accumulation: ${formatNum(
-                            payload[0].payload[`${payload[0].dataKey}_kum`]
+                            payload[0].payload[`AKUMULASI_${payload[0].dataKey}`]
                         )}`}
                     </Text>
                 </Group>
