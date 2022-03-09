@@ -6,8 +6,7 @@ import dailySpreadMenu from "constant/dailySpreadMenu";
 import { box, typography } from "lib/mantine/styles";
 import select from "lib/mantine/styles/select";
 import { ISelectItem } from "types";
-import RechartsLine from "components/recharts/RechartsLine";
-import LineTooltip from "components/recharts/Tooltips";
+import RechartsLine from "components/recharts/Line.recharts";
 import { Update } from "types/update.types";
 
 interface DailySpreadProps {
@@ -47,7 +46,6 @@ const DailySpread: FunctionComponent<DailySpreadProps> = ({ update }) => {
                     title={selectedMenu?.label}
                     field={selectedMenu?.value}
                     color={selectedMenu?.color}
-                    tooltip={LineTooltip}
                 />
             </Box>
         </Box>

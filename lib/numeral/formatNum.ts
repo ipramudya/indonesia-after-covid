@@ -1,7 +1,7 @@
 import numeral from "numeral";
 
 interface IFormatNum {
-    (num: number | undefined, type?: "comma" | "autoformat"): string;
+    (num: number | undefined, type?: "comma" | "autoformat" | "percentage"): string;
 }
 
 const formatNum: IFormatNum = (num, type = "comma") => {
@@ -18,6 +18,9 @@ const formatNum: IFormatNum = (num, type = "comma") => {
                 return num.toString();
             }
             return numeral(num).format("0a");
+        }
+        case "percentage": {
+            return `${num.toFixed(0)} %`;
         }
         default: {
             return num.toString();

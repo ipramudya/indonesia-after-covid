@@ -1,13 +1,14 @@
-import { forwardRef, useRef } from "react";
 import { Box, Group, Text, ThemeIcon } from "@mantine/core";
+import { useHover } from "@mantine/hooks";
 import { typography } from "lib/mantine/styles";
-import { FaStar, FaRegStar } from "react-icons/fa";
-import type { ReactNode, RefObject } from "react";
+import formatNum from "lib/numeral/formatNum";
+import { forwardRef } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
+import formatTitle from "utils/formatTitle";
 
 import { SelectIcon } from "./Icons";
-import formatNum from "lib/numeral/formatNum";
-import formatTitle from "utils/formatTitle";
-import { useHoverDirty } from "react-use";
+
+import type { ReactNode } from "react";
 
 interface ISelectItemWithIcon {
     icon: ReactNode;
@@ -40,12 +41,11 @@ const SelectItemWithIcon = forwardRef<HTMLDivElement | null, ISelectItemWithIcon
 SelectItemWithIcon.displayName = "SelectItemWithIcon";
 
 const ButtonItem: TButtonItem = ({ label, quantity, isSelected = false }) => {
-    const btnref = useRef() as RefObject<HTMLDivElement>;
-    const isHovering = useHoverDirty(btnref);
+    const { hovered, ref } = useHover();
 
     return (
         <Box
-            ref={btnref}
+            ref={ref}
             sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -53,19 +53,19 @@ const ButtonItem: TButtonItem = ({ label, quantity, isSelected = false }) => {
                 width: "100%",
             }}
         >
-            <Group spacing={isHovering ? 3 : 0} sx={{ transition: "all 0.3s ease" }}>
+            <Group spacing={hovered ? 3 : 0} sx={{ transition: "all 0.3s ease" }}>
                 {isSelected ? (
                     <ThemeIcon
                         sx={(theme) => ({
                             background: "transparent",
                             transition: "all 0.3s ease",
-                            color: isHovering ? theme.colors.red[6] : theme.colors.dark[7],
+                            color: hovered ? theme.colors.red[6] : theme.colors.dark[7],
                         })}
                     >
                         <FaStar />
                     </ThemeIcon>
                 ) : (
-                    <SelectIcon icon={isHovering ? <FaStar /> : <FaRegStar />} />
+                    <SelectIcon icon={hovered ? <FaStar /> : <FaRegStar />} />
                 )}
                 <Text component="span" sx={typography.textMain}>
                     {formatTitle(label as string)}

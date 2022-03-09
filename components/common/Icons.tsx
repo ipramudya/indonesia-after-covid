@@ -4,7 +4,7 @@ import { BsCircleFill } from "react-icons/bs";
 
 interface IListIcon {
     size?: "xs" | "sm" | "md";
-    color: "green" | "dark" | "yellow";
+    color: "green" | "dark" | "yellow" | "#ee5555";
 }
 interface ISelectIcon {
     icon: ReactNode;

@@ -74,7 +74,7 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
     }));
 
     return (
-        <Box sx={{ padding: "0 30px 0 20px" }}>
+        <Box sx={{ padding: "0 25px 0 20px" }}>
             <Box sx={box.titleAndMenu}>
                 <Text component="span" sx={typography.textHead}>
                     Explore province
