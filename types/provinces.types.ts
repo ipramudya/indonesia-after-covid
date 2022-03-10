@@ -14,7 +14,7 @@ export interface ListDataEntity {
     jumlah_dirawat: number;
     jenis_kelamin?: JenisKelaminEntity[] | null;
     kelompok_umur?: KelompokUmurEntity[] | null;
-    lokasi?: Lokasi | null;
+    lokasi: Lokasi;
     penambahan: Penambahan;
 }
 export interface JenisKelaminEntity {

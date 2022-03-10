@@ -21,7 +21,11 @@ const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, u
             height="100%"
             sx={{ padding: "18px 0 14px 0", flexDirection: "row" }}
         >
-            <Navbar width={{ base: 400 }} height="100%" sx={{ padding: "0 25px" }}>
+            <Navbar
+                width={{ base: 400 }}
+                height="100%"
+                sx={{ padding: "0 25px", borderRight: exploredProvince.isEmpty ? "none" : "" }}
+            >
                 <Navbar.Section>{<Confirmed update={update} />}</Navbar.Section>
                 <Divider my="md" />
                 <Navbar.Section

@@ -4,7 +4,6 @@ import {
     Divider,
     Group,
     Progress,
-    ScrollArea,
     Select,
     Text,
     Tooltip,
@@ -64,9 +63,12 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                     <OverviewSkeleton />
                 </>
             ) : (
-                <Box
-                    sx={{ padding: "14px 25px", display: "flex", flexDirection: "column" }}
-                    component={ScrollArea}
+                <Group
+                    direction="column"
+                    grow
+                    sx={{ padding: "14px 25px" }}
+                    position="center"
+                    spacing="xs"
                 >
                     {/* Overview Head */}
                     <div>
@@ -128,7 +130,7 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                                 size="xs"
                             />
                         </Box>
-                        <Box sx={{ height: "230px" }}>
+                        <Box sx={{ height: "200px" }}>
                             <RechartsLine
                                 chartData={data?.list_perkembangan}
                                 title={selectedMenu?.label}
@@ -179,7 +181,7 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                             <RechartsBar chartData={data?.data.kasus.kelompok_umur.list_data} />
                         </Box>
                     </div>
-                </Box>
+                </Group>
             )}
         </>
     );
