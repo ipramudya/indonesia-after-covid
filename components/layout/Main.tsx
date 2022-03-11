@@ -35,10 +35,8 @@ const Main: FunctionComponent<MainProps> = () => {
         ({ lat, lon, zoom }: { lat: number; lon: number; zoom: number }) => {
             mapRef.current?.flyTo({
                 center: { lon, lat },
-                duration: 1000,
                 zoom,
-                speed: 0.2,
-                essential: true,
+                // essential: true,
             });
         },
         []

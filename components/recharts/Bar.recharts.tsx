@@ -1,17 +1,17 @@
 import { Group, Text, useMantineTheme } from "@mantine/core";
 import { box, typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useCallback } from "react";
 import {
     Bar,
     BarChart,
     CartesianGrid,
     LabelList,
     ResponsiveContainer,
-    XAxis,
-    YAxis,
     Tooltip,
     TooltipProps,
+    XAxis,
+    YAxis,
 } from "recharts";
 import { ContentType } from "recharts/types/component/Label";
 import { ListDataEntity1 } from "types/detailProv.types";
@@ -25,6 +25,9 @@ const RechartsBar: FunctionComponent<RechartsLineProps> = ({ chartData }) => {
     const fontStyle = {
         fontSize: "10px",
     };
+
+    const onFormatYAxis = useCallback((value) => formatNum(value, "percentage"), []);
+    const onFormatLabel = useCallback((value: number) => `${value.toFixed(0)}%`, []);
 
     return (
         <ResponsiveContainer>
@@ -51,7 +54,7 @@ const RechartsBar: FunctionComponent<RechartsLineProps> = ({ chartData }) => {
                 ></XAxis>
                 <YAxis
                     type="number"
-                    tickFormatter={(value) => formatNum(value, "percentage")}
+                    tickFormatter={onFormatYAxis}
                     tickSize={0}
                     tickMargin={5}
                     width={35}
@@ -59,12 +62,18 @@ const RechartsBar: FunctionComponent<RechartsLineProps> = ({ chartData }) => {
                     style={fontStyle}
                     axisLine={false}
                 />
-                <Bar name="Total cases" fill="#E9ECEF" dataKey="doc_count" barSize={20}>
+                <Bar
+                    name="Total cases"
+                    fill="#E9ECEF"
+                    dataKey="doc_count"
+                    barSize={20}
+                    isAnimationActive={false}
+                >
                     <LabelList
                         dataKey="doc_count"
                         position="insideTop"
                         content={CustomBarLabel}
-                        formatter={(value: number) => `${value.toFixed(0)}%`}
+                        formatter={onFormatLabel}
                     />
                 </Bar>
             </BarChart>

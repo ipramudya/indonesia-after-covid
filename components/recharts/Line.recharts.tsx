@@ -2,7 +2,7 @@ import { Group, Text } from "@mantine/core";
 import { box, typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
 import moment from "moment";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useCallback } from "react";
 import {
     CartesianGrid,
     Legend,
@@ -30,6 +30,9 @@ const RechartsLine: FunctionComponent<RechartsLineProps> = ({ chartData, title, 
         fontSize: "12px",
     };
 
+    const onFormatYAxis = useCallback((value) => formatNum(value, "autoformat"), []);
+    const onFormatXAxis = useCallback((day) => moment(day).format("D MMM"), []);
+
     return (
         <ResponsiveContainer>
             <LineChart data={chartData as any[]} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
@@ -38,7 +41,7 @@ const RechartsLine: FunctionComponent<RechartsLineProps> = ({ chartData, title, 
                 <XAxis
                     dataKey="tanggal"
                     type="number"
-                    tickFormatter={(day) => moment(day).format("D MMM")}
+                    tickFormatter={onFormatXAxis}
                     axisLine={false}
                     tickSize={0}
                     tickMargin={15}
@@ -49,7 +52,7 @@ const RechartsLine: FunctionComponent<RechartsLineProps> = ({ chartData, title, 
                 />
                 <YAxis
                     type="number"
-                    tickFormatter={(value) => formatNum(value, "autoformat")}
+                    tickFormatter={onFormatYAxis}
                     tickSize={0}
                     tickMargin={10}
                     axisLine={false}
@@ -60,7 +63,14 @@ const RechartsLine: FunctionComponent<RechartsLineProps> = ({ chartData, title, 
                     tickCount={4}
                 />
                 <Legend wrapperStyle={{ paddingTop: 15 }} />
-                <Line name={title} type="natural" dot={false} dataKey={field} stroke={color} />
+                <Line
+                    name={title}
+                    type="natural"
+                    dot={false}
+                    dataKey={field}
+                    stroke={color}
+                    isAnimationActive={false}
+                />
             </LineChart>
         </ResponsiveContainer>
     );
