@@ -42,19 +42,28 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
         state: { exploredProvince },
     } = useCases();
 
-    const onSort = (willBeSelected: ISelectItemWithIcon) => {
-        const willBeSorted = sort(sortedProvince, willBeSelected.sortedby, willBeSelected.order);
-        setSortedProvince(willBeSorted);
-        return;
-    };
+    const onSort = useCallback(
+        (willBeSelected: ISelectItemWithIcon) => {
+            const willBeSorted = sort(
+                sortedProvince,
+                willBeSelected.sortedby,
+                willBeSelected.order
+            );
+            setSortedProvince(willBeSorted);
+        },
+        [sortedProvince]
+    );
 
-    const onSelectChange = (target: string | null) => {
-        const willBeSelected: ISelectItemWithIcon | any = browseProvinceMenu.find(
-            (menuItem) => menuItem.value === target
-        );
-        setSelectedMenu(willBeSelected);
-        onSort(willBeSelected);
-    };
+    const onSelectChange = useCallback(
+        (target: string | null) => {
+            const willBeSelected: ISelectItemWithIcon | any = browseProvinceMenu.find(
+                (menuItem) => menuItem.value === target
+            );
+            setSelectedMenu(willBeSelected);
+            onSort(willBeSelected);
+        },
+        [onSort]
+    );
 
     const onProvinceChange = useCallback(
         (target: string | null) => {
@@ -129,13 +138,13 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
                 </>
             )}
             <Group direction="column">
-                {provinces.list_data
-                    ?.filter((prov) =>
+                {sortedProvince
+                    ?.filter((prov: ListDataEntity) =>
                         !exploredProvince.isEmpty
                             ? prov.key !== exploredProvince.province?.key
                             : prov
                     )
-                    .map((prov) => (
+                    .map((prov: ListDataEntity) => (
                         <ProvinceBox
                             key={prov.key}
                             provName={prov.key}
