@@ -1,6 +1,8 @@
+import { createContext, useReducer } from "react";
+import { useEffectOnce } from "react-use";
+
 import useStorage from "hooks/useStorage";
-import { createContext, useEffect, useReducer } from "react";
-import { CasesState, CasesDispatch, CasesProviderProps } from "types/context.types";
+import { CasesDispatch, CasesProviderProps, CasesState } from "types/context.types";
 
 import casesReducer from "./cases.reducer";
 
@@ -17,7 +19,7 @@ function CasesProvider({ children }: CasesProviderProps) {
     const { getStorageValue } = useStorage();
 
     // Get data from local storage and serverside props, then store them inside context
-    useEffect(() => {
+    useEffectOnce(() => {
         if (getStorageValue && !getStorageValue.exploredProvince.isEmpty) {
             dispatch({
                 type: "setProvinceFromStorage",
@@ -25,9 +27,7 @@ function CasesProvider({ children }: CasesProviderProps) {
             });
             return;
         }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    });
 
     const value = { state, dispatch };
     return <CasesContext.Provider value={value}>{children}</CasesContext.Provider>;

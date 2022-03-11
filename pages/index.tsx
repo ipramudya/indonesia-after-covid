@@ -15,7 +15,7 @@ const Home: NextPage<HomeProps> = ({ provinces, update }) => {
                 header={<Topbar />}
                 styles={appshell}
             >
-                <Main />
+                {/* <Main /> */}
             </AppShell>
         </>
     );

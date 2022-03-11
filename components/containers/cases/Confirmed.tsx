@@ -1,10 +1,11 @@
+import { FunctionComponent, memo } from "react";
 import { Badge, Group, Text, Tooltip } from "@mantine/core";
+import moment from "moment";
+
 import CovidCase from "components/common/CovidCase";
 import { badge, typography } from "lib/mantine/styles";
 import tooltip from "lib/mantine/styles/tooltip";
 import formatNum from "lib/numeral/formatNum";
-import moment from "moment";
-import { FunctionComponent } from "react";
 import { BiChevronsUp } from "react-icons/bi";
 import { Update } from "types/update.types";
 
@@ -59,4 +60,4 @@ const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
     );
 };
 
-export default Confirmed;
+export default memo(Confirmed);

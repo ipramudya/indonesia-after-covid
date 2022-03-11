@@ -1,18 +1,18 @@
-import { Box, Button, Divider, Group, Select, SelectItem, Text } from "@mantine/core";
-import { FunctionComponent, ReactNode, useState } from "react";
-import { BsCursor, BsSortDown } from "react-icons/bs";
-
+import { Box, Divider, Group, Select, SelectItem, Text } from "@mantine/core";
 import DividerLabel from "components/common/DividerLabel";
-import { ButtonItem, SelectItemWithIcon } from "components/common/Items";
+import { SelectItemWithIcon } from "components/common/Items";
+import ProvinceBox from "components/common/ProvinceBox";
 import browseProvinceMenu from "constant/browseProvinceMenu";
+import { useCases } from "context";
+import useStorage from "hooks/useStorage";
 import { box, typography } from "lib/mantine/styles";
-import { button, selectedButton } from "lib/mantine/styles/button";
 import select from "lib/mantine/styles/select";
+import type { FunctionComponent, ReactNode } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { BsCursor, BsSortDown } from "react-icons/bs";
 import { ListDataEntity, Provinces } from "types/provinces.types";
 import formatTitle from "utils/formatTitle";
 import sort from "utils/sort";
-import { useCases } from "context";
-import useStorage from "hooks/useStorage";
 
 interface ExploredProvinceProps {
     provinces: Provinces;
@@ -35,9 +35,11 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
         label: "Total case",
         order: "asc",
     });
-    const { dispatch, state } = useCases();
-    const { exploredProvince } = state;
     const { onSetStorage, onClearStorage } = useStorage();
+    const {
+        dispatch,
+        state: { exploredProvince },
+    } = useCases();
 
     const onSort = (willBeSelected: ISelectItemWithIcon) => {
         const willBeSorted = sort(sortedProvince, willBeSelected.sortedBy, willBeSelected.order);
@@ -51,27 +53,36 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
         );
         setSelectedMenu(willBeSelected);
         onSort(willBeSelected);
-        return;
     };
 
-    const onProvinceChange = (target: string | null) => {
-        if (!target) {
-            dispatch({ type: "clearExploredProvince" });
-            onClearStorage();
+    const onProvinceChange = useCallback(
+        (target: string | null) => {
+            if (!target) {
+                dispatch({ type: "clearExploredProvince" });
+                onClearStorage();
+                return;
+            }
+
+            const province = provinces.list_data?.find(
+                (prov) => prov.key === target
+            ) as ListDataEntity;
+            dispatch({ type: "setExploredProvince", payload: province });
+            onSetStorage({ exploredProvince: { isEmpty: false, province } });
             return;
-        }
+        },
 
-        const province = provinces.list_data?.find((prov) => prov.key === target) as ListDataEntity;
-        dispatch({ type: "setExploredProvince", payload: province });
-        onSetStorage({ exploredProvince: { isEmpty: false, province } });
-        return;
-    };
+        [dispatch, onClearStorage, onSetStorage, provinces.list_data]
+    );
 
-    const selectData = sortedProvince?.map((province) => ({
-        value: province.key,
-        label: formatTitle(province.key),
-        number: province.jumlah_kasus,
-    }));
+    const selectData = useMemo(
+        () =>
+            sortedProvince?.map((province) => ({
+                value: province.key,
+                label: formatTitle(province.key),
+                number: province.jumlah_kasus,
+            })),
+        [sortedProvince]
+    );
 
     return (
         <Box sx={{ padding: "0 25px 0 20px" }}>
@@ -102,19 +113,12 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
             />
             {!exploredProvince.isEmpty && (
                 <>
-                    <Button
-                        variant="outline"
-                        color="gray"
-                        fullWidth
-                        styles={selectedButton}
-                        onClick={() => onProvinceChange(null)}
-                    >
-                        <ButtonItem
-                            label={exploredProvince.province?.key}
-                            quantity={exploredProvince.province?.jumlah_kasus}
-                            isSelected
-                        />
-                    </Button>
+                    <ProvinceBox
+                        provName={exploredProvince.province?.key as string}
+                        quantity={exploredProvince.province?.jumlah_kasus as number}
+                        onProvinceChange={onProvinceChange}
+                        isSelected
+                    />
                     <Divider
                         variant="dashed"
                         labelPosition="center"
@@ -131,16 +135,12 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
                             : prov
                     )
                     .map((prov) => (
-                        <Button
-                            variant="outline"
+                        <ProvinceBox
                             key={prov.key}
-                            color="gray"
-                            fullWidth
-                            styles={button}
-                            onClick={() => onProvinceChange(prov.key)}
-                        >
-                            <ButtonItem label={prov.key} quantity={prov.jumlah_kasus} />
-                        </Button>
+                            provName={prov.key}
+                            quantity={prov.jumlah_kasus}
+                            onProvinceChange={onProvinceChange}
+                        />
                     ))}
             </Group>
         </Box>

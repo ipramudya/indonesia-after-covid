@@ -1,9 +1,9 @@
-import { Box, Group, Text, Badge } from "@mantine/core";
-import { BiChevronsUp, BiChevronsDown } from "react-icons/bi";
-
-import formatNum from "lib/numeral/formatNum";
-import { ListIcon } from "./Icons";
+import { Badge, Box, Group, Text } from "@mantine/core";
 import { badge, box, typography } from "lib/mantine/styles";
+import formatNum from "lib/numeral/formatNum";
+import { memo, useMemo } from "react";
+import { BiChevronsDown, BiChevronsUp } from "react-icons/bi";
+import { ListIcon } from "./Icons";
 
 interface ICovidCaseProps {
     color: "green" | "dark" | "yellow" | "#ee5555";
@@ -20,6 +20,9 @@ const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({
     title,
     type = "normal",
 }) => {
+    const memoizedTotal = useMemo(() => formatNum(total), [total]);
+    const memoizedIncrease = useMemo(() => formatNum(increase), [increase]);
+
     return (
         <Box sx={box.case}>
             <Group spacing="xs">
@@ -37,7 +40,7 @@ const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({
                     weight="bold"
                     sx={type === "normal" ? typography.number : typography.numberTiny}
                 >
-                    {formatNum(total)}
+                    {memoizedTotal}
                 </Text>
                 <Badge
                     radius="sm"
@@ -45,11 +48,11 @@ const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({
                     leftSection={(increase as number) < 0 ? <BiChevronsDown /> : <BiChevronsUp />}
                     styles={badge}
                 >
-                    {formatNum(increase)}
+                    {memoizedIncrease}
                 </Badge>
             </Group>
         </Box>
     );
 };
 
-export default CovidCase;
+export default memo(CovidCase);

@@ -13,18 +13,22 @@ interface SidebarExpandedProps {
 }
 
 const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, update }) => {
-    const { state } = useCases();
-    const { exploredProvince } = state;
+    const {
+        state: {
+            exploredProvince: { isEmpty },
+        },
+    } = useCases();
+
     return (
         <Navbar
-            width={{ base: exploredProvince.isEmpty ? 400 : 725 }}
+            width={{ base: isEmpty ? 400 : 725 }}
             height="100%"
             sx={{ padding: "18px 0 14px 0", flexDirection: "row" }}
         >
             <Navbar
                 width={{ base: 400 }}
                 height="100%"
-                sx={{ padding: "0 25px", borderRight: exploredProvince.isEmpty ? "none" : "" }}
+                sx={{ padding: "0 25px", borderRight: isEmpty ? "none" : "" }}
             >
                 <Navbar.Section>{<Confirmed update={update} />}</Navbar.Section>
                 <Divider my="md" />
@@ -40,7 +44,7 @@ const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, u
                 </Navbar.Section>
             </Navbar>
 
-            {!exploredProvince.isEmpty && (
+            {!isEmpty && (
                 <Navbar width={{ base: 325 }} height="100%" sx={{ borderRight: "unset" }}>
                     <Navbar.Section
                         component={ScrollArea}
@@ -49,7 +53,7 @@ const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, u
                         scrollbarSize={6}
                         type="always"
                     >
-                        {<Overview />}
+                        {/* {<Overview />} */}
                     </Navbar.Section>
                 </Navbar>
             )}
