@@ -9,7 +9,7 @@ interface ISelectItemWithIcon {
     icon: ReactNode;
     label: string;
     value: "tca" | "tcd" | "afba" | "afbd";
-    sortedBy: "jumlah_kasus" | "key";
+    sortedby: "jumlah_kasus" | "key";
     order: "asc" | "dsc";
 }
 

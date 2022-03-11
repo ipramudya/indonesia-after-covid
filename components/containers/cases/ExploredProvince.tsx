@@ -1,14 +1,15 @@
 import { Box, Divider, Group, Select, SelectItem, Text } from "@mantine/core";
 import DividerLabel from "components/common/DividerLabel";
+import type { FunctionComponent, ReactNode } from "react";
+import { useCallback, useMemo, useState } from "react";
+
 import { SelectItemWithIcon } from "components/common/Items";
-import ProvinceBox from "components/common/ProvinceBox";
+import ProvinceBox from "components/common/ProvinceBox.explored";
 import browseProvinceMenu from "constant/browseProvinceMenu";
 import { useCases } from "context";
 import useStorage from "hooks/useStorage";
 import { box, typography } from "lib/mantine/styles";
 import select from "lib/mantine/styles/select";
-import type { FunctionComponent, ReactNode } from "react";
-import { useCallback, useMemo, useState } from "react";
 import { BsCursor, BsSortDown } from "react-icons/bs";
 import { ListDataEntity, Provinces } from "types/provinces.types";
 import formatTitle from "utils/formatTitle";
@@ -22,7 +23,7 @@ interface ISelectItemWithIcon {
     icon: ReactNode;
     label: string;
     value: "tca" | "tcd" | "afba" | "afbd";
-    sortedBy: "jumlah_kasus" | "key";
+    sortedby: "jumlah_kasus" | "key";
     order: "asc" | "dsc";
 }
 
@@ -31,7 +32,7 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
     const [selectedMenu, setSelectedMenu] = useState<ISelectItemWithIcon>({
         icon: <BsSortDown />,
         value: "tca",
-        sortedBy: "jumlah_kasus",
+        sortedby: "jumlah_kasus",
         label: "Total case",
         order: "asc",
     });
@@ -42,7 +43,7 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
     } = useCases();
 
     const onSort = (willBeSelected: ISelectItemWithIcon) => {
-        const willBeSorted = sort(sortedProvince, willBeSelected.sortedBy, willBeSelected.order);
+        const willBeSorted = sort(sortedProvince, willBeSelected.sortedby, willBeSelected.order);
         setSortedProvince(willBeSorted);
         return;
     };

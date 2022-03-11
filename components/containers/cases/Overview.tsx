@@ -1,5 +1,4 @@
 import {
-    ActionIcon,
     Box,
     Divider,
     Group,
@@ -9,9 +8,12 @@ import {
     Tooltip,
     useMantineTheme,
 } from "@mantine/core";
-import CovidCase from "components/common/CovidCase";
+import { memo, useCallback, useMemo, useState } from "react";
+import type { FunctionComponent } from "react";
+import { BsInfoCircle, BsThreeDotsVertical } from "react-icons/bs";
+
+import { Heading, Summary, Skeleton as OverviewSkeleton } from "components/common";
 import { SelectIcon } from "components/common/Icons";
-import OverviewSkeleton from "components/common/OverviewSkeleton";
 import { RechartsBar, RechartsLine } from "components/recharts";
 import overviewLineMenu, { IOverviewLineMenu } from "constant/overviewLineMenu";
 import { useCases } from "context";
@@ -20,9 +22,6 @@ import useStorage from "hooks/useStorage";
 import { box, typography } from "lib/mantine/styles";
 import { selectSmall } from "lib/mantine/styles/select";
 import tooltip from "lib/mantine/styles/tooltip";
-import { FunctionComponent, useState } from "react";
-import { BsInfoCircle, BsThreeDotsVertical } from "react-icons/bs";
-import { FiX } from "react-icons/fi";
 import formatTitle from "utils/formatTitle";
 
 interface OverviewProps {}
@@ -35,26 +34,33 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
     });
     const theme = useMantineTheme();
     const { onClearStorage } = useStorage();
-    const { state, dispatch } = useCases();
-    const { exploredProvince } = state;
+    const {
+        state: { exploredProvince },
+        dispatch,
+    } = useCases();
     const { isLoading, data } = useDetailProvince(exploredProvince.province?.key);
 
-    const onSelectChange = (e: string | null) => {
+    const onSelectChange = useCallback((e: string | null) => {
         const willBeSelected = overviewLineMenu.find((menuItem) => menuItem.value === e);
         setSelectedMenu(willBeSelected);
-    };
+    }, []);
 
-    const onOverviewClose = () => {
+    const onOverviewClose = useCallback(() => {
         dispatch({ type: "clearExploredProvince" });
         onClearStorage();
         return;
-    };
+    }, [dispatch, onClearStorage]);
 
-    const ageProgress = data?.data.kasus.jenis_kelamin.list_data?.map((data, idx) => ({
-        value: Number(data.doc_count.toFixed(2)),
-        label: `${idx === 0 ? "Male" : "female"} ${data.doc_count.toFixed(3)} %`,
-        color: idx === 0 ? theme.colors.gray[2] : "#F8F9FA",
-    }));
+    const ageProgress = useMemo(
+        () =>
+            data?.data.kasus.jenis_kelamin.list_data?.map((data, idx) => ({
+                value: Number(data.doc_count.toFixed(2)),
+                label: `${idx === 0 ? "Male" : "female"} ${data.doc_count.toFixed(3)} %`,
+                color: idx === 0 ? theme.colors.gray[2] : "#F8F9FA",
+            })),
+        [data?.data.kasus.jenis_kelamin.list_data, theme.colors.gray]
+    );
+    const overviewTitle = useMemo(() => formatTitle(data?.provinsi as string), [data?.provinsi]);
 
     return (
         <>
@@ -71,49 +77,12 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                     spacing="xs"
                 >
                     {/* Overview Head */}
-                    <div>
-                        <Box sx={box.titleAndMenu}>
-                            <Text
-                                component="span"
-                                sx={typography.textHead}
-                                style={{ fontSize: "14px" }}
-                            >
-                                {formatTitle(data?.provinsi as string)}
-                            </Text>
-                            <Group spacing="xs">
-                                <ActionIcon variant="default" onClick={onOverviewClose}>
-                                    <FiX />
-                                </ActionIcon>
-                            </Group>
-                        </Box>
-                        <Divider mb="sm" />
-                    </div>
+                    <Heading title={overviewTitle} onOverviewClose={onOverviewClose} />
+                    <Divider mb="sm" />
 
                     {/* Summary */}
-                    <div>
-                        <CovidCase
-                            color="#ee5555"
-                            title="Confirmed case"
-                            increase={exploredProvince.province?.penambahan?.positif}
-                            total={exploredProvince.province?.jumlah_kasus}
-                            type="tiny"
-                        />
-                        <CovidCase
-                            color="green"
-                            title="Healed"
-                            increase={exploredProvince.province?.penambahan?.sembuh}
-                            total={exploredProvince.province?.jumlah_sembuh}
-                            type="tiny"
-                        />
-                        <CovidCase
-                            color="dark"
-                            title="Fatal"
-                            increase={exploredProvince.province?.penambahan?.meninggal}
-                            total={exploredProvince.province?.jumlah_meninggal}
-                            type="tiny"
-                        />
-                        <Divider my="sm" />
-                    </div>
+                    <Summary province={exploredProvince.province} />
+                    <Divider my="sm" />
 
                     {/* Case grouping by line chart */}
                     <div>
@@ -187,4 +156,4 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
     );
 };
 
-export default Overview;
+export default memo(Overview);

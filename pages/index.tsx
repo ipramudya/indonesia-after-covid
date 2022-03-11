@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { AppShell } from "@mantine/core";
 
-import { Topbar, SidebarExpanded, Main } from "components/layout";
+import { Topbar, Sidebar, Main } from "components/layout";
 import { NEXT_URL } from "config/url";
 import { HomeProps } from "types";
 import appshell from "lib/mantine/styles/appshell";
@@ -11,11 +11,11 @@ const Home: NextPage<HomeProps> = ({ provinces, update }) => {
         <>
             <AppShell
                 padding="sm"
-                navbar={<SidebarExpanded update={update} provinces={provinces} />}
+                navbar={<Sidebar update={update} provinces={provinces} />}
                 header={<Topbar />}
                 styles={appshell}
             >
-                {/* <Main /> */}
+                <Main />
             </AppShell>
         </>
     );

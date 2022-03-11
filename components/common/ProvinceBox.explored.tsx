@@ -25,8 +25,6 @@ const ProvinceBox: FunctionComponent<ProvinceBoxProps> = ({
         onProvinceChange(provName);
     };
 
-    console.log(isSelected);
-
     return (
         <Button
             variant="outline"

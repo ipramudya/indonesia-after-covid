@@ -1,29 +1,66 @@
 import { Divider, Navbar, ScrollArea } from "@mantine/core";
-import { FunctionComponent } from "react";
-
 import Confirmed from "components/containers/cases/Confirmed";
-import DailySpread from "components/containers/cases/DailySpread";
 import ExploredProvince from "components/containers/cases/ExploredProvince";
+import Overview from "components/containers/cases/Overview";
+import { useCases } from "context";
+import { FunctionComponent } from "react";
 import { Provinces } from "types/provinces.types";
 import { Update } from "types/update.types";
 
-interface SidebarProps {
+interface SidebarExpandedProps {
     provinces: Provinces;
     update: Update;
 }
 
-const Sidebar: FunctionComponent<SidebarProps> = ({ provinces, update }) => {
+const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, update }) => {
+    const {
+        state: {
+            exploredProvince: { isEmpty },
+        },
+    } = useCases();
+
     return (
-        <Navbar width={{ base: 400 }} height="100%" sx={{ padding: "14px 25px" }}>
-            <Navbar.Section>{<Confirmed update={update} />}</Navbar.Section>
-            <Divider my="sm" />
-            <Navbar.Section>{<DailySpread update={update} />}</Navbar.Section>
-            <Divider my="sm" />
-            <Navbar.Section grow component={ScrollArea} ml={-20} mr={-25} type="always">
-                {<ExploredProvince provinces={provinces} />}
-            </Navbar.Section>
+        <Navbar
+            width={{ base: isEmpty ? 400 : 725 }}
+            height="100%"
+            sx={{ padding: "18px 0 14px 0", flexDirection: "row" }}
+        >
+            <Navbar
+                width={{ base: 400 }}
+                height="100%"
+                sx={{ padding: "0 25px", borderRight: isEmpty ? "none" : "" }}
+            >
+                <Navbar.Section>
+                    <Confirmed update={update} />
+                </Navbar.Section>
+                <Divider my="md" />
+                <Navbar.Section
+                    grow
+                    component={ScrollArea}
+                    ml={-20}
+                    mr={-20}
+                    type="always"
+                    scrollbarSize={6}
+                >
+                    <ExploredProvince provinces={provinces} />
+                </Navbar.Section>
+            </Navbar>
+
+            {!isEmpty && (
+                <Navbar width={{ base: 325 }} height="100%" sx={{ borderRight: "unset" }}>
+                    <Navbar.Section
+                        component={ScrollArea}
+                        grow
+                        mr={5}
+                        scrollbarSize={6}
+                        type="always"
+                    >
+                        <Overview />
+                    </Navbar.Section>
+                </Navbar>
+            )}
         </Navbar>
     );
 };
 
-export default Sidebar;
+export default SidebarExpanded;
