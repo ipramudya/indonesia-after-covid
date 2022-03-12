@@ -1,9 +1,10 @@
+import { FunctionComponent } from "react";
 import { Divider, Navbar, ScrollArea } from "@mantine/core";
+
 import Confirmed from "components/containers/cases/Confirmed";
 import ExploredProvince from "components/containers/cases/ExploredProvince";
 import Overview from "components/containers/cases/Overview";
 import { useCases } from "context";
-import { FunctionComponent } from "react";
 import { Provinces } from "types/provinces.types";
 import { Update } from "types/update.types";
 

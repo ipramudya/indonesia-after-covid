@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core";
-import { button, selectedButton } from "lib/mantine/styles/button";
+import { button, selectedButton } from "lib/mantine/styles";
 import { FunctionComponent, memo } from "react";
-import { ButtonItem } from "./Items";
+import { ButtonItem } from "components/ui/Items";
 
 interface ProvinceBoxProps {
     provName: string;

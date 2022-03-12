@@ -1,9 +1,10 @@
+import { memo, useMemo } from "react";
 import { Badge, Box, Group, Text } from "@mantine/core";
+import { BiChevronsDown, BiChevronsUp } from "react-icons/bi";
+
 import { badge, box, typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
-import { memo, useMemo } from "react";
-import { BiChevronsDown, BiChevronsUp } from "react-icons/bi";
-import { ListIcon } from "./Icons";
+import { ListIcon } from "components/ui/Icons";
 
 interface ICovidCaseProps {
     color: "green" | "dark" | "yellow" | "#ee5555";

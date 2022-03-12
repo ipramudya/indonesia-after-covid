@@ -3,8 +3,7 @@ import { Box, Select, Text } from "@mantine/core";
 import { IoIosArrowDown } from "react-icons/io";
 
 import dailySpreadMenu from "constant/dailySpreadMenu";
-import { box, typography } from "lib/mantine/styles";
-import select from "lib/mantine/styles/select";
+import { box, typography, select } from "lib/mantine/styles";
 import { ISelectItem } from "types";
 import RechartsLine from "components/recharts/Line.recharts";
 import { Update } from "types/update.types";

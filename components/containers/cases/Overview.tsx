@@ -1,27 +1,11 @@
-import {
-    Box,
-    Divider,
-    Group,
-    Progress,
-    Select,
-    Text,
-    Tooltip,
-    useMantineTheme,
-} from "@mantine/core";
+import { Divider, Group, useMantineTheme } from "@mantine/core";
 import { useCallback, useMemo, useState } from "react";
 import type { FunctionComponent } from "react";
-import { BsInfoCircle, BsThreeDotsVertical } from "react-icons/bs";
 
-import { Heading, Summary, Skeleton as OverviewSkeleton } from "components/common";
-import { SelectIcon } from "components/common/Icons";
-import { RechartsBar, RechartsLine } from "components/recharts";
+import { Daily, Grouping, Heading, OverviewSkeleton, Summary } from "components/common";
 import overviewLineMenu, { IOverviewLineMenu } from "constant/overviewLineMenu";
 import { useCases } from "context";
-import useDetailProvince from "hooks/useDetailProvince";
-import useStorage from "hooks/useStorage";
-import { box, typography } from "lib/mantine/styles";
-import { selectSmall } from "lib/mantine/styles/select";
-import tooltip from "lib/mantine/styles/tooltip";
+import { useDetailProvince, useStorage } from "hooks";
 import formatTitle from "utils/formatTitle";
 
 interface OverviewProps {}
@@ -74,7 +58,8 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                     grow
                     sx={{ padding: "14px 25px" }}
                     position="center"
-                    spacing="xs"
+                    // spacing="xs"
+                    spacing={4}
                 >
                     {/* Overview Head */}
                     <Heading title={overviewTitle} onOverviewClose={onOverviewClose} />
@@ -85,71 +70,14 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                     <Divider my="sm" />
 
                     {/* Case grouping by line chart */}
-                    <div>
-                        <Box sx={box.titleAndMenu}>
-                            <Text component="span" sx={typography.textMain}>
-                                Daily spread
-                            </Text>
-                            <Select
-                                data={overviewLineMenu}
-                                onChange={onSelectChange}
-                                value={selectedMenu?.value}
-                                rightSection={<BsThreeDotsVertical />}
-                                styles={selectSmall}
-                                size="xs"
-                            />
-                        </Box>
-                        <Box sx={{ height: "200px" }}>
-                            <RechartsLine
-                                chartData={data?.list_perkembangan}
-                                title={selectedMenu?.label}
-                                field={selectedMenu?.value}
-                                color={selectedMenu?.color}
-                            />
-                        </Box>
-                        <Divider my="sm" />
-                    </div>
+                    <Daily
+                        data={data}
+                        onSelectChange={onSelectChange}
+                        selectedMenu={selectedMenu}
+                    />
 
                     {/* Case Grouping */}
-                    <div>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Text component="span" sx={typography.textMain}>
-                                Case grouping
-                            </Text>
-                            <Tooltip
-                                styles={tooltip}
-                                label="Percentage is calculated based on total confirmed cases from each province"
-                                wrapLines
-                                width={200}
-                                position="right"
-                                placement="center"
-                            >
-                                <SelectIcon icon={<BsInfoCircle />} />
-                            </Tooltip>
-                        </Box>
-                        {/* Gender Grouping - Progress bar */}
-                        <Divider variant="dashed" my="xs" label="by gender" />
-                        <Progress
-                            sections={ageProgress}
-                            size="xl"
-                            mb="xs"
-                            styles={{
-                                root: { height: "30px" },
-                                label: { fontWeight: 500, color: theme.colors.dark[8] },
-                            }}
-                        />
-                        {/* Age Grouping - Stick bar */}
-                        <Divider variant="dashed" my="xs" label="by age" />
-                        <Box sx={{ height: "200px" }}>
-                            <RechartsBar chartData={data?.data.kasus.kelompok_umur.list_data} />
-                        </Box>
-                    </div>
+                    <Grouping ageProgress={ageProgress} data={data} color={theme.colors.dark[8]} />
                 </Group>
             )}
         </>

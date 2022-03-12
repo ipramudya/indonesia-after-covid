@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 import { useEffectOnce } from "react-use";
 
-import useStorage from "hooks/useStorage";
+import { useStorage } from "hooks";
 import { CasesDispatch, CasesProviderProps, CasesState } from "types/context.types";
 
 import casesReducer from "./cases.reducer";

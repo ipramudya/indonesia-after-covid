@@ -3,8 +3,8 @@ import { AppShell } from "@mantine/core";
 
 import { Topbar, Sidebar, Main } from "components/layout";
 import { NEXT_URL } from "config/url";
+import { appshell } from "lib/mantine/styles";
 import { HomeProps } from "types";
-import appshell from "lib/mantine/styles/appshell";
 
 const Home: NextPage<HomeProps> = ({ provinces, update }) => {
     return (

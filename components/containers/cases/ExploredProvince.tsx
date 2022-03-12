@@ -2,18 +2,17 @@ import { Box, Divider, Group, Select, SelectItem, Text } from "@mantine/core";
 import DividerLabel from "components/common/DividerLabel";
 import type { FunctionComponent, ReactNode } from "react";
 import { useCallback, useMemo, useState } from "react";
+import { BsCursor, BsSortDown } from "react-icons/bs";
 
-import { SelectItemWithIcon } from "components/common/Items";
-import ProvinceBox from "components/common/ProvinceBox.explored";
+import { SelectItemWithIcon } from "components/ui/Items";
+import ProvinceBox from "components/common/ProvinceBox-explored";
+import { box, typography, select } from "lib/mantine/styles";
 import browseProvinceMenu from "constant/browseProvinceMenu";
 import { useCases } from "context";
-import useStorage from "hooks/useStorage";
-import { box, typography } from "lib/mantine/styles";
-import select from "lib/mantine/styles/select";
-import { BsCursor, BsSortDown } from "react-icons/bs";
-import { ListDataEntity, Provinces } from "types/provinces.types";
+import { useStorage } from "hooks";
 import formatTitle from "utils/formatTitle";
 import sort from "utils/sort";
+import { ListDataEntity, Provinces } from "types/provinces.types";
 
 interface ExploredProvinceProps {
     provinces: Provinces;
@@ -56,6 +55,7 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
 
     const onSelectChange = useCallback(
         (target: string | null) => {
+            console.log("first");
             const willBeSelected: ISelectItemWithIcon | any = browseProvinceMenu.find(
                 (menuItem) => menuItem.value === target
             );

@@ -4,9 +4,9 @@ import { Ref, useCallback, useEffect, useRef } from "react";
 import Map, { MapRef } from "react-map-gl";
 
 const defaultLocation = {
-    longitude: 118.11485523945265,
-    latitude: -1.4724675223323658,
-    zoom: 4.6,
+    longitude: 117.9188324776498,
+    latitude: -2.1851528432548974,
+    zoom: 4.4,
 };
 
 const Main: FunctionComponent = () => {
@@ -40,6 +40,8 @@ const Main: FunctionComponent = () => {
         <Map
             {...viewState}
             onMove={(event) => {
+                console.log(event.target.getCenter());
+                console.log(event.target.getZoom());
                 setViewState(event.viewState);
             }}
             ref={mapRef}

@@ -1,8 +1,9 @@
-import { Box, Text, Group, ActionIcon } from "@mantine/core";
-import { box, typography } from "lib/mantine/styles";
 import { memo } from "react";
-import type { FunctionComponent } from "react";
+import { Box, Text, Group, ActionIcon } from "@mantine/core";
 import { FiX } from "react-icons/fi";
+import type { FunctionComponent } from "react";
+
+import { box, typography } from "lib/mantine/styles";
 
 interface Heading {
     title: string;
