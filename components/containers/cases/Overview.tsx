@@ -8,7 +8,7 @@ import {
     Tooltip,
     useMantineTheme,
 } from "@mantine/core";
-import { memo, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { FunctionComponent } from "react";
 import { BsInfoCircle, BsThreeDotsVertical } from "react-icons/bs";
 
@@ -156,4 +156,4 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
     );
 };
 
-export default memo(Overview);
+export default Overview;

@@ -1,62 +1,47 @@
-import { useDidUpdate } from "@mantine/hooks";
 import { useCases } from "context";
-import { Ref, useCallback, useRef } from "react";
+import { FunctionComponent, useState } from "react";
+import { Ref, useCallback, useEffect, useRef } from "react";
 import Map, { MapRef } from "react-map-gl";
 
-import type { FunctionComponent } from "react";
-interface MainProps {}
+const defaultLocation = {
+    longitude: 118.11485523945265,
+    latitude: -1.4724675223323658,
+    zoom: 4.6,
+};
 
-const Main: FunctionComponent<MainProps> = () => {
+const Main: FunctionComponent = () => {
     const mapRef: Ref<MapRef> = useRef(null);
-    const { state } = useCases();
-    const { exploredProvince } = state;
+    const {
+        state: { exploredProvince },
+    } = useCases();
 
-    const exploredProvinceLat = exploredProvince.province?.lokasi?.lat as number;
-    const exploredProvinceLon = exploredProvince.province?.lokasi?.lon as number;
-    const defaultLocation = {
-        longitude: 118.11485523945265,
-        latitude: -1.4724675223323658,
-        zoom: 4.3,
-    };
+    const [viewState, setViewState] = useState(defaultLocation);
 
-    const getInitialViewState = () => {
-        if (exploredProvince.isEmpty) {
-            return defaultLocation;
-        } else {
-            return {
-                longitude: exploredProvinceLon,
-                latitude: exploredProvinceLat,
-                zoom: 9,
-            };
-        }
-    };
+    const onSetViewstate = useCallback(({ zoom, latitude, longitude }) => {
+        setViewState({
+            zoom,
+            latitude,
+            longitude,
+        });
+    }, []);
 
-    const onMapFly = useCallback(
-        ({ lat, lon, zoom }: { lat: number; lon: number; zoom: number }) => {
-            mapRef.current?.flyTo({
-                center: { lon, lat },
-                zoom,
-                // essential: true,
-            });
-        },
-        []
-    );
-
-    // custom hooks to avoid initial useEffect fun
-    useDidUpdate(() => {
+    useEffect(() => {
         if (!exploredProvince.isEmpty) {
-            onMapFly({ lat: exploredProvinceLat, lon: exploredProvinceLon, zoom: 9 });
+            const latitude = exploredProvince.province?.lokasi.lat;
+            const longitude = exploredProvince.province?.lokasi.lon;
+            onSetViewstate({ latitude, longitude, zoom: 9 });
         } else {
-            const { latitude, longitude, zoom } = defaultLocation;
-            onMapFly({ lat: latitude, lon: longitude, zoom });
+            onSetViewstate(defaultLocation);
         }
-
         mapRef.current?.resize();
-    }, [exploredProvince]);
+    }, [exploredProvince.isEmpty, exploredProvince.province, onSetViewstate]);
 
     return (
         <Map
-            initialViewState={getInitialViewState()}
+            {...viewState}
+            onMove={(event) => {
+                setViewState(event.viewState);
+            }}
             ref={mapRef}
             mapStyle="mapbox://styles/ipramudya0/cl0k1g3f6000315p4q5f1grm2/draft"
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
