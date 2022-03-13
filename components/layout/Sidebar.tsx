@@ -22,12 +22,12 @@ const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, u
 
     return (
         <Navbar
-            width={{ base: isEmpty ? 400 : 725 }}
+            width={{ base: isEmpty ? 375 : 675 }}
             height="100%"
             sx={{ padding: "18px 0 14px 0", flexDirection: "row" }}
         >
             <Navbar
-                width={{ base: 400 }}
+                width={{ base: 375 }}
                 height="100%"
                 sx={{ padding: "0 25px", borderRight: isEmpty ? "none" : "" }}
             >
@@ -48,7 +48,7 @@ const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, u
             </Navbar>
 
             {!isEmpty && (
-                <Navbar width={{ base: 325 }} height="100%" sx={{ borderRight: "unset" }}>
+                <Navbar width={{ base: 300 }} height="100%" sx={{ borderRight: "unset" }}>
                     <Navbar.Section
                         component={ScrollArea}
                         grow

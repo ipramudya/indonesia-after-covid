@@ -55,7 +55,6 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
 
     const onSelectChange = useCallback(
         (target: string | null) => {
-            console.log("first");
             const willBeSelected: ISelectItemWithIcon | any = browseProvinceMenu.find(
                 (menuItem) => menuItem.value === target
             );
