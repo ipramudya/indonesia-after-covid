@@ -30,9 +30,8 @@ const MarkersMain: FunctionComponent<MarkersMainProps> = ({ provinces, exploredP
             {provinces?.map((province) => {
                 const isSameLocation = province.key === exploredProvince.province?.key;
                 return province?.lokasi ? (
-                    <>
+                    <div key={province.key}>
                         <Marker
-                            key={province.key}
                             longitude={province?.lokasi?.lon}
                             latitude={province?.lokasi?.lat}
                             onClick={onMarkerClick}
@@ -40,16 +39,16 @@ const MarkersMain: FunctionComponent<MarkersMainProps> = ({ provinces, exploredP
                             <ActionIcon
                                 radius="xl"
                                 variant={isSameLocation ? "outline" : "hover"}
-                                size={isSameLocation ? "lg" : "sm"}
+                                size={isSameLocation ? "xl" : "lg"}
                                 color="red"
                             >
                                 <GoPrimitiveDot
-                                    size={18}
+                                    size={33}
                                     style={isSameLocation ? { opacity: "unset" } : { opacity: 0.3 }}
                                 />
                             </ActionIcon>
                         </Marker>
-                    </>
+                    </div>
                 ) : null;
             })}
         </>

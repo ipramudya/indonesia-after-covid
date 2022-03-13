@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useMemo, useReducer } from "react";
 import { useEffectOnce } from "react-use";
 
 import { useStorage } from "hooks";
@@ -29,7 +29,7 @@ function CasesProvider({ children }: CasesProviderProps) {
         }
     });
 
-    const value = { state, dispatch };
+    const value = useMemo(() => ({ state, dispatch }), [state]);
     return <CasesContext.Provider value={value}>{children}</CasesContext.Provider>;
 }
 
