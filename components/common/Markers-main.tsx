@@ -40,12 +40,12 @@ const Markers: FunctionComponent<MarkersProps> = ({ provinces, exploredProvince 
                             <ActionIcon
                                 radius="xl"
                                 variant={isSameLocation ? "outline" : "hover"}
-                                size={isSameLocation ? "xl" : "lg"}
+                                size={isSameLocation ? "lg" : "sm"}
                                 color="red"
                             >
                                 <GoPrimitiveDot
                                     size={isSameLocation ? 44 : 30}
-                                    style={isSameLocation ? { opacity: "unset" } : { opacity: 0.3 }}
+                                    style={isSameLocation ? { opacity: 0.5 } : { opacity: 0.3 }}
                                 />
                             </ActionIcon>
                         </Marker>

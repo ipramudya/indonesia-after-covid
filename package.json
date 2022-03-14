@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mantine/core": "^3.6.12",
-    "@mantine/hooks": "^3.6.12",
-    "@mantine/next": "^3.6.12",
+    "@mantine/core": "^4.0.4",
+    "@mantine/hooks": "^4.0.4",
+    "@mantine/next": "^4.0.4",
     "axios": "^0.26.0",
     "mapbox-gl": "^2.7.0",
     "moment": "^2.29.1",

@@ -32,8 +32,10 @@ const Main: FunctionComponent<MainProps> = ({ provinces }) => {
 
     useEffect(() => {
         if (exploredProvince.isEmpty || !exploredProvince.province?.lokasi) {
+            mapRef.current?.resize();
             return setViewport(defaultCoordinate);
         } else {
+            mapRef.current?.resize();
             return setViewport({ latitude, longitude, zoom: 9 });
         }
     }, [exploredProvince.isEmpty, exploredProvince.province?.lokasi, latitude, longitude]);

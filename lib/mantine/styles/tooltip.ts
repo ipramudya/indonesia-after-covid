@@ -9,7 +9,7 @@ export default function tooltip(): Partial<
             marginTop: "0.5rem",
         },
         body: {
-            padding: "5px",
+            padding: "6px",
             fontSize: "12px",
             background: "#F8F9FA",
             color: "#212529",
