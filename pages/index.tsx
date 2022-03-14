@@ -1,22 +1,20 @@
-import { AppShell } from "@mantine/core";
-import { Main, Sidebar, Topbar } from "components/layout";
-import { NEXT_URL } from "config/url";
-import { appshell } from "lib/mantine/styles";
 import type { GetServerSideProps, NextPage } from "next";
-import { HomeProps } from "types";
+
+import { Layout, Main, Sidebar } from "components/layout";
+import { NEXT_URL } from "config/url";
+import { Provinces } from "types/provinces.types";
+import { Update } from "types/update.types";
+
+interface HomeProps {
+    provinces: Provinces;
+    update: Update;
+}
 
 const Home: NextPage<HomeProps> = ({ provinces, update }) => {
     return (
-        <>
-            <AppShell
-                padding="sm"
-                navbar={<Sidebar update={update} provinces={provinces} />}
-                header={<Topbar />}
-                styles={appshell}
-            >
-                <Main provinces={provinces.list_data} />
-            </AppShell>
-        </>
+        <Layout Sidebar={<Sidebar update={update} provinces={provinces} />}>
+            <Main provinces={provinces.list_data} />
+        </Layout>
     );
 };
 

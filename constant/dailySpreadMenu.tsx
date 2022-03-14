@@ -1,6 +1,10 @@
-import { ISelectItem } from "types";
+interface DailySpread {
+    label: string;
+    value: string;
+    color: string;
+}
 
-const dailySpreadMenu: ISelectItem[] = [
+const dailySpreadMenu: DailySpread[] = [
     {
         label: "New cases",
         value: "jumlah_positif",

@@ -25,8 +25,8 @@ const CustomPopover: FunctionComponent<CustomPopoverProps> = ({
             withCloseButton
             styles={{ inner: { padding: "12px" } }}
             target={
-                <ActionIcon variant="default" color="gray" onClick={onInfoButtonClick}>
-                    <TiInfoLarge />
+                <ActionIcon variant="default" onClick={onInfoButtonClick}>
+                    <TiInfoLarge color={theme.colors.dark[7]} />
                 </ActionIcon>
             }
         >

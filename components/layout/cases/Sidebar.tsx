@@ -8,12 +8,12 @@ import { useCases } from "context";
 import { Provinces } from "types/provinces.types";
 import { Update } from "types/update.types";
 
-interface SidebarExpandedProps {
+export interface SidebarCases {
     provinces: Provinces;
     update: Update;
 }
 
-const SidebarExpanded: FunctionComponent<SidebarExpandedProps> = ({ provinces, update }) => {
+const SidebarExpanded: FunctionComponent<SidebarCases> = ({ provinces, update }) => {
     const {
         state: {
             exploredProvince: { isEmpty },
