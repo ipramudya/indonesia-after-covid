@@ -10,7 +10,14 @@ export default function CasesReducer(state: CasesState, action: CasesActionType)
         }
         case "clearExploredProvince": {
             return {
+                ...state,
                 exploredProvince: { isEmpty: true },
+            };
+        }
+        case "triggerPopup": {
+            return {
+                ...state,
+                isPopupShown: action.payload,
             };
         }
         case "setProvinceFromStorage": {

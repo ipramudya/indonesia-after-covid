@@ -50,7 +50,7 @@ const Main: FunctionComponent<MainProps> = ({ provinces }) => {
             mapStyle="mapbox://styles/ipramudya0/cl0k1g3f6000315p4q5f1grm2/draft"
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         >
-            <Markers provinces={provinces} exploredProvince={exploredProvince} />
+            <Markers provinces={provinces} />
             {!exploredProvince.isEmpty && <Popup />}
         </Map>
     );

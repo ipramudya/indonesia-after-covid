@@ -58,7 +58,6 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                     grow
                     sx={{ padding: "14px 25px" }}
                     position="center"
-                    // spacing="xs"
                     spacing={4}
                 >
                     {/* Overview Head */}

@@ -9,6 +9,7 @@ export interface CasesState {
         isEmpty: boolean;
         province?: ListDataEntity;
     };
+    isPopupShown: boolean;
 }
 
 export type CasesDispatch = (action: CasesActionType) => void;
@@ -22,6 +23,7 @@ export type CasesActionType =
               isEmpty: boolean;
               province?: ListDataEntity | undefined;
           };
-      };
+      }
+    | { type: "triggerPopup"; payload: boolean };
 
 export interface IVaccineState {}

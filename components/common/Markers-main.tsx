@@ -8,21 +8,27 @@ import { ListDataEntity } from "types/provinces.types";
 
 interface MarkersProps {
     provinces: ListDataEntity[] | null | undefined;
-    exploredProvince: {
-        isEmpty: boolean;
-        province?: ListDataEntity | undefined;
-    };
 }
 
-const Markers: FunctionComponent<MarkersProps> = ({ provinces, exploredProvince }) => {
-    const { dispatch } = useCases();
+const Markers: FunctionComponent<MarkersProps> = ({ provinces }) => {
+    const {
+        dispatch,
+        state: { exploredProvince },
+    } = useCases();
     const { onSetStorage } = useStorage();
 
     const onMarkerClick = (e: any) => {
         const province = provinces?.find((prov) => prov?.lokasi?.lat === e.target.getLngLat().lat);
-        dispatch({ type: "setExploredProvince", payload: province as ListDataEntity });
-        onSetStorage({ exploredProvince: { isEmpty: false, province } });
-        return;
+
+        // run only when province on marker is not same as explored province that already exist
+        if (exploredProvince.province?.key !== province?.key) {
+            dispatch({ type: "setExploredProvince", payload: province as ListDataEntity });
+            onSetStorage({ exploredProvince: { isEmpty: false, province } });
+            dispatch({ type: "triggerPopup", payload: true });
+            return;
+        }
+
+        return dispatch({ type: "triggerPopup", payload: true });
     };
 
     return (

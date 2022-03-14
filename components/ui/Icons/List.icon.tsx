@@ -4,7 +4,7 @@ import { BsCircleFill } from "react-icons/bs";
 
 interface ListIconProps {
     size?: "xs" | "sm" | "md";
-    color: "green" | "dark" | "yellow" | "#ee5555";
+    color: "green" | "dark" | "yellow" | "#ee5555" | "red";
 }
 
 const ListIcon: FunctionComponent<ListIconProps> = ({ size = "xs", color }) => (

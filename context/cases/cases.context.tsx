@@ -8,6 +8,7 @@ import casesReducer from "./cases.reducer";
 
 const initialState: CasesState = {
     exploredProvince: { isEmpty: true },
+    isPopupShown: false,
 };
 
 const CasesContext = createContext<{ state: CasesState; dispatch: CasesDispatch } | undefined>(

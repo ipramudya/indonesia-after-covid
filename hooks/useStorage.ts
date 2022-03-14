@@ -4,9 +4,15 @@ import { CasesState } from "types/context.types";
 
 export default function useStorage() {
     const initialState = useMemo(() => ({ exploredProvince: { isEmpty: true } }), []);
-    const [value, setValue] = useLocalStorage<CasesState>("cases", initialState);
+    const [value, setValue] = useLocalStorage<Omit<CasesState, "isPopupShown">>(
+        "cases",
+        initialState
+    );
 
-    const onSetStorage = useCallback((state: CasesState) => setValue(state), [setValue]);
+    const onSetStorage = useCallback(
+        (state: Omit<CasesState, "isPopupShown">) => setValue(state),
+        [setValue]
+    );
     const onClearStorage = useCallback(() => setValue(initialState), [initialState, setValue]);
 
     return {
