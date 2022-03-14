@@ -6,6 +6,7 @@ import theme from "lib/mantine/theme";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "styles/recharts.css";
 import "styles/mantine.css";
+import "styles/mapbox.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (

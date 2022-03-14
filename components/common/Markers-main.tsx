@@ -1,12 +1,12 @@
 import { ActionIcon } from "@mantine/core";
-import { Marker } from "react-map-gl";
-import { FunctionComponent, memo } from "react";
-import { GoPrimitiveDot } from "react-icons/go";
-import { ListDataEntity } from "types/provinces.types";
 import { useCases } from "context";
 import { useStorage } from "hooks";
+import { FunctionComponent, memo } from "react";
+import { GoPrimitiveDot } from "react-icons/go";
+import { Marker } from "react-map-gl";
+import { ListDataEntity } from "types/provinces.types";
 
-interface MarkersMainProps {
+interface MarkersProps {
     provinces: ListDataEntity[] | null | undefined;
     exploredProvince: {
         isEmpty: boolean;
@@ -14,7 +14,7 @@ interface MarkersMainProps {
     };
 }
 
-const MarkersMain: FunctionComponent<MarkersMainProps> = ({ provinces, exploredProvince }) => {
+const Markers: FunctionComponent<MarkersProps> = ({ provinces, exploredProvince }) => {
     const { dispatch } = useCases();
     const { onSetStorage } = useStorage();
 
@@ -29,6 +29,7 @@ const MarkersMain: FunctionComponent<MarkersMainProps> = ({ provinces, exploredP
         <>
             {provinces?.map((province) => {
                 const isSameLocation = province.key === exploredProvince.province?.key;
+
                 return province?.lokasi ? (
                     <div key={province.key}>
                         <Marker
@@ -43,7 +44,7 @@ const MarkersMain: FunctionComponent<MarkersMainProps> = ({ provinces, exploredP
                                 color="red"
                             >
                                 <GoPrimitiveDot
-                                    size={33}
+                                    size={isSameLocation ? 44 : 30}
                                     style={isSameLocation ? { opacity: "unset" } : { opacity: 0.3 }}
                                 />
                             </ActionIcon>
@@ -55,4 +56,4 @@ const MarkersMain: FunctionComponent<MarkersMainProps> = ({ provinces, exploredP
     );
 };
 
-export default memo(MarkersMain);
+export default memo(Markers);

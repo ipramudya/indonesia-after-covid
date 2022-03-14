@@ -1,4 +1,4 @@
-import { Markers } from "components/common";
+import { Markers, Popup } from "components/common";
 import { useCases } from "context";
 import { FunctionComponent, Ref, useEffect, useRef, useState } from "react";
 import Map, { MapRef } from "react-map-gl";
@@ -49,6 +49,7 @@ const Main: FunctionComponent<MainProps> = ({ provinces }) => {
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         >
             <Markers provinces={provinces} exploredProvince={exploredProvince} />
+            {!exploredProvince.isEmpty && <Popup />}
         </Map>
     );
 };
