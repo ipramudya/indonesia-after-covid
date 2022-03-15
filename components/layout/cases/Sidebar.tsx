@@ -1,19 +1,19 @@
 import { FunctionComponent } from "react";
 import { Divider, Navbar, ScrollArea } from "@mantine/core";
 
-import Confirmed from "components/containers/cases/Confirmed";
-import ExploredProvince from "components/containers/cases/ExploredProvince";
-import Overview from "components/containers/cases/Overview";
 import { useCases } from "context";
 import { Provinces } from "types/provinces.types";
 import { Update } from "types/update.types";
+import Confirmed from "components/containers/cases/Confirmed";
+import ExploredProvince from "components/containers/cases/ExploredProvince";
+import Overview from "components/containers/cases/Overview";
 
-export interface SidebarCases {
+export interface SidebarCasesProps {
     provinces: Provinces;
     update: Update;
 }
 
-const SidebarExpanded: FunctionComponent<SidebarCases> = ({ provinces, update }) => {
+const SidebarCases: FunctionComponent<SidebarCasesProps> = ({ provinces, update }) => {
     const {
         state: {
             exploredProvince: { isEmpty },
@@ -64,4 +64,4 @@ const SidebarExpanded: FunctionComponent<SidebarCases> = ({ provinces, update })
     );
 };
 
-export default SidebarExpanded;
+export default SidebarCases;

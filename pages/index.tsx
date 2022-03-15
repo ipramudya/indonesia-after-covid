@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
 
-import { Layout, Main, Sidebar } from "components/layout";
+import { Layout, MainCases, SidebarCases } from "components/layout";
 import { NEXT_URL } from "config/url";
 import { Provinces } from "types/provinces.types";
 import { Update } from "types/update.types";
@@ -12,8 +12,8 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ provinces, update }) => {
     return (
-        <Layout Sidebar={<Sidebar update={update} provinces={provinces} />}>
-            <Main provinces={provinces.list_data} />
+        <Layout Sidebar={<SidebarCases update={update} provinces={provinces} />}>
+            <MainCases provinces={provinces.list_data} />
         </Layout>
     );
 };

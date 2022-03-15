@@ -3,7 +3,8 @@ import Head from "next/head";
 import { AppShell } from "@mantine/core";
 import { appshell } from "lib/mantine/styles";
 import Topbar from "./Topbar";
-import { SidebarCases } from "./cases/Sidebar";
+import { SidebarCasesProps } from "./cases/Sidebar";
+import { SidebarVaccineProps } from "./vaccine/Sidebar";
 
 interface LayoutProps<T> {
     Sidebar: FunctionComponent<T> | JSX.Element;
@@ -11,7 +12,7 @@ interface LayoutProps<T> {
     title?: string;
 }
 
-const Layout: FunctionComponent<LayoutProps<SidebarCases>> = ({
+const Layout: FunctionComponent<LayoutProps<SidebarCasesProps | SidebarVaccineProps>> = ({
     Sidebar,
     children,
     description,

@@ -19,7 +19,7 @@ const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
             <Text component="span" sx={typography.textHead}>
                 Indonesia total confirmed cases
             </Text>
-            <Group align="center" noWrap={true} mb="md">
+            <Group align="center" noWrap mb="md">
                 <Text sx={{ fontSize: "24px" }} color="#ee5555" weight="bold">
                     {formatNum(update?.total.jumlah_positif)}
                 </Text>

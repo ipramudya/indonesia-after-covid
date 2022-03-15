@@ -1,4 +1,10 @@
+// general
 export { default as Layout } from "./Layout";
-export { default as Sidebar } from "./cases/Sidebar";
 export { default as Topbar } from "./Topbar";
-export { default as Main } from "./cases/Main";
+
+// cases page
+export { default as SidebarCases } from "./cases/Sidebar";
+export { default as MainCases } from "./cases/Main";
+
+// vaccine page
+export { default as SidebarVaccine } from "./vaccine/Sidebar";

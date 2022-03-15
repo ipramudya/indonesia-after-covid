@@ -27,6 +27,9 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
             harian: simplifiedUpdate,
             total: covidUpdate.update.total,
         });
+    } else {
+        res.setHeader("Allow", ["GET"]);
+        res.status(405).json({ message: `Method ${req.method} not allowed` });
     }
 };
 

@@ -6,3 +6,4 @@ export { default as Grouping } from "./Grouping-overview";
 export { default as Markers } from "./Markers-main";
 export { default as Popup } from "./Popup-main";
 export { default as Popover } from "./Popover-topbar";
+export { default as Dose } from "./Dose";
