@@ -18,7 +18,13 @@ const Dose: FunctionComponent<DoseProps> = ({ total, increase }) => {
                 <Text sx={typography.textMain} color="green" style={{ fontWeight: "bold" }}>
                     {formatNum(total)}
                 </Text>
-                <Badge radius="sm" color="gray" leftSection={<BiChevronsUp />} styles={badge}>
+                <Badge
+                    radius="sm"
+                    color="gray"
+                    leftSection={<BiChevronsUp />}
+                    styles={badge}
+                    sx={{ padding: "3px" }}
+                >
                     {formatNum(increase, "autoformat")}
                 </Badge>
             </Group>

@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { RechartsLine } from "components/recharts";
 import overviewLineMenu, { IOverviewLineMenu } from "constant/overviewLineMenu";
 import { box, typography, selectSmall } from "lib/mantine/styles";
-import { DetailProvince } from "types/detailProv.types";
+import { DetailProvince } from "types/detailProv-cases.types";
 
 interface DailyOverviewProps {
     onSelectChange: (e: string | null) => void;

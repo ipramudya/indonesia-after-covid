@@ -34,7 +34,7 @@ const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total 
             <Group position="apart" noWrap sx={{ height: "50px" }}>
                 {/* Left */}
                 <Dose increase={increase.jumlah_vaksinasi_1} total={total.jumlah_vaksinasi_1} />
-                <Divider orientation="vertical" sx={{ height: "100%" }} variant="dashed" />
+                <Divider orientation="vertical" sx={{ height: "100%" }} variant="dashed" size={1} />
                 {/* Right */}
                 <Dose increase={increase.jumlah_vaksinasi_2} total={total.jumlah_vaksinasi_2} />
             </Group>
@@ -43,7 +43,7 @@ const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total 
                 position="right"
                 color="gray"
                 radius="md"
-                mt="md"
+                mt="sm"
                 styles={tooltip}
             >
                 <Text component="span" size="xs" sx={(theme) => ({ color: theme.colors.dark[3] })}>

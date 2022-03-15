@@ -1,5 +1,5 @@
 import { FunctionComponent, memo } from "react";
-import { ListDataEntity } from "types/provinces.types";
+import { ListDataEntity } from "types/provinces-cases.types";
 import CovidCase from "./CovidCase";
 
 interface SummaryProps {

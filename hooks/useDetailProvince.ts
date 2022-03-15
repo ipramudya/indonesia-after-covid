@@ -1,6 +1,6 @@
 import { NEXT_URL } from "config/url";
 import { useCallback, useEffect, useState } from "react";
-import { DetailProvince } from "types/detailProv.types";
+import { DetailProvince } from "types/detailProv-cases.types";
 
 export default function useDetailProvince(prov?: string) {
     const [data, setData] = useState<DetailProvince | undefined>();

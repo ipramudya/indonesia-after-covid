@@ -7,7 +7,7 @@ import { badge, typography } from "lib/mantine/styles";
 import tooltip from "lib/mantine/styles/tooltip";
 import formatNum from "lib/numeral/formatNum";
 import { BiChevronsUp } from "react-icons/bi";
-import { Update } from "types/update.types";
+import { Update } from "types/update-cases.types";
 
 interface ConfirmedProps {
     update: Update;

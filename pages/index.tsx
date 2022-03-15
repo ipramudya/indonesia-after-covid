@@ -2,8 +2,8 @@ import type { GetServerSideProps, NextPage } from "next";
 
 import { Layout, MainCases, SidebarCases } from "components/layout";
 import { NEXT_URL } from "config/url";
-import { Provinces } from "types/provinces.types";
-import { Update } from "types/update.types";
+import { Provinces } from "types/provinces-cases.types";
+import { Update } from "types/update-cases.types";
 
 interface HomeProps {
     provinces: Provinces;

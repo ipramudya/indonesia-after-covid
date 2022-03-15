@@ -4,7 +4,7 @@ import { useStorage } from "hooks";
 import { FunctionComponent, memo } from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import { Marker } from "react-map-gl";
-import { ListDataEntity } from "types/provinces.types";
+import { ListDataEntity } from "types/provinces-cases.types";
 
 interface MarkersProps {
     provinces: ListDataEntity[] | null | undefined;

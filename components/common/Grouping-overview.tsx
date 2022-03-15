@@ -5,7 +5,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { RechartsBar } from "components/recharts";
 import { SelectIcon } from "components/ui/Icons";
 import { typography, tooltip } from "lib/mantine/styles";
-import { DetailProvince } from "types/detailProv.types";
+import { DetailProvince } from "types/detailProv-cases.types";
 
 interface GroupingOverviewProps {
     ageProgress:

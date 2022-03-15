@@ -11,7 +11,7 @@ export interface SidebarVaccineProps {
 const SidebarVaccine: FunctionComponent<SidebarVaccineProps> = ({ vaccine }) => {
     return (
         <Navbar
-            width={{ base: 400 }}
+            width={{ base: 375 }}
             height="100%"
             sx={{ padding: "18px 0 14px 0", flexDirection: "row" }}
         >

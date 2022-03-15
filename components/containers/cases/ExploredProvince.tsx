@@ -12,7 +12,7 @@ import { useCases } from "context";
 import { useStorage } from "hooks";
 import formatTitle from "utils/formatTitle";
 import sort from "utils/sort";
-import { ListDataEntity, Provinces } from "types/provinces.types";
+import { ListDataEntity, Provinces } from "types/provinces-cases.types";
 
 interface ExploredProvinceProps {
     provinces: Provinces;

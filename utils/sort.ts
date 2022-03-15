@@ -1,4 +1,4 @@
-import { ListDataEntity } from "types/provinces.types";
+import { ListDataEntity } from "types/provinces-cases.types";
 
 type TSort<A> = (arr: A, sortedKey: "jumlah_kasus" | "key", type: "asc" | "dsc") => A;
 

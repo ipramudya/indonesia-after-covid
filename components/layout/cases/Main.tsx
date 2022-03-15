@@ -2,7 +2,7 @@ import { Markers, Popup } from "components/common";
 import { useCases } from "context";
 import { FunctionComponent, Ref, useEffect, useRef, useState } from "react";
 import Map, { MapRef } from "react-map-gl";
-import { ListDataEntity } from "types/provinces.types";
+import { ListDataEntity } from "types/provinces-cases.types";
 
 interface ICoordinate {
     latitude: number;

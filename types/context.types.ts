@@ -1,6 +1,6 @@
 import { ReactChild } from "react";
 
-import { ListDataEntity } from "./provinces.types";
+import { ListDataEntity } from "./provinces-cases.types";
 
 export type CasesProviderProps = { children: ReactChild };
 

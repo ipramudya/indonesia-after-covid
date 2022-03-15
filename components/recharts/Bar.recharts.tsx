@@ -14,7 +14,7 @@ import {
     YAxis,
 } from "recharts";
 import { ContentType } from "recharts/types/component/Label";
-import { ListDataEntity1 } from "types/detailProv.types";
+import { ListDataEntity1 } from "types/detailProv-cases.types";
 
 interface RechartsLineProps {
     readonly chartData: ListDataEntity1[] | undefined | null;
