@@ -28,4 +28,18 @@ function selectSmall(): Partial<Record<BaseSelectStylesNames, CSSObject>> {
     };
 }
 
-export { select, selectSmall };
+function selectClearable(theme: MantineTheme): Partial<Record<BaseSelectStylesNames, CSSObject>> {
+    return {
+        rightSection: {
+            "> button": {
+                transition: "all ease .3s",
+
+                "&:hover": {
+                    color: theme.colors.red,
+                },
+            },
+        },
+    };
+}
+
+export { select, selectSmall, selectClearable };

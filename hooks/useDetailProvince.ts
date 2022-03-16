@@ -1,12 +1,16 @@
 import { NEXT_URL } from "config/url";
-import { useCallback, useEffect, useState } from "react";
+import { useCases } from "context";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { DetailProvince } from "types/detailProv-cases.types";
 
-export default function useDetailProvince(prov?: string) {
+export default function useDetailProvince() {
     const [data, setData] = useState<DetailProvince | undefined>();
     const [isLoading, setIsLoading] = useState(false);
+    const {
+        state: { exploredProvince },
+    } = useCases();
 
-    const urlParsed = prov?.split(" ").join("_");
+    const urlParsed = exploredProvince.province?.key.split(" ").join("_");
     const endpoint = `${NEXT_URL}/api/province/${urlParsed}`;
 
     const fetcher = useCallback(async () => {
@@ -17,14 +21,12 @@ export default function useDetailProvince(prov?: string) {
     }, [endpoint]);
 
     useEffect(() => {
-        if (prov) {
+        if (exploredProvince.province?.key) {
             setIsLoading(true);
             fetcher();
         }
-    }, [prov, fetcher]);
+    }, [exploredProvince.province?.key, fetcher]);
 
-    return {
-        isLoading,
-        data,
-    };
+    const value = useMemo(() => ({ isLoading, data }), [data, isLoading]);
+    return value;
 }

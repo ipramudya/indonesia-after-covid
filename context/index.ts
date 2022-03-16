@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CasesContext } from "./cases/cases.context";
+import { VaccineContext } from "./vaccine/vaccine.context";
 
 function useCases() {
     const context = useContext(CasesContext);
@@ -9,4 +10,12 @@ function useCases() {
     return context;
 }
 
-export { useCases };
+function useVaccine() {
+    const context = useContext(VaccineContext);
+    if (context === undefined) {
+        throw new Error("useVaccine must be used within a VaccineProvider");
+    }
+    return context;
+}
+
+export { useCases, useVaccine };

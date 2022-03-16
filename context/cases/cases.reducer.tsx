@@ -1,6 +1,6 @@
-import { CasesActionType, CasesState } from "types/context.types";
+import { CasesReducer } from "types/context.types";
 
-export default function CasesReducer(state: CasesState, action: CasesActionType): CasesState {
+const CasesReducer: CasesReducer = (state, action) => {
     switch (action.type) {
         case "setExploredProvince": {
             return {
@@ -24,4 +24,6 @@ export default function CasesReducer(state: CasesState, action: CasesActionType)
             return { ...state, exploredProvince: action.payload };
         }
     }
-}
+};
+
+export default CasesReducer;

@@ -2,8 +2,8 @@ import { ReactChild } from "react";
 
 import { ListDataEntity } from "./provinces-cases.types";
 
+// Cases Stuff
 export type CasesProviderProps = { children: ReactChild };
-
 export interface CasesState {
     exploredProvince: {
         isEmpty: boolean;
@@ -11,9 +11,6 @@ export interface CasesState {
     };
     isPopupShown: boolean;
 }
-
-export type CasesDispatch = (action: CasesActionType) => void;
-
 export type CasesActionType =
     | { type: "setExploredProvince"; payload: ListDataEntity }
     | { type: "clearExploredProvince" }
@@ -25,5 +22,25 @@ export type CasesActionType =
           };
       }
     | { type: "triggerPopup"; payload: boolean };
+export type CasesDispatch = (action: CasesActionType) => void;
+export type CasesReducer = (state: CasesState, action: CasesActionType) => CasesState;
 
-export interface IVaccineState {}
+// Vaccine Stuff
+export type VaccineProviderProps = CasesProviderProps;
+export interface VaccineState {
+    selectedLocation: {
+        isEmpty: boolean;
+        location?: {
+            province: string;
+            district: string;
+        };
+    };
+}
+export type VaccineActionType =
+    | {
+          type: "setVaccineLocation";
+          payload: { province: string; district: string };
+      }
+    | { type: "clearVaccineLocation" };
+export type VaccineDispatch = (action: VaccineActionType) => void;
+export type VaccineReducer = (state: VaccineState, action: VaccineActionType) => VaccineState;

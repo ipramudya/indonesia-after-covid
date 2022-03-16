@@ -22,7 +22,7 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
         state: { exploredProvince },
         dispatch,
     } = useCases();
-    const { isLoading, data } = useDetailProvince(exploredProvince.province?.key);
+    const { isLoading, data } = useDetailProvince();
 
     const onSelectChange = useCallback((e: string | null) => {
         const willBeSelected = overviewLineMenu.find((menuItem) => menuItem.value === e);

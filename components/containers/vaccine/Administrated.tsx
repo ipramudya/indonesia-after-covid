@@ -18,7 +18,7 @@ const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total 
     return (
         <>
             <Text sx={typography.textHead} component="span">
-                Vaccine doses administered indonesia
+                Vaccine doses administered
             </Text>
             <Group align="center" noWrap mb="md" sx={{ width: "100%" }}>
                 <Text sx={{ fontSize: "24px" }} color="green" weight="bold">
@@ -33,10 +33,18 @@ const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total 
             </Group>
             <Group position="apart" noWrap sx={{ height: "50px" }}>
                 {/* Left */}
-                <Dose increase={increase.jumlah_vaksinasi_1} total={total.jumlah_vaksinasi_1} />
+                <Dose
+                    increase={increase.jumlah_vaksinasi_1}
+                    total={total.jumlah_vaksinasi_1}
+                    title="First dose"
+                />
                 <Divider orientation="vertical" sx={{ height: "100%" }} variant="dashed" size={1} />
                 {/* Right */}
-                <Dose increase={increase.jumlah_vaksinasi_2} total={total.jumlah_vaksinasi_2} />
+                <Dose
+                    increase={increase.jumlah_vaksinasi_2}
+                    total={total.jumlah_vaksinasi_2}
+                    title="Second dose"
+                />
             </Group>
             <Tooltip
                 label={moment(increase.created).format("D MMM YYYY, LT")}

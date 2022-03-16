@@ -39,6 +39,10 @@ export default function useVaccineService() {
     }, [fetchDistricts, provinceAsQuery]);
 
     const onFetchDistricts = (sentProvince: string) => {
+        if (!sentProvince) {
+            setRelatedDistricts([]);
+        }
+
         setProvinceAsQuery(sentProvince);
     };
 

@@ -8,12 +8,13 @@ import formatNum from "lib/numeral/formatNum";
 interface DoseProps {
     total: number;
     increase: number;
+    title: string;
 }
 
-const Dose: FunctionComponent<DoseProps> = ({ total, increase }) => {
+const Dose: FunctionComponent<DoseProps> = ({ total, increase, title }) => {
     return (
         <Group direction="column" spacing={3}>
-            <Text sx={typography.textMain}>First dose</Text>
+            <Text sx={typography.textMain}>{title}</Text>
             <Group align="center" spacing={3} noWrap>
                 <Text sx={typography.textMain} color="green" style={{ fontWeight: "bold" }}>
                     {formatNum(total)}
