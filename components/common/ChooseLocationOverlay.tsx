@@ -1,6 +1,7 @@
 import { Paper, Center, Group, Button, Overlay, Text, useMantineTheme } from "@mantine/core";
 import { button } from "lib/mantine/styles";
 import type { FunctionComponent } from "react";
+import { memo } from "react";
 
 interface ChooseLocationOverlayProps {
     onSelectLocationFocus: () => any;
@@ -43,4 +44,4 @@ const ChooseLocationOverlay: FunctionComponent<ChooseLocationOverlayProps> = ({
     );
 };
 
-export default ChooseLocationOverlay;
+export default memo(ChooseLocationOverlay);

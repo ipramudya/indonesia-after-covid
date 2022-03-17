@@ -1,8 +1,6 @@
-import { CSSObject } from "@mantine/core";
+import { CSSObject, MantineTheme } from "@mantine/core";
 
-export default function tooltip(): Partial<
-    Record<"tooltip" | "body" | "wrapper" | "root" | "arrow", CSSObject>
-> {
+function tooltip(): Partial<Record<"tooltip" | "body" | "wrapper" | "root" | "arrow", CSSObject>> {
     return {
         root: {
             cursor: "pointer",
@@ -16,3 +14,20 @@ export default function tooltip(): Partial<
         },
     };
 }
+
+function markerTooltip(
+    theme: MantineTheme
+): Partial<Record<"tooltip" | "body" | "wrapper" | "root" | "arrow", CSSObject>> {
+    return {
+        root: {
+            cursor: "pointer",
+        },
+        body: {
+            padding: "12px",
+            background: "white",
+            boxShadow: theme.shadows.sm,
+        },
+    };
+}
+
+export { tooltip, markerTooltip };

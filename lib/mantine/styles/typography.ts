@@ -41,6 +41,7 @@ const typography: ITypography = {
     },
     tooltip: {
         fontSize: "12px",
+        color: "#004643",
     },
 };
 

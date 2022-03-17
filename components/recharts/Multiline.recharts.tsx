@@ -86,7 +86,7 @@ const CustomTooltip = (props: TooltipProps<string, string>) => {
         return (
             <Group spacing="md" direction="column" sx={box.tooltipWrapper}>
                 <Text
-                    sx={typography.tooltip}
+                    sx={typography.textTiny}
                     style={{ fontWeight: "bold", color: theme.colors.dark[7] }}
                 >
                     {moment(label).format("D MMM YYYY")}

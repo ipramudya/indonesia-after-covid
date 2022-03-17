@@ -9,3 +9,4 @@ export { default as Popover } from "./Popover-topbar";
 export { default as Dose } from "./Dose";
 export { default as LocationBox } from "./LocationBox-service";
 export { default as ChooseLocOverlay } from "./ChooseLocationOverlay";
+export { default as MarkersVaccine } from "./Markers-vaccine";

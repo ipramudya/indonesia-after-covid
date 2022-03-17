@@ -3,8 +3,7 @@ import { Badge, Group, Text, Tooltip } from "@mantine/core";
 import moment from "moment";
 
 import CovidCase from "components/common/CovidCase";
-import { badge, typography } from "lib/mantine/styles";
-import tooltip from "lib/mantine/styles/tooltip";
+import { badge, tooltip, typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
 import { BiChevronsUp } from "react-icons/bi";
 import { Update } from "types/update-cases.types";
