@@ -1,10 +1,10 @@
-import { ActionIcon, Divider, Group, Text, Tooltip } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
 import { FaskesIcon } from "components/ui/Icons";
-import { markerTooltip, typography } from "lib/mantine/styles";
 import type { FunctionComponent } from "react";
 import { memo, useMemo } from "react";
 import { Marker } from "react-map-gl";
 import { Datum } from "types/faskes-types";
+import TooltipVaccine from "./Tooltip-vaccine";
 
 interface MarkersVaccineProps {
     data: Datum[] | undefined;
@@ -27,37 +27,16 @@ const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data }) => {
                                 onClick={() => console.log(datum)}
                                 key={datum.id}
                             >
-                                <Tooltip
-                                    styles={markerTooltip}
-                                    label={
-                                        <Group direction="column" spacing={3}>
-                                            <Text
-                                                sx={typography.tooltip}
-                                                style={{ fontWeight: "bold" }}
-                                            >
-                                                {datum.nama}
-                                            </Text>
-                                            <Divider
-                                                variant="dashed"
-                                                sx={{ width: "100%" }}
-                                                my={6}
-                                            />
-                                            <Text sx={typography.tooltip}>
-                                                Status: {datum.status}
-                                            </Text>
-                                            <Text sx={typography.tooltip}>
-                                                Class: {datum.kelas_rs || "-"}
-                                            </Text>
-                                            <Text sx={typography.tooltip}>
-                                                Phone: {datum.telp || "-"}
-                                            </Text>
-                                        </Group>
-                                    }
+                                <TooltipVaccine
+                                    class_rs={datum.kelas_rs}
+                                    name={datum.nama}
+                                    phone={datum.telp}
+                                    status={datum.status}
                                 >
                                     <ActionIcon variant="transparent">
                                         <FaskesIcon markerType={datum.jenis_faskes} />
                                     </ActionIcon>
-                                </Tooltip>
+                                </TooltipVaccine>
                             </Marker>
                         );
                     }),

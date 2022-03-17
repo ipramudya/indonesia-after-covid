@@ -10,3 +10,5 @@ export { default as Dose } from "./Dose";
 export { default as LocationBox } from "./LocationBox-service";
 export { default as ChooseLocOverlay } from "./ChooseLocationOverlay";
 export { default as MarkersVaccine } from "./Markers-vaccine";
+export { default as TooltipVaccine } from "./Tooltip-vaccine";
+export { default as LegendMap } from "./LegendMap-vaccine";

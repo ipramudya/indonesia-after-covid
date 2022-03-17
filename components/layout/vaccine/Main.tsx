@@ -1,5 +1,5 @@
 import { LoadingOverlay } from "@mantine/core";
-import { ChooseLocOverlay, MarkersVaccine } from "components/common";
+import { ChooseLocOverlay, LegendMap, MarkersVaccine } from "components/common";
 import { useVaccine } from "context";
 import useFaskes from "hooks/useFaskes";
 import { FunctionComponent, Ref, useCallback, useEffect, useRef, useState } from "react";
@@ -13,6 +13,7 @@ const defaultCoordinate = {
 
 const Main: FunctionComponent = () => {
     const [viewport, setViewport] = useState(defaultCoordinate);
+    const [isPopoverOpened, setIsPopoverOpened] = useState(false);
     const mapRef: Ref<MapRef> = useRef(null);
 
     const {
@@ -32,6 +33,8 @@ const Main: FunctionComponent = () => {
 
     const onSelectLocationFocus = useCallback(() => locationRef.current.focus(), [locationRef]);
 
+    const onShowLegend = useCallback(() => setIsPopoverOpened((prev) => !prev), []);
+
     return (
         <Map
             {...viewport}
@@ -43,11 +46,15 @@ const Main: FunctionComponent = () => {
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
             style={{ position: "relative" }}
         >
-            {selectedLocation.isEmpty && (
-                <ChooseLocOverlay onSelectLocationFocus={onSelectLocationFocus} />
-            )}
             {isLoading && <LoadingOverlay visible={isLoading} />}
-            <MarkersVaccine data={data?.data} />
+            {selectedLocation.isEmpty ? (
+                <ChooseLocOverlay onSelectLocationFocus={onSelectLocationFocus} />
+            ) : (
+                <>
+                    <MarkersVaccine data={data?.data} />
+                    <LegendMap isPopoverOpened={isPopoverOpened} onToggleLegend={onShowLegend} />
+                </>
+            )}
         </Map>
     );
 };
