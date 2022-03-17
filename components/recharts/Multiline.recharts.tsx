@@ -27,8 +27,6 @@ const MultilineRecharts: FunctionComponent<MultilineRechartsProps> = ({ daily })
         fontSize: "10px",
     };
 
-    console.log(daily[0]);
-
     const onFormatYAxis = useCallback((num) => numeral(num).format("0.0a"), []);
     const onFormatXAxis = useCallback((day) => moment(day).format("D MMM"), []);
 
@@ -61,12 +59,19 @@ const MultilineRecharts: FunctionComponent<MultilineRechartsProps> = ({ daily })
                     scale="linear"
                 />
                 <Legend wrapperStyle={{ paddingTop: 15 }} />
-                <Line name="First dose" dot={false} dataKey="jumlah_vaksinasi_1" stroke="#70c88e" />
+                <Line
+                    name="First dose"
+                    dot={false}
+                    dataKey="jumlah_vaksinasi_1"
+                    stroke="#70c88e"
+                    isAnimationActive={false}
+                />
                 <Line
                     name="Second dose"
                     dot={false}
                     dataKey="jumlah_vaksinasi_2"
                     stroke="#004643"
+                    isAnimationActive={false}
                 />
             </LineChart>
         </ResponsiveContainer>

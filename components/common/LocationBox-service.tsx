@@ -22,8 +22,8 @@ const LocationBoxService: FunctionComponent<LocationBoxServiceProps> = ({ onCLos
                 Your current location:
             </Text>
             <Button
-                variant="outline"
-                color="gray"
+                variant="light"
+                color="green"
                 fullWidth
                 styles={{
                     root: {
