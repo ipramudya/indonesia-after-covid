@@ -17,14 +17,14 @@ const CasesContext = createContext<{ state: CasesState; dispatch: CasesDispatch 
 
 function CasesProvider({ children }: CasesProviderProps) {
     const [state, dispatch] = useReducer(casesReducer, initialState);
-    const { getStorageValue } = useStorage();
+    const { getStorageValue } = useStorage("cases");
 
     // Get data from local storage and serverside props, then store them inside context
     useEffectOnce(() => {
-        if (getStorageValue && !getStorageValue.exploredProvince.isEmpty) {
+        if (getStorageValue && !getStorageValue.exploredProvince?.isEmpty) {
             dispatch({
                 type: "setProvinceFromStorage",
-                payload: getStorageValue.exploredProvince,
+                payload: getStorageValue.exploredProvince as any,
             });
             return;
         }

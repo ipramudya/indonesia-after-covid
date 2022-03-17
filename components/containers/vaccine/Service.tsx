@@ -1,7 +1,7 @@
 import { Divider, Select, Text } from "@mantine/core";
 import { LocationBox } from "components/common";
 import { useVaccine } from "context";
-import { useMemoizeSelect, useVaccineService } from "hooks";
+import { useMemoizeSelect, useStorage, useVaccineService } from "hooks";
 import { selectClearable, typography } from "lib/mantine/styles";
 import { FunctionComponent, useCallback, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
@@ -15,6 +15,7 @@ const Service: FunctionComponent = () => {
         dispatch,
         state: { selectedLocation },
     } = useVaccine();
+    const { onSetStorage, onClearStorage } = useStorage("vaccine");
 
     // format all provinces for select menu
     const formattedProvinces = useMemoizeSelect(allProvinces);
@@ -28,6 +29,7 @@ const Service: FunctionComponent = () => {
             setSelectedProvince("");
             setSelectedDistrict("");
             onFetchDistricts("");
+            onClearStorage();
             dispatch({ type: "clearVaccineLocation" });
             return;
         }
@@ -41,6 +43,7 @@ const Service: FunctionComponent = () => {
         (district: string | null) => {
             if (!district) {
                 setSelectedDistrict("");
+                onClearStorage();
                 dispatch({ type: "clearVaccineLocation" });
                 return;
             }
@@ -48,6 +51,12 @@ const Service: FunctionComponent = () => {
 
             // store to context storage when selected province and district are exist
             if (selectedProvince && district) {
+                onSetStorage({
+                    selectedLocation: {
+                        location: { district, province: selectedProvince },
+                        isEmpty: false,
+                    },
+                });
                 return dispatch({
                     type: "setVaccineLocation",
                     payload: { province: selectedProvince, district },
@@ -55,13 +64,14 @@ const Service: FunctionComponent = () => {
             }
             return;
         },
-        [dispatch, selectedProvince]
+        [dispatch, onClearStorage, onSetStorage, selectedProvince]
     );
 
     const onCLoseLocationBox = () => {
         setSelectedProvince("");
         setSelectedDistrict("");
         onFetchDistricts("");
+        onClearStorage();
         return dispatch({ type: "clearVaccineLocation" });
     };
 

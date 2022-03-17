@@ -41,6 +41,16 @@ export type VaccineActionType =
           type: "setVaccineLocation";
           payload: { province: string; district: string };
       }
-    | { type: "clearVaccineLocation" };
+    | { type: "clearVaccineLocation" }
+    | {
+          type: "setLocationFromStorage";
+          payload: {
+              isEmpty: boolean;
+              location: {
+                  district: string;
+                  province: string;
+              };
+          };
+      };
 export type VaccineDispatch = (action: VaccineActionType) => void;
 export type VaccineReducer = (state: VaccineState, action: VaccineActionType) => VaccineState;

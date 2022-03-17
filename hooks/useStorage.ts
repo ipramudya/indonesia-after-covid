@@ -1,22 +1,31 @@
 import { useCallback, useMemo } from "react";
 import { useLocalStorage } from "react-use";
-import { CasesState } from "types/context.types";
+import { CasesState, VaccineState } from "types/context.types";
 
-export default function useStorage() {
-    const initialState = useMemo(() => ({ exploredProvince: { isEmpty: true } }), []);
-    const [value, setValue] = useLocalStorage<Omit<CasesState, "isPopupShown">>(
-        "cases",
-        initialState
-    );
+type storageType = "cases" | "vaccine";
+type storageState = Omit<CasesState, "isPopupShown"> | VaccineState;
 
-    const onSetStorage = useCallback(
-        (state: Omit<CasesState, "isPopupShown">) => setValue(state),
-        [setValue]
-    );
+export default function useStorage(title: storageType = "cases") {
+    const initialState = useMemo(() => {
+        switch (title) {
+            case "cases": {
+                return { exploredProvince: { isEmpty: true } };
+            }
+            case "vaccine": {
+                return { selectedLocation: { isEmpty: true } };
+            }
+        }
+    }, [title]);
+
+    const [value, setValue] = useLocalStorage<storageState>(title, initialState);
+
+    const onSetStorage = useCallback((state: storageState) => setValue(state), [setValue]);
     const onClearStorage = useCallback(() => setValue(initialState), [initialState, setValue]);
 
+    console.log(value);
+
     return {
-        getStorageValue: value,
+        getStorageValue: value as typeof initialState,
         onSetStorage,
         onClearStorage,
     };
