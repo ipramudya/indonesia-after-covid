@@ -1,21 +1,22 @@
 import { useStorage } from "hooks";
-import { createContext, useMemo, useReducer } from "react";
+import { createContext, useMemo, useReducer, useRef } from "react";
 import { useEffectOnce } from "react-use";
 import { VaccineDispatch, VaccineProviderProps, VaccineState } from "types/context.types";
 import VaccineReducer from "./vaccine.reducer";
 
-const initialState: VaccineState = {
+const InitialState = (): VaccineState => ({
     selectedLocation: {
         isEmpty: true,
     },
-};
+    locationRef: useRef(null),
+});
 
 const VaccineContext = createContext<
     { state: VaccineState; dispatch: VaccineDispatch } | undefined
 >(undefined);
 
 function VaccineProvider({ children }: VaccineProviderProps) {
-    const [state, dispatch] = useReducer(VaccineReducer, initialState);
+    const [state, dispatch] = useReducer(VaccineReducer, InitialState());
     const { getStorageValue } = useStorage("vaccine");
 
     useEffectOnce(() => {

@@ -1,4 +1,4 @@
-import { ReactChild } from "react";
+import { ReactChild, Ref } from "react";
 
 import { ListDataEntity } from "./provinces-cases.types";
 
@@ -35,6 +35,7 @@ export interface VaccineState {
             district: string;
         };
     };
+    locationRef?: Ref<HTMLInputElement> | any;
 }
 export type VaccineActionType =
     | {

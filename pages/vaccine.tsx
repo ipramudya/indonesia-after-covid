@@ -1,7 +1,5 @@
-import { Center, Text } from "@mantine/core";
-import { Layout, SidebarVaccine } from "components/layout";
+import { Layout, MainVaccine, SidebarVaccine } from "components/layout";
 import { NEXT_URL } from "config/url";
-import { typography } from "lib/mantine/styles";
 import type { GetServerSideProps } from "next";
 import type { FunctionComponent } from "react";
 import { Vacinne } from "types/vaccine.types";
@@ -13,9 +11,7 @@ interface VaccineProps {
 const Vaccine: FunctionComponent<VaccineProps> = ({ vaccine }) => {
     return (
         <Layout Sidebar={<SidebarVaccine vaccine={vaccine} />}>
-            <Center>
-                <Text sx={typography.textHead}>Vaccine service coming soon</Text>
-            </Center>
+            <MainVaccine />
         </Layout>
     );
 };

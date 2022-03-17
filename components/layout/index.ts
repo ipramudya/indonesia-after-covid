@@ -8,3 +8,4 @@ export { default as MainCases } from "./cases/Main";
 
 // vaccine page
 export { default as SidebarVaccine } from "./vaccine/Sidebar";
+export { default as MainVaccine } from "./vaccine/Main";

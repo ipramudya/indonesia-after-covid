@@ -22,8 +22,6 @@ export default function useStorage(title: storageType = "cases") {
     const onSetStorage = useCallback((state: storageState) => setValue(state), [setValue]);
     const onClearStorage = useCallback(() => setValue(initialState), [initialState, setValue]);
 
-    console.log(value);
-
     return {
         getStorageValue: value as typeof initialState,
         onSetStorage,

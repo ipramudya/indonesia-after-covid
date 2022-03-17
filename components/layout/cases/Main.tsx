@@ -4,12 +4,6 @@ import { FunctionComponent, Ref, useEffect, useRef, useState } from "react";
 import Map, { MapRef } from "react-map-gl";
 import { ListDataEntity } from "types/provinces-cases.types";
 
-interface ICoordinate {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-}
-
 interface MainProps {
     provinces: ListDataEntity[] | null | undefined;
 }
@@ -26,7 +20,7 @@ const Main: FunctionComponent<MainProps> = ({ provinces }) => {
         state: { exploredProvince },
     } = useCases();
 
-    const [viewPort, setViewport] = useState<ICoordinate>(defaultCoordinate);
+    const [Viewport, setViewport] = useState(defaultCoordinate);
     const latitude = exploredProvince.province?.lokasi.lat as number;
     const longitude = exploredProvince.province?.lokasi.lon as number;
 
@@ -42,7 +36,7 @@ const Main: FunctionComponent<MainProps> = ({ provinces }) => {
 
     return (
         <Map
-            {...viewPort}
+            {...Viewport}
             onMove={(event) => {
                 setViewport(event.viewState);
             }}

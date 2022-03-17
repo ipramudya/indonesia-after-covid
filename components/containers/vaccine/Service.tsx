@@ -13,7 +13,7 @@ const Service: FunctionComponent = () => {
     const { allProvinces, onFetchDistricts, relatedDistricts } = useVaccineService();
     const {
         dispatch,
-        state: { selectedLocation },
+        state: { selectedLocation, locationRef },
     } = useVaccine();
     const { onSetStorage, onClearStorage } = useStorage("vaccine");
 
@@ -97,6 +97,7 @@ const Service: FunctionComponent = () => {
                 clearable
                 mb="sm"
                 styles={selectClearable}
+                ref={locationRef}
             />
             <Select
                 data={!relatedDistricts ? [] : formattedDistricts} // clear districts when province isn't selected yet
