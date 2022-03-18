@@ -1,14 +1,21 @@
-export { default as Heading } from "./Heading-overview";
-export { default as Summary } from "./Summary-overview";
-export { default as OverviewSkeleton } from "./Skeleton-overview";
-export { default as Daily } from "./Daily-overview";
-export { default as Grouping } from "./Grouping-overview";
-export { default as Markers } from "./Markers-main";
-export { default as Popup } from "./Popup-main";
-export { default as Popover } from "./Popover-topbar";
+// Cases page stuff
+export { default as Heading } from "./cases/Heading-overview";
+export { default as Summary } from "./cases/Summary-overview";
+export { default as OverviewSkeleton } from "./cases/Skeleton-overview";
+export { default as Daily } from "./cases/Daily-overview";
+export { default as Grouping } from "./cases/Grouping-overview";
+export { default as Markers } from "./cases/Markers-cases";
+export { default as ProvinceBox } from "./cases/ProvinceBox-explored";
+
+// Vaccine page stuff
+export { default as MarkersVaccine } from "./vaccine/Markers-vaccine";
+export { default as TooltipVaccine } from "./vaccine/Tooltip-vaccine";
+export { default as LegendMap } from "./vaccine/LegendMap-vaccine";
+export { default as ChooseLocOverlay } from "./vaccine/ChooseLocationOverlay";
+export { default as LocationBox } from "./vaccine/LocationBox-service";
 export { default as Dose } from "./Dose";
-export { default as LocationBox } from "./LocationBox-service";
-export { default as ChooseLocOverlay } from "./ChooseLocationOverlay";
-export { default as MarkersVaccine } from "./Markers-vaccine";
-export { default as TooltipVaccine } from "./Tooltip-vaccine";
-export { default as LegendMap } from "./LegendMap-vaccine";
+
+// others
+export { default as Popup } from "./cases/Popup-cases";
+export { default as Popover } from "./Popover-topbar";
+export { default as LastUpdated } from "./LastUpdated";

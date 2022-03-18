@@ -6,11 +6,11 @@ import { GoPrimitiveDot } from "react-icons/go";
 import { Marker } from "react-map-gl";
 import { ListDataEntity } from "types/provinces-cases.types";
 
-interface MarkersProps {
+interface MarkersCasesProps {
     provinces: ListDataEntity[] | null | undefined;
 }
 
-const Markers: FunctionComponent<MarkersProps> = ({ provinces }) => {
+const MarkersCases: FunctionComponent<MarkersCasesProps> = ({ provinces }) => {
     const {
         dispatch,
         state: { exploredProvince },
@@ -62,4 +62,4 @@ const Markers: FunctionComponent<MarkersProps> = ({ provinces }) => {
     );
 };
 
-export default memo(Markers);
+export default memo(MarkersCases);

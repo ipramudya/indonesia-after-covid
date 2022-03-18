@@ -4,8 +4,7 @@ import type { FunctionComponent, ReactNode } from "react";
 import { useCallback, useMemo, useState } from "react";
 import { BsCursor, BsSortDown } from "react-icons/bs";
 
-import { SelectItemWithIcon } from "components/ui/Items";
-import ProvinceBox from "components/common/ProvinceBox-explored";
+import { ButtonItem, SelectItemWithIcon } from "components/ui/Items";
 import { box, typography, select } from "lib/mantine/styles";
 import browseProvinceMenu from "constant/browseProvinceMenu";
 import { useCases } from "context";
@@ -13,6 +12,7 @@ import { useStorage } from "hooks";
 import formatTitle from "utils/formatTitle";
 import sort from "utils/sort";
 import { ListDataEntity, Provinces } from "types/provinces-cases.types";
+import { ProvinceBox } from "components/common";
 
 interface ExploredProvinceProps {
     provinces: Provinces;
@@ -123,11 +123,16 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
             {!exploredProvince.isEmpty && (
                 <>
                     <ProvinceBox
-                        provName={exploredProvince.province?.key as string}
-                        quantity={exploredProvince.province?.jumlah_kasus as number}
-                        onProvinceChange={onProvinceChange}
+                        onClick={onProvinceChange}
                         isSelected
-                    />
+                        provName={exploredProvince.province?.key as string}
+                    >
+                        <ButtonItem
+                            label={exploredProvince.province?.key as string}
+                            quantity={exploredProvince.province?.jumlah_kasus as number}
+                            isSelected
+                        />
+                    </ProvinceBox>
                     <Divider
                         variant="dashed"
                         labelPosition="center"
@@ -144,12 +149,9 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
                             : prov
                     )
                     .map((prov: ListDataEntity) => (
-                        <ProvinceBox
-                            key={prov.key}
-                            provName={prov.key}
-                            quantity={prov.jumlah_kasus}
-                            onProvinceChange={onProvinceChange}
-                        />
+                        <ProvinceBox key={prov.key} provName={prov.key} onClick={onProvinceChange}>
+                            <ButtonItem label={prov.key} quantity={prov.jumlah_kasus} />
+                        </ProvinceBox>
                     ))}
             </Group>
         </Box>

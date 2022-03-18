@@ -1,28 +1,26 @@
 import { Button } from "@mantine/core";
 import { button, selectedButton } from "lib/mantine/styles";
-import { FunctionComponent, memo } from "react";
-import { ButtonItem } from "components/ui/Items";
+import { FunctionComponent, memo, ReactChild } from "react";
 
 interface ProvinceBoxProps {
     provName: string;
-    quantity: number;
-    onProvinceChange: (target: string | null) => void;
+    onClick: (target: string | null) => void;
     isSelected?: boolean;
+    children: ReactChild;
 }
 
 const ProvinceBox: FunctionComponent<ProvinceBoxProps> = ({
     provName,
-    quantity,
-    onProvinceChange,
+    onClick,
     isSelected = false,
+    children,
 }) => {
     const onProvinceBoxSelected = () => {
         if (isSelected) {
-            onProvinceChange(null);
+            onClick(null);
             return;
         }
-
-        onProvinceChange(provName);
+        onClick(provName);
     };
 
     return (
@@ -33,7 +31,7 @@ const ProvinceBox: FunctionComponent<ProvinceBoxProps> = ({
             styles={isSelected ? selectedButton : button}
             onClick={onProvinceBoxSelected}
         >
-            <ButtonItem label={provName} quantity={quantity} isSelected={isSelected} />
+            {children}
         </Button>
     );
 };

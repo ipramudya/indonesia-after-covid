@@ -1,13 +1,12 @@
-import { memo } from "react";
-import type { FunctionComponent } from "react";
-import { Badge, Divider, Group, Text, Tooltip } from "@mantine/core";
-import { BiChevronsUp } from "react-icons/bi";
-
-import { Dose } from "components/common";
-import { badge, tooltip, typography } from "lib/mantine/styles";
-import { Penambahan, Total } from "types/vaccine.types";
+import { Badge, Divider, Group, Text } from "@mantine/core";
+import { Dose, LastUpdated } from "components/common";
+import { badge, typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
 import moment from "moment";
+import type { FunctionComponent } from "react";
+import { memo } from "react";
+import { BiChevronsUp } from "react-icons/bi";
+import { Penambahan, Total } from "types/vaccine.types";
 
 interface AdministratedProps {
     total: Total;
@@ -31,7 +30,7 @@ const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total 
                     )}
                 </Badge>
             </Group>
-            <Group position="apart" noWrap sx={{ height: "50px" }}>
+            <Group position="apart" noWrap sx={{ height: "50px" }} mb={6}>
                 {/* Left */}
                 <Dose
                     increase={increase.jumlah_vaksinasi_1}
@@ -46,18 +45,9 @@ const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total 
                     title="Second dose"
                 />
             </Group>
-            <Tooltip
-                label={moment(increase.created).format("D MMM YYYY, LT")}
-                position="right"
-                color="gray"
-                radius="md"
-                mt="sm"
-                styles={tooltip}
-            >
-                <Text component="span" size="xs" sx={(theme) => ({ color: theme.colors.dark[3] })}>
-                    *last updated {moment(increase.created).fromNow()}
-                </Text>
-            </Tooltip>
+            <LastUpdated label={increase.created}>
+                *last updated {moment(increase.created).fromNow()}
+            </LastUpdated>
         </>
     );
 };

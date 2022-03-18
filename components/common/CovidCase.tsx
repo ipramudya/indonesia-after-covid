@@ -38,7 +38,6 @@ const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({
             <Group spacing="sm">
                 <Text
                     color={color}
-                    weight="bold"
                     sx={type === "normal" ? typography.number : typography.numberTiny}
                 >
                     {memoizedTotal}
@@ -46,7 +45,7 @@ const CovidCase: React.FunctionComponent<ICovidCaseProps> = ({
                 <Badge
                     radius="sm"
                     color="gray"
-                    leftSection={(increase as number) < 0 ? <BiChevronsDown /> : <BiChevronsUp />}
+                    leftSection={Number(increase) < 0 ? <BiChevronsDown /> : <BiChevronsUp />}
                     styles={badge}
                 >
                     {memoizedIncrease}

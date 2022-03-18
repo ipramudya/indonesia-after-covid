@@ -82,14 +82,14 @@ const CustomTooltip = (props: TooltipProps<string, string>) => {
     if (active && payload && payload.length) {
         return (
             <Group spacing="md" direction="column" sx={box.tooltipWrapper}>
-                <Text component="span" styles={typography.textTiny} weight="bold">
+                <Text component="span" sx={typography.textTiny} weight="bold">
                     {moment(label).format("D MMM YYYY")}
                 </Text>
                 <Group spacing="xs" direction="column">
-                    <Text component="span" styles={typography.textTiny}>{`${
+                    <Text component="span" sx={typography.textTiny}>{`${
                         payload?.[0].name
                     }: ${formatNum(Number(payload[0].value))}`}</Text>
-                    <Text component="span" styles={typography.textTiny}>
+                    <Text component="span" sx={typography.textTiny}>
                         {`Accumulation: ${formatNum(
                             payload[0].payload[`AKUMULASI_${payload[0].dataKey}`]
                         )}`}

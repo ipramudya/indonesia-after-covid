@@ -1,6 +1,6 @@
 import { FunctionComponent, memo } from "react";
 import { ListDataEntity } from "types/provinces-cases.types";
-import CovidCase from "./CovidCase";
+import CovidCase from "../CovidCase";
 
 interface SummaryProps {
     province: ListDataEntity | undefined | any;

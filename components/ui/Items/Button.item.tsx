@@ -4,6 +4,7 @@ import { typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
 import type { FunctionComponent } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { FiX } from "react-icons/fi";
 import formatTitle from "utils/formatTitle";
 import { SelectIcon } from "../Icons";
 
@@ -35,7 +36,7 @@ const ButtonItem: FunctionComponent<IButtonItem> = ({ label, quantity, isSelecte
                             color: hovered ? theme.colors.red[6] : theme.colors.dark[7],
                         })}
                     >
-                        <FaStar />
+                        {hovered ? <FiX /> : <FaStar />}
                     </ThemeIcon>
                 ) : (
                     <SelectIcon icon={hovered ? <FaStar /> : <FaRegStar />} />

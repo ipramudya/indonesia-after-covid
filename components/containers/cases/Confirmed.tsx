@@ -1,10 +1,10 @@
-import { FunctionComponent, memo } from "react";
-import { Badge, Group, Text, Tooltip } from "@mantine/core";
-import moment from "moment";
-
+import { Badge, Group, Text } from "@mantine/core";
+import { LastUpdated } from "components/common";
 import CovidCase from "components/common/CovidCase";
-import { badge, tooltip, typography } from "lib/mantine/styles";
+import { badge, typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
+import moment from "moment";
+import { FunctionComponent, memo } from "react";
 import { BiChevronsUp } from "react-icons/bi";
 import { Update } from "types/update-cases.types";
 
@@ -44,17 +44,9 @@ const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
                 total={update?.total.jumlah_meninggal}
                 title="Fatal"
             />
-            <Tooltip
-                label={moment(update?.penambahan.created).format("D MMM YYYY, LT")}
-                position="right"
-                color="gray"
-                radius="md"
-                styles={tooltip}
-            >
-                <Text component="span" size="xs" sx={(theme) => ({ color: theme.colors.dark[3] })}>
-                    *last updated {moment(update?.penambahan.created).fromNow()}
-                </Text>
-            </Tooltip>
+            <LastUpdated label={update?.penambahan.created}>
+                *last updated {moment(update?.penambahan.created).fromNow()}
+            </LastUpdated>
         </div>
     );
 };

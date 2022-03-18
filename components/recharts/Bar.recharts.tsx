@@ -109,14 +109,13 @@ const CustomTooltip = (props: TooltipProps<string, string>) => {
         return (
             <Group spacing="md" direction="column" sx={box.tooltipWrapper}>
                 <Text
-                    styles={typography.textTiny}
+                    sx={typography.textTiny}
                     weight="bold"
                     color={theme.colors.dark[7]}
                 >{`Age: ${label}`}</Text>
-                <Text
-                    styles={typography.textTiny}
-                    color={theme.colors.dark[7]}
-                >{`Percentage: ${Number(payload[0].value).toFixed(4)}%`}</Text>
+                <Text sx={typography.textTiny} color={theme.colors.dark[7]}>{`Percentage: ${Number(
+                    payload[0].value
+                ).toFixed(4)}%`}</Text>
             </Group>
         );
     }
