@@ -1,4 +1,4 @@
-import { Badge, Group, Text } from "@mantine/core";
+import { Badge, Group, Text, useMantineTheme } from "@mantine/core";
 import { LastUpdated } from "components/common";
 import CovidCase from "components/common/CovidCase";
 import { badge, typography } from "lib/mantine/styles";
@@ -13,6 +13,7 @@ interface ConfirmedProps {
 }
 
 const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
+    const theme = useMantineTheme();
     return (
         <div>
             <Text component="span" sx={typography.textHead}>
@@ -27,7 +28,7 @@ const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
                 </Badge>
             </Group>
             <CovidCase
-                color="green"
+                color={theme.colors.green[5]}
                 increase={update?.penambahan.jumlah_sembuh}
                 total={update?.total.jumlah_sembuh}
                 title="Healed"

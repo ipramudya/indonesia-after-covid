@@ -27,18 +27,11 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
                 target={
                     <Button
                         variant="white"
-                        styles={{
-                            root: {
-                                background: "white",
-                                border: "1px solid",
-                                borderColor: theme.colors.gray[5],
-                            },
-                        }}
+                        color="green"
                         onClick={onToggleLegend}
+                        styles={{ label: { fontWeight: "normal" } }}
                     >
-                        <Text sx={typography.textHead} style={{ color: "#004643" }}>
-                            Legend
-                        </Text>
+                        Legend
                     </Button>
                 }
             >
@@ -46,7 +39,7 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
                     {/* Hospital icon */}
                     <Group direction="row">
                         <ThemeIcon variant="light" color="green">
-                            <FaHospitalAlt color="#004643" />
+                            <FaHospitalAlt color={theme.colors.green[7]} />
                         </ThemeIcon>
                         <Text sx={typography.textMain} ml={3}>
                             Hospital
@@ -56,7 +49,7 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
                     {/* Clinic icon */}
                     <Group>
                         <ThemeIcon variant="light" color="green">
-                            <RiHospitalFill color={theme.colors.green[9]} />
+                            <GiHealthNormal color="#93FFD8" />
                         </ThemeIcon>
                         <Text sx={typography.textMain} ml={3}>
                             Clinic
@@ -66,7 +59,7 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
                     {/* Others icon */}
                     <Group>
                         <ThemeIcon variant="light" color="green">
-                            <GiHealthNormal color="#70c88e" />
+                            <RiHospitalFill color={theme.colors.green[5]} />
                         </ThemeIcon>
                         <Text sx={typography.textMain} ml={3}>
                             Health services

@@ -2,11 +2,15 @@ import { FunctionComponent } from "react";
 import { GiSelect } from "react-icons/gi";
 import { SelectIcon } from "components/ui/Icons";
 
-const DividerLabel: FunctionComponent = () => {
+interface DividerLabelProps {
+    label: string;
+}
+
+const DividerLabel: FunctionComponent<DividerLabelProps> = ({ label }) => {
     return (
         <>
             <SelectIcon icon={<GiSelect />} />
-            <span>selected province</span>
+            <span>{label}</span>
         </>
     );
 };

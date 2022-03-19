@@ -7,7 +7,7 @@ interface SummaryProps {
 }
 
 interface StaticData {
-    color: "green" | "dark" | "yellow" | "#ee5555";
+    color: string;
     title: "Healed" | "Fatal" | "Hospitalized" | "Confirmed case";
     increase: string;
     total: string;
@@ -24,7 +24,7 @@ const staticData: StaticData[] = [
         title: "Healed",
         increase: "sembuh",
         total: "jumlah_sembuh",
-        color: "green",
+        color: "#20C589",
     },
     {
         title: "Fatal",

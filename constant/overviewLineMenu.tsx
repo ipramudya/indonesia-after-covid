@@ -13,7 +13,7 @@ const overviewLineMenu: IOverviewLineMenu[] = [
     {
         label: "Healed",
         value: "SEMBUH",
-        color: "#40C057",
+        color: "#20C589",
     },
     {
         label: "Fatal",

@@ -7,7 +7,7 @@ import formatNum from "lib/numeral/formatNum";
 import { ListIcon } from "components/ui/Icons";
 
 interface ICovidCaseProps {
-    color: "green" | "dark" | "yellow" | "#ee5555";
+    color: string;
     title: "Healed" | "Fatal" | "Hospitalized" | "Confirmed case";
     increase: number | undefined;
     total: number | undefined;

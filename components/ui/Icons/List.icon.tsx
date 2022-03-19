@@ -4,11 +4,17 @@ import { BsCircleFill } from "react-icons/bs";
 
 interface ListIconProps {
     size?: "xs" | "sm" | "md";
-    color: "green" | "dark" | "yellow" | "#ee5555" | "red";
+    color: string;
 }
 
 const ListIcon: FunctionComponent<ListIconProps> = ({ size = "xs", color }) => (
-    <ThemeIcon color={color} radius="xl" variant="light" size={size}>
+    <ThemeIcon
+        color={color}
+        sx={{ color: color === "#20c589" ? "#20c589" : "" }}
+        radius="xl"
+        variant="light"
+        size={size}
+    >
         <BsCircleFill size={8} />
     </ThemeIcon>
 );

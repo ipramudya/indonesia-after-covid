@@ -7,6 +7,18 @@ const theme: MantineThemeOverride = {
         fontWeight: 600,
     },
     colors: {
+        green: [
+            "#defef6",
+            "#b7f5e2",
+            "#8deecc",
+            "#64e6b3",
+            "#3adf98",
+            "#20c589",
+            "#149973",
+            "#086e59",
+            "#00433a",
+            "#001812",
+        ],
         dark: [
             "#edf2fa",
             "#d2d7e0",

@@ -1,11 +1,10 @@
 import { Box, Divider, Group, Select, SelectItem, Text } from "@mantine/core";
-import DividerLabel from "components/common/DividerLabel";
 import type { FunctionComponent, ReactNode } from "react";
 import { useCallback, useMemo, useState } from "react";
-import { BsCursor, BsSortDown } from "react-icons/bs";
+import { BsSearch, BsSortDown } from "react-icons/bs";
 
 import { ButtonItem, SelectItemWithIcon } from "components/ui/Items";
-import { box, typography, select } from "lib/mantine/styles";
+import { box, typography, select, selectClearable } from "lib/mantine/styles";
 import browseProvinceMenu from "constant/browseProvinceMenu";
 import { useCases } from "context";
 import { useStorage } from "hooks";
@@ -95,7 +94,7 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
 
     return (
         <Box sx={{ padding: "0 25px 0 20px" }}>
-            <Box sx={box.titleAndMenu} mb="xl">
+            <Box sx={box.titleAndMenu} mb="sm">
                 <Text component="span" sx={typography.textHead}>
                     Explore province
                 </Text>
@@ -109,19 +108,27 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
                     styles={select}
                 />
             </Box>
+            <Text sx={typography.textMain} mb="sm">
+                Find a specific province to monitor the rate of growth of coronavirus in Indonesia.
+            </Text>
             <Select
                 data={selectData as SelectItem[]}
                 searchable
                 clearable
                 nothingFound="Province does not exist"
                 placeholder="Find and select a specific province"
-                icon={<BsCursor />}
+                icon={<BsSearch />}
                 maxDropdownHeight={150}
                 onChange={onProvinceChange}
                 mb="sm"
+                styles={selectClearable}
             />
             {!exploredProvince.isEmpty && (
                 <>
+                    <Divider my="sm" variant="dashed" />
+                    <Text sx={typography.textMain} my="sm">
+                        Selected province:
+                    </Text>
                     <ProvinceBox
                         onClick={onProvinceChange}
                         isSelected
@@ -133,14 +140,9 @@ const ExploredProvince: FunctionComponent<ExploredProvinceProps> = ({ provinces 
                             isSelected
                         />
                     </ProvinceBox>
-                    <Divider
-                        variant="dashed"
-                        labelPosition="center"
-                        my="xs"
-                        label={<DividerLabel />}
-                    />
                 </>
             )}
+            <Divider my="sm" variant="dashed" label="Available provinces" labelPosition="center" />
             <Group direction="column">
                 {sortedProvince
                     ?.filter((prov: ListDataEntity) =>

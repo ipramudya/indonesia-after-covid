@@ -1,10 +1,13 @@
 import { LoadingOverlay } from "@mantine/core";
-import { ChooseLocOverlay, LegendMap, MarkersVaccine } from "components/common";
+import { ChooseLocOverlay, FacilityBar, LegendMap, MarkersVaccine } from "components/common";
 import { useVaccine } from "context";
 import useFaskes from "hooks/useFaskes";
-import { FunctionComponent, Ref, useCallback, useEffect, useRef, useState } from "react";
+import { FunctionComponent, Ref, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Map, { MapRef } from "react-map-gl";
 import { Datum } from "types/faskes-types";
+import formatTitle from "utils/formatTitle";
+
+export type FacilityType = "" | "KLINIK" | "FKTP" | "PUSKESMAS" | "RUMAH SAKIT";
 
 const defaultCoordinate = {
     longitude: 117.9188324776498,
@@ -15,6 +18,7 @@ const defaultCoordinate = {
 const Main: FunctionComponent = () => {
     const [viewport, setViewport] = useState(defaultCoordinate);
     const [isPopoverOpened, setIsPopoverOpened] = useState(false);
+    const [facilityType, setFacilityType] = useState<FacilityType>("");
     const mapRef: Ref<MapRef> = useRef(null);
 
     const {
@@ -37,6 +41,11 @@ const Main: FunctionComponent = () => {
 
     const onShowLegend = useCallback(() => setIsPopoverOpened((prev) => !prev), []);
 
+    const onSelectFacility = (facility: FacilityType) => {
+        console.log(facility);
+        setFacilityType(facility);
+    };
+
     const onSetVaccineDetail = useCallback(
         (detail: Datum) => {
             if (detail) {
@@ -47,6 +56,26 @@ const Main: FunctionComponent = () => {
         },
         [dispatch]
     );
+
+    const searchableData = useMemo(() => {
+        if (data) {
+            if (facilityType) {
+                return data?.data
+                    .filter((item) => item.jenis_faskes !== facilityType)
+                    .map((item) => ({
+                        label: formatTitle(item.nama),
+                        value: item.id,
+                        status: item.status,
+                    }));
+            }
+            return data?.data.map((item) => ({
+                label: formatTitle(item.nama),
+                value: item.id,
+                status: item.status,
+            }));
+        }
+        return [];
+    }, [data, facilityType]);
 
     return (
         <Map
@@ -64,8 +93,17 @@ const Main: FunctionComponent = () => {
                 <ChooseLocOverlay onSelectLocationFocus={onSelectLocationFocus} />
             ) : (
                 <>
-                    <MarkersVaccine data={data?.data} onMarkerClick={onSetVaccineDetail} />
+                    <MarkersVaccine
+                        data={data?.data}
+                        onMarkerClick={onSetVaccineDetail}
+                        value={facilityType}
+                    />
                     <LegendMap isPopoverOpened={isPopoverOpened} onToggleLegend={onShowLegend} />
+                    <FacilityBar
+                        data={searchableData}
+                        onFacilityClick={onSelectFacility}
+                        value={facilityType}
+                    />
                 </>
             )}
         </Map>

@@ -1,4 +1,4 @@
-import { Button, Box, Group, Text } from "@mantine/core";
+import { Button, Box, Group, Text, useMantineTheme } from "@mantine/core";
 import { useVaccine } from "context";
 import { typography } from "lib/mantine/styles";
 import type { FunctionComponent } from "react";
@@ -12,6 +12,7 @@ interface LocationBoxServiceProps {
 }
 
 const LocationBoxService: FunctionComponent<LocationBoxServiceProps> = ({ onCLoseLocationBox }) => {
+    const theme = useMantineTheme();
     const {
         state: { selectedLocation },
     } = useVaccine();
@@ -31,7 +32,7 @@ const LocationBoxService: FunctionComponent<LocationBoxServiceProps> = ({ onCLos
                         transition: "all 0.3s ease",
                         cursor: "default",
                     },
-                    label: { width: "100%" },
+                    label: { width: "100%", color: theme.colors.green[7] },
                 }}
                 leftIcon={<IoLocate />}
                 rightIcon={

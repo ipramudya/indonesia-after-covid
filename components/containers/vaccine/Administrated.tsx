@@ -1,4 +1,4 @@
-import { Badge, Divider, Group, Text } from "@mantine/core";
+import { Badge, Divider, Group, Text, useMantineTheme } from "@mantine/core";
 import { Dose, LastUpdated } from "components/common";
 import { badge, typography } from "lib/mantine/styles";
 import formatNum from "lib/numeral/formatNum";
@@ -14,13 +14,18 @@ interface AdministratedProps {
 }
 
 const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total }) => {
+    const theme = useMantineTheme();
     return (
         <>
             <Text sx={typography.textHead} component="span">
                 Vaccine doses administered
             </Text>
             <Group align="center" noWrap mb="md" sx={{ width: "100%" }}>
-                <Text sx={{ fontSize: "24px" }} color="green" weight="bold">
+                <Text
+                    sx={{ fontSize: "24px" }}
+                    style={{ color: theme.colors.green[5] }}
+                    weight="bold"
+                >
                     {formatNum(total.jumlah_vaksinasi_1 + total.jumlah_vaksinasi_2)}
                 </Text>
                 <Badge radius="sm" color="gray" leftSection={<BiChevronsUp />} styles={badge}>
