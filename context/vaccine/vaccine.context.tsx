@@ -8,6 +8,9 @@ const InitialState = (): VaccineState => ({
     selectedLocation: {
         isEmpty: true,
     },
+    detail: {
+        isEmpty: true,
+    },
     locationRef: useRef(null),
 });
 

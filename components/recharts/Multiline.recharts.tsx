@@ -108,7 +108,7 @@ const CustomTooltip = (props: TooltipProps<string, string>) => {
                         <BsSquareFill style={{ color: payload[1].color }} size={10} />
                         <Group direction="column" spacing={0}>
                             <Text sx={typography.textTiny}>
-                                First dose: {formatNum(payload[1].value as unknown as number)}
+                                Second dose: {formatNum(payload[1].value as unknown as number)}
                             </Text>
                             <Text sx={typography.textTiny}>
                                 Accumulation:{" "}

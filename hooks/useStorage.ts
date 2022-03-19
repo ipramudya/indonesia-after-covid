@@ -3,7 +3,7 @@ import { useLocalStorage } from "react-use";
 import { CasesState, VaccineState } from "types/context.types";
 
 type storageType = "cases" | "vaccine";
-type storageState = Omit<CasesState, "isPopupShown"> | VaccineState;
+type storageState = Omit<CasesState, "isPopupShown"> | Omit<VaccineState, "detail">;
 
 export default function useStorage(title: storageType = "cases") {
     const initialState = useMemo(() => {

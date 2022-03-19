@@ -1,4 +1,5 @@
 import { ReactChild, Ref } from "react";
+import { Datum } from "./faskes-types";
 
 import { ListDataEntity } from "./provinces-cases.types";
 
@@ -36,6 +37,7 @@ export interface VaccineState {
         };
     };
     locationRef?: Ref<HTMLInputElement> | any;
+    detail: Datum | { isEmpty: boolean };
 }
 export type VaccineActionType =
     | {
@@ -43,6 +45,8 @@ export type VaccineActionType =
           payload: { province: string; district: string };
       }
     | { type: "clearVaccineLocation" }
+    | { type: "setVaccineDetail"; payload: Datum }
+    | { type: "clearVaccineDetail" }
     | {
           type: "setLocationFromStorage";
           payload: {

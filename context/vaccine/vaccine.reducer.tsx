@@ -20,6 +20,21 @@ const VaccineReducer: VaccineReducer = (state, action) => {
                 selectedLocation: { ...action.payload },
             };
         }
+        case "setVaccineDetail": {
+            return {
+                ...state,
+                detail: { isEmpty: false, ...action.payload },
+            };
+        }
+        case "clearVaccineDetail": {
+            return {
+                ...state,
+                detail: { isEmpty: true },
+            };
+        }
+        default: {
+            return state;
+        }
     }
 };
 

@@ -8,9 +8,10 @@ import TooltipVaccine from "./Tooltip-vaccine";
 
 interface MarkersVaccineProps {
     data: Datum[] | undefined;
+    onMarkerClick: (detail: Datum) => void;
 }
 
-const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data }) => {
+const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data, onMarkerClick }) => {
     return (
         <>
             {useMemo(
@@ -24,7 +25,7 @@ const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data }) => {
                             <Marker
                                 latitude={+datum.latitude}
                                 longitude={+datum.longitude}
-                                onClick={() => console.log(datum)}
+                                onClick={() => onMarkerClick(datum)}
                                 key={datum.id}
                             >
                                 <TooltipVaccine
@@ -40,7 +41,7 @@ const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data }) => {
                             </Marker>
                         );
                     }),
-                [data]
+                [data, onMarkerClick]
             )}
         </>
     );

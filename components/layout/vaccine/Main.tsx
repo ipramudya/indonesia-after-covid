@@ -4,6 +4,7 @@ import { useVaccine } from "context";
 import useFaskes from "hooks/useFaskes";
 import { FunctionComponent, Ref, useCallback, useEffect, useRef, useState } from "react";
 import Map, { MapRef } from "react-map-gl";
+import { Datum } from "types/faskes-types";
 
 const defaultCoordinate = {
     longitude: 117.9188324776498,
@@ -18,6 +19,7 @@ const Main: FunctionComponent = () => {
 
     const {
         state: { selectedLocation, locationRef },
+        dispatch,
     } = useVaccine();
     const { data, isLoading } = useFaskes();
 
@@ -35,6 +37,17 @@ const Main: FunctionComponent = () => {
 
     const onShowLegend = useCallback(() => setIsPopoverOpened((prev) => !prev), []);
 
+    const onSetVaccineDetail = useCallback(
+        (detail: Datum) => {
+            if (detail) {
+                dispatch({ type: "setVaccineDetail", payload: detail });
+                return;
+            }
+            return;
+        },
+        [dispatch]
+    );
+
     return (
         <Map
             {...viewport}
@@ -51,7 +64,7 @@ const Main: FunctionComponent = () => {
                 <ChooseLocOverlay onSelectLocationFocus={onSelectLocationFocus} />
             ) : (
                 <>
-                    <MarkersVaccine data={data?.data} />
+                    <MarkersVaccine data={data?.data} onMarkerClick={onSetVaccineDetail} />
                     <LegendMap isPopoverOpened={isPopoverOpened} onToggleLegend={onShowLegend} />
                 </>
             )}
