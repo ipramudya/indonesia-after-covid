@@ -48,7 +48,7 @@ const GroupingOverview: FunctionComponent<GroupingOverviewProps> = ({
                 </Tooltip>
             </Box>
             {/* Gender Grouping - Progress bar */}
-            <Divider variant="dashed" my="xs" label="by gender" />
+            <Divider variant="dashed" my="xs" label="by gender" labelPosition="center" />
             <Progress
                 sections={ageProgress}
                 size="xl"
@@ -59,7 +59,7 @@ const GroupingOverview: FunctionComponent<GroupingOverviewProps> = ({
                 }}
             />
             {/* Age Grouping - Stick bar */}
-            <Divider variant="dashed" my="xs" label="by age" />
+            <Divider variant="dashed" my="xs" label="by age" labelPosition="center" />
             <Box sx={{ height: "200px" }}>
                 <RechartsBar chartData={data?.data.kasus.kelompok_umur.list_data} />
             </Box>

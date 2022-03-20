@@ -12,13 +12,13 @@ const FaskesIcon: FaskesIconProps = ({ markerType }) => {
 
     switch (markerType) {
         case JenisFaskes.RumahSakit: {
-            return <FaHospitalAlt size={18} style={{ color: theme.colors.green[7] }} />;
+            return <FaHospitalAlt size={18} style={{ color: theme.colors.green[8] }} />;
         }
         case JenisFaskes.Puskesmas || JenisFaskes.Klinik: {
-            return <RiHospitalFill size={18} style={{ color: theme.colors.green[5] }} />;
+            return <RiHospitalFill size={18} style={{ color: theme.colors.green[6] }} />;
         }
         default: {
-            return <GiHealthNormal size={18} style={{ color: "#93FFD8" }} />;
+            return <GiHealthNormal size={18} style={{ color: theme.colors.green[2] }} />;
         }
     }
 };

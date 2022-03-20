@@ -27,9 +27,8 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
                 target={
                     <Button
                         variant="white"
-                        color="green"
                         onClick={onToggleLegend}
-                        styles={{ label: { fontWeight: "normal" } }}
+                        styles={{ label: { fontWeight: "normal", color: theme.colors.green[7] } }}
                     >
                         Legend
                     </Button>
@@ -38,8 +37,8 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
                 <Group direction="column" spacing="sm">
                     {/* Hospital icon */}
                     <Group direction="row">
-                        <ThemeIcon variant="light" color="green">
-                            <FaHospitalAlt color={theme.colors.green[7]} />
+                        <ThemeIcon variant="light" color="gray">
+                            <FaHospitalAlt color={theme.colors.green[8]} />
                         </ThemeIcon>
                         <Text sx={typography.textMain} ml={3}>
                             Hospital
@@ -48,8 +47,8 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
 
                     {/* Clinic icon */}
                     <Group>
-                        <ThemeIcon variant="light" color="green">
-                            <GiHealthNormal color="#93FFD8" />
+                        <ThemeIcon variant="light" color="gray">
+                            <GiHealthNormal color={theme.colors.green[2]} />
                         </ThemeIcon>
                         <Text sx={typography.textMain} ml={3}>
                             Clinic
@@ -58,8 +57,8 @@ const LegendMapVaccine: FunctionComponent<LegendMapVaccineProps> = ({
 
                     {/* Others icon */}
                     <Group>
-                        <ThemeIcon variant="light" color="green">
-                            <RiHospitalFill color={theme.colors.green[5]} />
+                        <ThemeIcon variant="light" color="gray">
+                            <RiHospitalFill color={theme.colors.green[6]} />
                         </ThemeIcon>
                         <Text sx={typography.textMain} ml={3}>
                             Health services

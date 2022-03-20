@@ -24,7 +24,7 @@ const staticData: StaticData[] = [
         title: "Healed",
         increase: "sembuh",
         total: "jumlah_sembuh",
-        color: "#20C589",
+        color: "#149973",
     },
     {
         title: "Fatal",

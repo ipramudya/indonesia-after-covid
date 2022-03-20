@@ -6,14 +6,12 @@ import { memo } from "react";
 interface TooltipVaccineProps {
     name: string;
     status: string;
-    class_rs: string;
     phone: string | null;
     children: ReactChild;
 }
 
 const TooltipVaccine: FunctionComponent<TooltipVaccineProps> = ({
     children,
-    class_rs,
     name,
     phone,
     status,
@@ -28,7 +26,6 @@ const TooltipVaccine: FunctionComponent<TooltipVaccineProps> = ({
                     </Text>
                     <Divider variant="dashed" sx={{ width: "100%" }} my={6} />
                     <Text sx={typography.tooltip}>Status: {status}</Text>
-                    <Text sx={typography.tooltip}>Class: {class_rs || "-"}</Text>
                     <Text sx={typography.tooltip}>Phone: {phone || "-"}</Text>
                 </Group>
             }

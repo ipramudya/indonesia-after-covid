@@ -53,13 +53,7 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                     <OverviewSkeleton />
                 </>
             ) : (
-                <Group
-                    direction="column"
-                    grow
-                    sx={{ padding: "14px 25px" }}
-                    position="center"
-                    spacing={4}
-                >
+                <Group direction="column" grow py={14} px={25} position="center" spacing={4}>
                     {/* Overview Head */}
                     <Heading title={overviewTitle} onOverviewClose={onOverviewClose} />
                     <Divider mb="sm" />

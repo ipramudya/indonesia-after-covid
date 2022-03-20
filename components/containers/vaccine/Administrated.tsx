@@ -23,7 +23,7 @@ const Administrated: FunctionComponent<AdministratedProps> = ({ increase, total 
             <Group align="center" noWrap mb="md" sx={{ width: "100%" }}>
                 <Text
                     sx={{ fontSize: "24px" }}
-                    style={{ color: theme.colors.green[5] }}
+                    style={{ color: theme.colors.green[6] }}
                     weight="bold"
                 >
                     {formatNum(total.jumlah_vaksinasi_1 + total.jumlah_vaksinasi_2)}

@@ -23,13 +23,13 @@ const VaccineReducer: VaccineReducer = (state, action) => {
         case "setVaccineDetail": {
             return {
                 ...state,
-                detail: { isEmpty: false, ...action.payload },
+                detail: { isEmpty: false, data: { ...action.payload } },
             };
         }
         case "clearVaccineDetail": {
             return {
                 ...state,
-                detail: { isEmpty: true },
+                detail: { isEmpty: true, data: null },
             };
         }
         default: {

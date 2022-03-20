@@ -20,7 +20,7 @@ const Dose: FunctionComponent<DoseProps> = ({ total, increase, title }) => {
             <Group align="center" spacing={3} noWrap>
                 <Text
                     sx={typography.textMain}
-                    style={{ fontWeight: "bold", color: theme.colors.green[5] }}
+                    style={{ fontWeight: "bold", color: theme.colors.green[6] }}
                 >
                     {formatNum(total)}
                 </Text>

@@ -28,7 +28,7 @@ const Confirmed: FunctionComponent<ConfirmedProps> = ({ update }) => {
                 </Badge>
             </Group>
             <CovidCase
-                color={theme.colors.green[5]}
+                color={theme.colors.green[6]}
                 increase={update?.penambahan.jumlah_sembuh}
                 total={update?.total.jumlah_sembuh}
                 title="Healed"

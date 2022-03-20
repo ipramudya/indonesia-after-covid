@@ -10,6 +10,7 @@ const InitialState = (): VaccineState => ({
     },
     detail: {
         isEmpty: true,
+        data: null,
     },
     locationRef: useRef(null),
 });

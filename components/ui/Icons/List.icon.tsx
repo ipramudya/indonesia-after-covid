@@ -10,7 +10,7 @@ interface ListIconProps {
 const ListIcon: FunctionComponent<ListIconProps> = ({ size = "xs", color }) => (
     <ThemeIcon
         color={color}
-        sx={{ color: color === "#20c589" ? "#20c589" : "" }}
+        sx={{ color: color === "#149973" ? "#149973" : "" }}
         radius="xl"
         variant="light"
         size={size}

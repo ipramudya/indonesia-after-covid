@@ -37,7 +37,10 @@ export interface VaccineState {
         };
     };
     locationRef?: Ref<HTMLInputElement> | any;
-    detail: Datum | { isEmpty: boolean };
+    detail: {
+        isEmpty: boolean;
+        data: Datum | null;
+    };
 }
 export type VaccineActionType =
     | {

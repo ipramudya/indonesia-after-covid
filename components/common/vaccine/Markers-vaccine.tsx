@@ -14,8 +14,6 @@ interface MarkersVaccineProps {
 }
 
 const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data, onMarkerClick, value }) => {
-    console.log(data?.[0].jenis_faskes, value);
-
     return (
         <>
             {useMemo(
@@ -38,7 +36,6 @@ const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data, onMarker
                                     key={datum.id}
                                 >
                                     <TooltipVaccine
-                                        class_rs={datum.kelas_rs}
                                         name={datum.nama}
                                         phone={datum.telp}
                                         status={datum.status}

@@ -15,6 +15,8 @@ export { default as ChooseLocOverlay } from "./vaccine/ChooseLocationOverlay";
 export { default as LocationBox } from "./vaccine/LocationBox-service";
 export { default as Dose } from "./Dose";
 export { default as FacilityBar } from "./vaccine/FacilityBar";
+export { default as StatsVaccine } from "./vaccine/Stats-vaccine";
+export { default as Distributed } from "./vaccine/Distributed-vaccine";
 
 // others
 export { default as Popup } from "./cases/Popup-cases";
