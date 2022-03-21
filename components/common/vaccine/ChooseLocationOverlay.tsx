@@ -16,6 +16,7 @@ const ChooseLocationOverlay: FunctionComponent<ChooseLocationOverlayProps> = ({
         <>
             <Paper
                 p="lg"
+                radius="md"
                 sx={{
                     zIndex: 101,
                     position: "absolute",

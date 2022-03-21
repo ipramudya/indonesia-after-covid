@@ -29,6 +29,7 @@ function VaccineProvider({ children }: VaccineProviderProps) {
                 type: "setLocationFromStorage",
                 payload: getStorageValue.selectedLocation as any,
             });
+            return;
         }
     });
 

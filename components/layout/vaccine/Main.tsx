@@ -46,13 +46,16 @@ const Main: FunctionComponent = () => {
                 latitude: Number(detail.data?.latitude),
                 longitude: Number(detail.data?.longitude),
             });
-        } else {
+        } else if (data) {
             mapRef.current?.resize();
             return setViewport({
                 zoom: 10,
                 latitude: Number(data?.data[0].latitude),
                 longitude: Number(data?.data[0].longitude),
             });
+        } else {
+            mapRef.current?.resize();
+            return setViewport(defaultCoordinate);
         }
     }, [data, detail]);
 
