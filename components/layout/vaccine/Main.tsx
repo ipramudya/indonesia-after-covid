@@ -2,7 +2,8 @@ import { LoadingOverlay } from "@mantine/core";
 import { ChooseLocOverlay, FacilityBar, LegendMap, MarkersVaccine } from "components/common";
 import { useVaccine } from "context";
 import useFaskes from "hooks/useFaskes";
-import { FunctionComponent, Ref, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { FunctionComponent, Ref } from "react";
 import Map, { MapRef } from "react-map-gl";
 import { Datum } from "types/faskes-types";
 import formatTitle from "utils/formatTitle";
@@ -22,7 +23,7 @@ const Main: FunctionComponent = () => {
     const mapRef: Ref<MapRef> = useRef(null);
 
     const {
-        state: { selectedLocation, locationRef },
+        state: { selectedLocation, locationRef, detail },
         dispatch,
     } = useVaccine();
     const { data, isLoading } = useFaskes();
@@ -37,24 +38,44 @@ const Main: FunctionComponent = () => {
         }
     }, [data, isLoading]);
 
+    useEffect(() => {
+        if (!detail.isEmpty) {
+            mapRef.current?.resize();
+            return setViewport({
+                zoom: 16.5,
+                latitude: Number(detail.data?.latitude),
+                longitude: Number(detail.data?.longitude),
+            });
+        } else {
+            mapRef.current?.resize();
+            return setViewport({
+                zoom: 10,
+                latitude: Number(data?.data[0].latitude),
+                longitude: Number(data?.data[0].longitude),
+            });
+        }
+    }, [data, detail]);
+
     const onSelectLocationFocus = useCallback(() => locationRef.current.focus(), [locationRef]);
 
     const onShowLegend = useCallback(() => setIsPopoverOpened((prev) => !prev), []);
 
     const onSelectFacility = (facility: FacilityType) => {
-        console.log(facility);
         setFacilityType(facility);
     };
 
     const onSetVaccineDetail = useCallback(
-        (detail: Datum) => {
-            if (detail) {
-                dispatch({ type: "setVaccineDetail", payload: detail });
-                return;
+        (detail: Datum | number | string | null) => {
+            if (detail && typeof detail !== "number") {
+                return dispatch({ type: "setVaccineDetail", payload: detail as Datum });
+            } else if (typeof detail === "number") {
+                const found = data?.data.find((item) => item.id === detail);
+                console.log(found);
+                return dispatch({ type: "setVaccineDetail", payload: found as Datum });
             }
             return;
         },
-        [dispatch]
+        [data, dispatch]
     );
 
     const searchableData = useMemo(() => {
@@ -102,6 +123,7 @@ const Main: FunctionComponent = () => {
                     <FacilityBar
                         data={searchableData}
                         onFacilityClick={onSelectFacility}
+                        onSearchFacility={onSetVaccineDetail}
                         value={facilityType}
                     />
                 </>

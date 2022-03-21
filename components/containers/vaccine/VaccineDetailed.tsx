@@ -4,7 +4,13 @@ import { useVaccine } from "context";
 import { typography } from "lib/mantine/styles";
 import type { FunctionComponent } from "react";
 
-const staticData = ["Public officer", "Health workers", "Elderly people/Lansia", "Batch three"];
+const staticData = [
+    "Public officer",
+    "Health workers",
+    "Elderly people/Lansia",
+    "Batch three",
+    "Gotong Royong",
+];
 
 const VaccineDetailed: FunctionComponent = () => {
     const theme = useMantineTheme();
@@ -13,8 +19,6 @@ const VaccineDetailed: FunctionComponent = () => {
             detail: { data },
         },
     } = useVaccine();
-
-    console.log(data);
 
     return (
         <Box pr={20}>

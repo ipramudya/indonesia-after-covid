@@ -5,6 +5,7 @@ import { BsCheck, BsSearch } from "react-icons/bs";
 
 interface FacilityBarProps {
     onFacilityClick: (facility: FacilityType) => void;
+    onSearchFacility: (val: string | null) => void;
     value: FacilityType;
     data:
         | {
@@ -27,18 +28,27 @@ const staticMenu: StaticMenu[] = [
     { label: "FKTP", value: "FKTP" },
 ];
 
-const FacilityBar: FunctionComponent<FacilityBarProps> = ({ data, onFacilityClick, value }) => {
+const FacilityBar: FunctionComponent<FacilityBarProps> = ({
+    data,
+    onFacilityClick,
+    onSearchFacility,
+    value,
+}) => {
     const theme = useMantineTheme();
     return (
         <Group sx={{ position: "absolute", top: 10, left: 10, zIndex: 99 }} spacing="xs">
             <Select
                 styles={{ wrapper: { minWidth: "250px" } }}
                 data={data as any}
-                rightSection={<BsSearch />}
+                icon={<BsSearch />}
                 searchable
                 clearable
                 placeholder="Search for health facilities"
                 nothingFound="Health facility does not exist"
+                onChange={(val) => {
+                    if (!val) return;
+                    onSearchFacility(val);
+                }}
             />
             {staticMenu.map((menu) => {
                 const isValueSame = menu.value === value;

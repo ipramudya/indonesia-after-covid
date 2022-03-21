@@ -30,7 +30,6 @@ const MarkersVaccine: FunctionComponent<MarkersVaccineProps> = ({ data, onMarker
                                     latitude={+datum.latitude}
                                     longitude={+datum.longitude}
                                     onClick={() => {
-                                        console.log(datum.jenis_faskes);
                                         onMarkerClick(datum);
                                     }}
                                     key={datum.id}
