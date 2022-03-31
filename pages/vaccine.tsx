@@ -1,7 +1,8 @@
-import { Layout, MainVaccine, SidebarVaccine } from "components/layout";
-import { NEXT_URL } from "config/url";
 import type { GetServerSideProps } from "next";
 import type { FunctionComponent } from "react";
+
+import { Layout, MainVaccine, SidebarVaccine } from "components/layout";
+import { NEXT_URL } from "config/url";
 import { Vacinne } from "types/vaccine.types";
 
 interface VaccineProps {

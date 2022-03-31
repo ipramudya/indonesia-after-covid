@@ -18,6 +18,9 @@ export { default as FacilityBar } from "./vaccine/FacilityBar";
 export { default as StatsVaccine } from "./vaccine/Stats-vaccine";
 export { default as Distributed } from "./vaccine/Distributed-vaccine";
 
+// News stuff
+export { default as MainCard } from "./news/MainCard";
+
 // others
 export { default as Popup } from "./cases/Popup-cases";
 export { default as Popover } from "./Popover-topbar";

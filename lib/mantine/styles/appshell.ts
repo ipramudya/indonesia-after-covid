@@ -13,9 +13,7 @@ export default function appshell(): Partial<Record<"body" | "main" | "root", CSS
         body: {
             overflow: "hidden",
             width: "100%",
+            height: "100%",
         },
-        // main: {
-        //     overflow: "hidden",
-        // },
     };
 }

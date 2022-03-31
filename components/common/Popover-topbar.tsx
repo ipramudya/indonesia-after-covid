@@ -77,6 +77,20 @@ const CustomPopover: FunctionComponent<CustomPopoverProps> = ({
                         <GoLinkExternal size={15} style={{ marginRight: "6px" }} />
                         covid19.go.id
                     </Anchor>
+                    <Anchor
+                        sx={typography.textTiny}
+                        style={{
+                            marginLeft: "12px",
+                            color: theme.colors.dark[4],
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                        href="https://newscatcherapi.com/"
+                        target="_blank"
+                    >
+                        <GoLinkExternal size={15} style={{ marginRight: "6px" }} />
+                        Newscatcher API
+                    </Anchor>
                 </Group>
             </Group>
         </Popover>

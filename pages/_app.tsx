@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 import NProgress from "nprogress";
+
 import { CasesProvider } from "context/cases/cases.context";
 import { VaccineProvider } from "context/vaccine/vaccine.context";
 import theme from "lib/mantine/theme";
