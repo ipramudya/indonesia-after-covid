@@ -73,7 +73,6 @@ const Main: FunctionComponent = () => {
                 return dispatch({ type: "setVaccineDetail", payload: detail as Datum });
             } else if (typeof detail === "number") {
                 const found = data?.data.find((item) => item.id === detail);
-                console.log(found);
                 return dispatch({ type: "setVaccineDetail", payload: found as Datum });
             }
             return;

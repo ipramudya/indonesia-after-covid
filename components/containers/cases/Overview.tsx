@@ -1,11 +1,10 @@
 import { Divider, Group, useMantineTheme } from "@mantine/core";
-import { useCallback, useMemo, useState } from "react";
-import type { FunctionComponent } from "react";
-
-import { Daily, Grouping, Heading, OverviewSkeleton, Summary } from "components/common";
+import { Daily, Error, Grouping, Heading, OverviewSkeleton, Summary } from "components/common";
 import overviewLineMenu, { IOverviewLineMenu } from "constant/overviewLineMenu";
 import { useCases } from "context";
 import { useDetailProvince, useStorage } from "hooks";
+import type { FunctionComponent } from "react";
+import { useCallback, useMemo, useState } from "react";
 import formatTitle from "utils/formatTitle";
 
 interface OverviewProps {}
@@ -22,7 +21,7 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
         state: { exploredProvince },
         dispatch,
     } = useCases();
-    const { isLoading, data } = useDetailProvince();
+    const { isLoading, data, error } = useDetailProvince();
 
     const onSelectChange = useCallback((e: string | null) => {
         const willBeSelected = overviewLineMenu.find((menuItem) => menuItem.value === e);
@@ -53,25 +52,44 @@ const Overview: FunctionComponent<OverviewProps> = ({}) => {
                     <OverviewSkeleton />
                 </>
             ) : (
-                <Group direction="column" grow py={14} px={25} position="center" spacing={4}>
-                    {/* Overview Head */}
-                    <Heading title={overviewTitle} onOverviewClose={onOverviewClose} />
-                    <Divider mb="sm" />
+                <>
+                    {error ? (
+                        <>
+                            <Error message={error.message} />
+                        </>
+                    ) : (
+                        <Group
+                            direction="column"
+                            grow
+                            py={14}
+                            px={25}
+                            position="center"
+                            spacing={4}
+                        >
+                            {/* Overview Head */}
+                            <Heading title={overviewTitle} onOverviewClose={onOverviewClose} />
+                            <Divider mb="sm" />
 
-                    {/* Summary */}
-                    <Summary province={exploredProvince.province} />
-                    <Divider my="sm" />
+                            {/* Summary */}
+                            <Summary province={exploredProvince.province} />
+                            <Divider my="sm" />
 
-                    {/* Case grouping by line chart */}
-                    <Daily
-                        data={data}
-                        onSelectChange={onSelectChange}
-                        selectedMenu={selectedMenu}
-                    />
+                            {/* Case grouping by line chart */}
+                            <Daily
+                                data={data}
+                                onSelectChange={onSelectChange}
+                                selectedMenu={selectedMenu}
+                            />
 
-                    {/* Case Grouping */}
-                    <Grouping ageProgress={ageProgress} data={data} color={theme.colors.dark[8]} />
-                </Group>
+                            {/* Case Grouping */}
+                            <Grouping
+                                ageProgress={ageProgress}
+                                data={data}
+                                color={theme.colors.dark[8]}
+                            />
+                        </Group>
+                    )}
+                </>
             )}
         </>
     );

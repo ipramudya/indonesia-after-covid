@@ -25,3 +25,4 @@ export { default as MainCard } from "./news/MainCard";
 export { default as Popup } from "./cases/Popup-cases";
 export { default as Popover } from "./Popover-topbar";
 export { default as LastUpdated } from "./LastUpdated";
+export { default as Error } from "./Error";
