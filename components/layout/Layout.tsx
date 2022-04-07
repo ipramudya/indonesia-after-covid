@@ -5,7 +5,7 @@ import { appshell } from "lib/mantine/styles";
 import Topbar from "./Topbar";
 import { SidebarCasesProps } from "./cases/Sidebar";
 import { SidebarVaccineProps } from "./vaccine/Sidebar";
-import NotSupported from "./notSupported";
+import NotSupported from "./NotSupported";
 import useMedia from "use-media";
 
 interface LayoutProps<T> {
