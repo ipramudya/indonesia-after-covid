@@ -26,9 +26,6 @@ const Topbar: FunctionComponent = () => {
                         <Link href="/vaccine" passHref>
                             <Text sx={typography.link}>Vaccine</Text>
                         </Link>
-                        <Link href="/news" passHref>
-                            <Text sx={typography.link}>News</Text>
-                        </Link>
                     </Group>
                     <Popover
                         isPopoverShown={isPopoverShown}

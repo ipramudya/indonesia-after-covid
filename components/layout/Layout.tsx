@@ -5,6 +5,8 @@ import { appshell } from "lib/mantine/styles";
 import Topbar from "./Topbar";
 import { SidebarCasesProps } from "./cases/Sidebar";
 import { SidebarVaccineProps } from "./vaccine/Sidebar";
+import NotSupported from "./notSupported";
+import useMedia from "use-media";
 
 interface LayoutProps<T> {
     Sidebar: FunctionComponent<T> | JSX.Element;
@@ -18,6 +20,10 @@ const Layout: FunctionComponent<LayoutProps<SidebarCasesProps | SidebarVaccinePr
     description,
     title,
 }) => {
+    const isWide = useMedia({ minWidth: 900 });
+
+    console.log(isWide);
+
     return (
         <>
             <Head>
@@ -26,9 +32,18 @@ const Layout: FunctionComponent<LayoutProps<SidebarCasesProps | SidebarVaccinePr
                 <meta name="author" content="Pramudya Tamir" />
                 <title>{title}</title>
             </Head>
-            <AppShell padding="sm" navbar={<>{Sidebar}</>} header={<Topbar />} styles={appshell}>
-                {children}
-            </AppShell>
+            {isWide ? (
+                <AppShell
+                    padding="sm"
+                    navbar={<>{Sidebar}</>}
+                    header={<Topbar />}
+                    styles={appshell}
+                >
+                    {children}
+                </AppShell>
+            ) : (
+                <NotSupported />
+            )}
         </>
     );
 };

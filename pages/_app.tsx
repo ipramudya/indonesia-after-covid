@@ -1,18 +1,16 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
-import NProgress from "nprogress";
-
 import { CasesProvider } from "context/cases/cases.context";
 import { VaccineProvider } from "context/vaccine/vaccine.context";
 import theme from "lib/mantine/theme";
-
 import "mapbox-gl/dist/mapbox-gl.css";
-import "styles/recharts.css";
+import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import NProgress from "nprogress";
+import { useEffect } from "react";
 import "styles/mantine.css";
 import "styles/mapbox.css";
 import "styles/nprogress.css";
+import "styles/recharts.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
